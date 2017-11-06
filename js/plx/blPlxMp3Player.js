@@ -3,7 +3,8 @@
 // 2017/11/5 13:10 bjt
 var blPlxMp3Player 	= {};
 blPlxMp3Player.name 	= "blPlxMp3Player";
-blPlxMp3Player.v 	= "v0.2.6";
+blPlxMp3Player.v 	= "v0.3.6";
+blPlxMp3Player.path	= "https://littleflute.github.io/Elton-John/Captain%20Fantastic%20and%20the%20Brown%20Dirt%20Cowboy/cd01/";
 
 var _blPlayer = function (oBoss){ 
  var d = document.getElementById("idDivBlMp3Player");
@@ -21,7 +22,7 @@ var _blPlayer = function (oBoss){
     v.playObj = function (o){  
        if(v.oLast) {						
             v.oLast.style.backgroundColor = "green";}
-       v.src = "file:///F:/BoneBox/cd01/" + o.innerHTML;
+       v.src = blPlxMp3Player.path + o.innerHTML;
        v.play();
        o.style.backgroundColor="yellow";	
        v.oLast = o;
@@ -67,11 +68,15 @@ var _update = function()
 blPlxMp3Player.blrList = function(btn,div){
 	var blo = new blClass;
 	div.innerHTML = "";
-	var t = blo.blTextarea(div,"idTaList","file:///F:/BoneBox/cd01/m.js","blue");
-	var b = blo.blBtn(div,"idBtnMakeList","make","green");
+	var t = blo.blTextarea(div,"idTaList",blPlxMp3Player.path+"m.js","blue");
+	var bMake = blo.blBtn(div,"idBtnMakeList","make","green");
 	var bDbg = blo.blBtn(div,"idBtnDbg","dbg","gray");
+	var b1 = blo.blBtn(div,"idBtn1","b1","white");
+	b1.onclick = function (){
+		t.value = "https://littleflute.github.io/Elton-John/Captain%20Fantastic%20and%20the%20Brown%20Dirt%20Cowboy/m.js";
+	}
 	var n = 0;
-	b.myTimeFun = function (){
+	bMake.myTimeFun = function (){
 		if(f.length>1){
 			bDbg.innerHTML = (n++)+"f:"+f.length;
 		}
@@ -80,10 +85,13 @@ blPlxMp3Player.blrList = function(btn,div){
 		} 
 		_update();
 	}
-	b.onclick = function (){
+	bMake.onclick = function (){
 		var sList = blo.blScript("idScritpList",t.value);
+		var str = t.value;
+		var n = str.lastIndexOf("/")+1;
+		blPlxMp3Player.path = str.slice(0,n);
 		setInterval(this.myTimeFun, 1000);
-		var oBoss = blo.blDiv(div,"idPlayerBoss","oBoss","blue");
+		var oBoss = blo.blDiv(div,"idPlayerBoss","oBoss","green");
 		_blPlayer(oBoss);
 		_blMakeList(f);
 	}
@@ -92,22 +100,4 @@ blPlxMp3Player.blrList = function(btn,div){
 if (typeof loadPlxOK == "function") {		    		
 	loadPlxOK(blPlxMp3Player);
 }
-
-function _blMp3Engine(ver){			 
-	var v = "v0.0.8";
-	var n1 = 0;
-	var html1 = "";
-	var blo = new blClass;
-	this.blrInf = function(b,v){ 
-		if(0==n1) 
-		{
-			html1 = b.innerHTML;
-			blo.blAudio(v,"bla1","02.mp3");
-		}
-		n1++;  
-		b.innerHTML = html1 + n1;
-	}
-	this.blrGo = function(){
-		alert("blrGo");
-	}								
-}//END: _blMp3Engine
+ 
