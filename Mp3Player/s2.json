@@ -1,0 +1,146 @@
+﻿var s2 = {
+    
+	"songData": [
+
+	        	{
+
+            		"albumName": "cd3",
+		        "albumCoverMax": "images/index.jpg",
+		        "albumSong": [
+		
+                {
+
+		                    "musicName": "cd3_01.mp3",
+
+		                    "musicSinger": "Sor",
+		
+                    "musicLink": "cd3/01.mp3",
+ 
+              			    "lyricsLink": "cd3/01.lrc",
+		
+                    "musicTime": "01:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "cd3_02.mp3",
+
+		                    "musicSinger": "Sor",
+		
+                    "musicLink": "cd3/02.mp3",
+ 
+              			    "lyricsLink": "cd3/02.lrc",
+		
+                    "musicTime": "02:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "cd3_03.mp3",
+
+		                    "musicSinger": "xd",
+		
+                    "musicLink": "cd3/03.mp3",
+ 
+              			    "lyricsLink": "cd3/03.lrc",
+		
+                    "musicTime": "03:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "cd3_04.mp3",
+
+		                    "musicSinger": "xd",
+		
+                    "musicLink": "cd3/04.mp3",
+ 
+              			    "lyricsLink": "cd3/04.lrc",
+		
+                    "musicTime": "04:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "cd3_05.mp3",
+
+		                    "musicSinger": "xd",
+		
+                    "musicLink": "cd3/05.mp3",
+ 
+              			    "lyricsLink": "cd3/05.lrc",
+		
+                    "musicTime": "05:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+         			]
+        
+			},
+  
+
+      			{
+
+		            "albumName": "cd2",
+		
+            "albumCoverMax": "images/index.jpg",
+		
+            "albumSong": 
+				[ 		
+               
+					 {
+		                    		"musicName": "cd2_01.mp3",
+
+		                    		"musicSinger": "xd",
+		
+                    		"musicLink": "cd2/01.mp3",
+ 
+              			    		"lyricsLink": "cd2/01.lrc",
+		
+                    		"musicTime": "01:12",
+
+		                    		"albumCoverMin": "images/index.jpg"
+
+		                	},
+					{
+		                    		"musicName": "cd2_02.mp3",
+
+		                    		"musicSinger": "xd",
+		
+                    		"musicLink": "cd2/02.mp3",
+ 
+              			    		"lyricsLink": "cd2/02.lrc",
+		
+                    		"musicTime": "02:12",
+
+		                    		"albumCoverMin": "images/index.jpg"
+
+		                	}
+				]
+		
+        }
+    
+	],
+
+    "songNum": 13
+
+}
+;
