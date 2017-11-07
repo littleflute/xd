@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>xdw32_v0.0.4</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878"> 
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">vc6_xdw32</h1>
+      <h2 class="project-tagline"></h2>
+      
+        <a href="https://github.com/littleflute/vc6" class="btn">View on GitHub</a>
+        <a href="../index.html" class="btn">[..]</a>
+      
+      
+    </section>
+
+    <section class="main-content">
+      <p><a href="https://github.com/littleflute/vc6/edit/master/xdw32/index.md">v0.0.4</a></p>
+
+<p><a href="/vc6/xdw32/v0.0.1.html">v0.0.1.html</a></p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "stdafx.h"
+</span>  
+ 
+<span class="k">class</span> <span class="nc">CXdBmp</span><span class="p">{</span>
+	<span class="cp">#pragma warning (disable : 4183)
+</span>	<span class="k">public</span><span class="o">:</span>
+		<span class="n">CXdBmp</span><span class="o">::</span><span class="n">CXdBmp</span><span class="p">(){</span>
+			<span class="n">strcpy</span><span class="p">(</span><span class="n">m_szV</span><span class="p">,</span><span class="s">"V0.0.2"</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="n">CXdBmp</span><span class="o">::~</span><span class="n">CXdBmp</span><span class="p">(){}</span>
+		<span class="kt">void</span> <span class="n">CXdBmp</span><span class="o">::</span><span class="n">OnPaint</span><span class="p">(</span><span class="n">HWND</span> <span class="n">hWnd</span><span class="p">,</span><span class="n">HDC</span> <span class="n">hdc</span><span class="p">)</span>
+		<span class="p">{</span> 	
+			<span class="n">TCHAR</span>		<span class="n">szHello</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span> 
+			<span class="n">strcpy</span><span class="p">(</span><span class="n">szHello</span><span class="p">,</span><span class="s">"CXdBmp::OnPaint"</span><span class="p">);</span>
+			<span class="n">RECT</span> <span class="n">rt</span><span class="p">;</span>
+			<span class="n">GetClientRect</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rt</span><span class="p">);</span>
+			<span class="n">DrawText</span><span class="p">(</span><span class="n">hdc</span><span class="p">,</span> <span class="n">szHello</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">szHello</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">rt</span><span class="p">,</span> <span class="n">DT_CENTER</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="kt">void</span> <span class="n">CXdBmp</span><span class="o">::</span><span class="n">CopyScreen2DC</span><span class="p">(</span><span class="n">HDC</span> <span class="n">hDC</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">HDC</span>       <span class="n">hScrDC</span><span class="p">;</span>      
+			<span class="n">HBITMAP</span>    <span class="n">hBitmap</span><span class="p">,</span> <span class="n">hOldBitmap</span><span class="p">;</span>   
+			<span class="kt">int</span>       <span class="n">nX</span><span class="p">,</span> <span class="n">nY</span><span class="p">,</span> <span class="n">nX2</span><span class="p">,</span> <span class="n">nY2</span><span class="p">;</span>      
+			<span class="kt">int</span>       <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">;</span> 
+			 
+			<span class="n">hScrDC</span> <span class="o">=</span> <span class="n">CreateDC</span><span class="p">(</span><span class="s">"DISPLAY"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+			 
+			<span class="c1">//??¨¨??¨¢??¡¤?¡À??¨º
+</span>			<span class="kt">int</span> <span class="n">xScreen</span> <span class="o">=</span> <span class="o">::</span><span class="n">GetSystemMetrics</span><span class="p">(</span><span class="n">SM_CXSCREEN</span><span class="p">);</span>
+			<span class="kt">int</span> <span class="n">yScreen</span> <span class="o">=</span> <span class="n">GetSystemMetrics</span><span class="p">(</span><span class="n">SM_CYSCREEN</span><span class="p">);</span>
+			<span class="n">nX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//lpRect-&gt;left;
+</span>			<span class="n">nY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//lpRect-&gt;top;
+</span>			<span class="n">nX2</span> <span class="o">=</span> <span class="n">xScreen</span><span class="p">;</span><span class="c1">//lpRect-&gt;right;
+</span>			<span class="n">nY2</span> <span class="o">=</span> <span class="n">yScreen</span><span class="p">;</span><span class="c1">//lpRect-&gt;bottom;
+</span>			<span class="k">if</span> <span class="p">(</span><span class="n">nX</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">nX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nY</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">nY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nX2</span> <span class="o">&gt;</span> <span class="n">xScreen</span><span class="p">)</span>
+				<span class="n">nX2</span> <span class="o">=</span> <span class="n">xScreen</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nY2</span> <span class="o">&gt;</span> <span class="n">yScreen</span><span class="p">)</span>
+				<span class="n">nY2</span> <span class="o">=</span> <span class="n">yScreen</span><span class="p">;</span>
+			<span class="n">nWidth</span> <span class="o">=</span> <span class="n">nX2</span> <span class="o">-</span> <span class="n">nX</span><span class="p">;</span>
+			<span class="n">nHeight</span> <span class="o">=</span> <span class="n">nY2</span> <span class="o">-</span> <span class="n">nY</span><span class="p">;</span>
+			<span class="n">hBitmap</span> <span class="o">=</span> <span class="n">CreateCompatibleBitmap</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">,</span> <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">);</span>
+			<span class="n">hOldBitmap</span> <span class="o">=</span> <span class="p">(</span><span class="n">HBITMAP</span><span class="p">)</span><span class="n">SelectObject</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="n">hBitmap</span><span class="p">);</span>
+			
+			<span class="n">BitBlt</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">,</span><span class="n">hScrDC</span><span class="p">,</span> <span class="n">nX</span><span class="p">,</span> <span class="n">nY</span><span class="p">,</span> <span class="n">SRCCOPY</span><span class="p">);</span>
+					
+			<span class="n">hBitmap</span> <span class="o">=</span> <span class="p">(</span><span class="n">HBITMAP</span><span class="p">)</span><span class="n">SelectObject</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="n">hOldBitmap</span><span class="p">);</span>
+				 
+			<span class="n">DeleteDC</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">);</span> 
+		<span class="p">}</span>
+		<span class="n">HBITMAP</span> <span class="n">CXdBmp</span><span class="o">::</span><span class="n">CopyScreenToBitmap</span><span class="p">(</span><span class="n">LPRECT</span> <span class="n">lpRect</span><span class="p">,</span><span class="n">BOOL</span> <span class="n">bSave</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">HDC</span>       <span class="n">hScrDC</span><span class="p">,</span> <span class="n">hMemDC</span><span class="p">;</span>      
+			<span class="n">HBITMAP</span>    <span class="n">hBitmap</span><span class="p">,</span> <span class="n">hOldBitmap</span><span class="p">;</span>   
+			<span class="kt">int</span>       <span class="n">nX</span><span class="p">,</span> <span class="n">nY</span><span class="p">,</span> <span class="n">nX2</span><span class="p">,</span> <span class="n">nY2</span><span class="p">;</span>      
+			<span class="kt">int</span>       <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">;</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="n">IsRectEmpty</span><span class="p">(</span><span class="n">lpRect</span><span class="p">))</span>
+				<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+			<span class="n">hScrDC</span> <span class="o">=</span> <span class="n">CreateDC</span><span class="p">(</span><span class="s">"DISPLAY"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+			
+			<span class="n">hMemDC</span> <span class="o">=</span> <span class="n">CreateCompatibleDC</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">);</span>
+			<span class="n">nX</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+			<span class="n">nY</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">;</span>
+			<span class="n">nX2</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+			<span class="n">nY2</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">bottom</span><span class="p">;</span>
+			<span class="c1">//??¨¨??¨¢??¡¤?¡À??¨º
+</span>			<span class="kt">int</span> <span class="n">xScreen</span> <span class="o">=</span> <span class="o">::</span><span class="n">GetSystemMetrics</span><span class="p">(</span><span class="n">SM_CXSCREEN</span><span class="p">);</span>
+			<span class="kt">int</span> <span class="n">yScreen</span> <span class="o">=</span> <span class="n">GetSystemMetrics</span><span class="p">(</span><span class="n">SM_CYSCREEN</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nX</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">nX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nY</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">nY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nX2</span> <span class="o">&gt;</span> <span class="n">xScreen</span><span class="p">)</span>
+				<span class="n">nX2</span> <span class="o">=</span> <span class="n">xScreen</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nY2</span> <span class="o">&gt;</span> <span class="n">yScreen</span><span class="p">)</span>
+				<span class="n">nY2</span> <span class="o">=</span> <span class="n">yScreen</span><span class="p">;</span>
+			<span class="n">nWidth</span> <span class="o">=</span> <span class="n">nX2</span> <span class="o">-</span> <span class="n">nX</span><span class="p">;</span>
+			<span class="n">nHeight</span> <span class="o">=</span> <span class="n">nY2</span> <span class="o">-</span> <span class="n">nY</span><span class="p">;</span>
+			<span class="n">hBitmap</span> <span class="o">=</span> <span class="n">CreateCompatibleBitmap</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">,</span> <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">);</span>
+			<span class="n">hOldBitmap</span> <span class="o">=</span> <span class="p">(</span><span class="n">HBITMAP</span><span class="p">)</span><span class="n">SelectObject</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span> <span class="n">hBitmap</span><span class="p">);</span>
+			
+			<span class="n">BitBlt</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">,</span><span class="n">hScrDC</span><span class="p">,</span> <span class="n">nX</span><span class="p">,</span> <span class="n">nY</span><span class="p">,</span> <span class="n">SRCCOPY</span><span class="p">);</span>
+					
+			<span class="n">hBitmap</span> <span class="o">=</span> <span class="p">(</span><span class="n">HBITMAP</span><span class="p">)</span><span class="n">SelectObject</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span> <span class="n">hOldBitmap</span><span class="p">);</span>
+						
+			<span class="k">if</span><span class="p">(</span><span class="n">bSave</span><span class="p">)</span>
+			<span class="p">{</span>				 
+				<span class="n">save</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span><span class="n">hBitmap</span><span class="p">,</span><span class="s">"d:</span><span class="se">\\</span><span class="s">xd</span><span class="se">\\</span><span class="s">xd1.bmp"</span><span class="p">);</span>
+			<span class="p">}</span> 
+			<span class="n">DeleteDC</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">);</span>
+			<span class="n">DeleteDC</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">);</span>
+			<span class="k">return</span> <span class="n">hBitmap</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">HBITMAP</span> <span class="n">CXdBmp</span><span class="o">::</span><span class="n">draw2File</span><span class="p">(</span><span class="n">LPRECT</span> <span class="n">lpRect</span><span class="p">,</span><span class="n">BOOL</span> <span class="n">bSave</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">HDC</span>       <span class="n">hScrDC</span><span class="p">,</span> <span class="n">hMemDC</span><span class="p">;</span>      
+			<span class="n">HBITMAP</span>    <span class="n">hBitmap</span><span class="p">,</span> <span class="n">hOldBitmap</span><span class="p">;</span>   
+			<span class="kt">int</span>       <span class="n">nX</span><span class="p">,</span> <span class="n">nY</span><span class="p">,</span> <span class="n">nX2</span><span class="p">,</span> <span class="n">nY2</span><span class="p">;</span>      
+			<span class="kt">int</span>       <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">;</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="n">IsRectEmpty</span><span class="p">(</span><span class="n">lpRect</span><span class="p">))</span>
+				<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+			<span class="n">hScrDC</span> <span class="o">=</span> <span class="n">CreateDC</span><span class="p">(</span><span class="s">"DISPLAY"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+			
+			<span class="n">hMemDC</span> <span class="o">=</span> <span class="n">CreateCompatibleDC</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">);</span>
+			<span class="n">nX</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+			<span class="n">nY</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">;</span>
+			<span class="n">nX2</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+			<span class="n">nY2</span> <span class="o">=</span> <span class="n">lpRect</span><span class="o">-&gt;</span><span class="n">bottom</span><span class="p">;</span>
+			<span class="c1">//??¨¨??¨¢??¡¤?¡À??¨º
+</span>			<span class="kt">int</span> <span class="n">xScreen</span> <span class="o">=</span> <span class="o">::</span><span class="n">GetSystemMetrics</span><span class="p">(</span><span class="n">SM_CXSCREEN</span><span class="p">);</span>
+			<span class="kt">int</span> <span class="n">yScreen</span> <span class="o">=</span> <span class="n">GetSystemMetrics</span><span class="p">(</span><span class="n">SM_CYSCREEN</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nX</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">nX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nY</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">nY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nX2</span> <span class="o">&gt;</span> <span class="n">xScreen</span><span class="p">)</span>
+				<span class="n">nX2</span> <span class="o">=</span> <span class="n">xScreen</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">nY2</span> <span class="o">&gt;</span> <span class="n">yScreen</span><span class="p">)</span>
+				<span class="n">nY2</span> <span class="o">=</span> <span class="n">yScreen</span><span class="p">;</span>
+			<span class="n">nWidth</span> <span class="o">=</span> <span class="n">nX2</span> <span class="o">-</span> <span class="n">nX</span><span class="p">;</span>
+			<span class="n">nHeight</span> <span class="o">=</span> <span class="n">nY2</span> <span class="o">-</span> <span class="n">nY</span><span class="p">;</span>
+			<span class="n">hBitmap</span> <span class="o">=</span> <span class="n">CreateCompatibleBitmap</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">,</span> <span class="n">nWidth</span><span class="p">,</span> <span class="n">nHeight</span><span class="p">);</span>
+			<span class="n">hOldBitmap</span> <span class="o">=</span> <span class="p">(</span><span class="n">HBITMAP</span><span class="p">)</span><span class="n">SelectObject</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span> <span class="n">hBitmap</span><span class="p">);</span>
+			
+			<span class="o">::</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">);</span>
+			<span class="o">::</span><span class="n">TextOut</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="s">"xd drawing test"</span><span class="p">,</span><span class="mi">16</span><span class="p">);</span>
+			<span class="o">::</span><span class="n">TextOut</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="n">m_szV</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">m_szV</span><span class="p">));</span>
+
+			<span class="n">hBitmap</span> <span class="o">=</span> <span class="p">(</span><span class="n">HBITMAP</span><span class="p">)</span><span class="n">SelectObject</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span> <span class="n">hOldBitmap</span><span class="p">);</span>
+			
+			
+			<span class="k">if</span><span class="p">(</span><span class="n">bSave</span><span class="p">)</span>
+			<span class="p">{</span>				 
+				<span class="n">save</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">,</span><span class="n">hBitmap</span><span class="p">,</span><span class="s">"d:</span><span class="se">\\</span><span class="s">xd</span><span class="se">\\</span><span class="s">3.bmp"</span><span class="p">);</span>
+			<span class="p">}</span> 
+			<span class="n">DeleteDC</span><span class="p">(</span><span class="n">hScrDC</span><span class="p">);</span>
+			<span class="n">DeleteDC</span><span class="p">(</span><span class="n">hMemDC</span><span class="p">);</span>
+			<span class="k">return</span> <span class="n">hBitmap</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="k">private</span><span class="o">:</span>
+		<span class="kt">int</span> <span class="n">CXdBmp</span><span class="o">::</span><span class="n">save</span><span class="p">(</span><span class="n">HDC</span> <span class="n">hDC</span><span class="p">,</span><span class="n">HBITMAP</span> <span class="n">hBmp</span><span class="p">,</span><span class="kt">char</span><span class="o">*</span> <span class="n">filePath</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">HBITMAP</span>				<span class="n">hBitmap</span> <span class="o">=</span> <span class="n">hBmp</span><span class="p">;</span>
+			
+			<span class="kt">int</span>					<span class="n">iBits</span><span class="p">;</span>
+			<span class="n">WORD</span>				<span class="n">wBitCount</span><span class="p">;</span>
+			<span class="n">DWORD</span>				<span class="n">dwPaletteSize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dwBmBitsSize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dwDIBSize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dwWritten</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+			<span class="n">BITMAP</span>				<span class="n">Bitmap</span><span class="p">;</span> 
+			<span class="n">BITMAPFILEHEADER</span>	<span class="n">bmfHdr</span><span class="p">;</span> 
+			<span class="n">BITMAPINFOHEADER</span>	<span class="n">bi</span><span class="p">;</span> 
+			<span class="n">LPBITMAPINFOHEADER</span>	<span class="n">lpbi</span><span class="p">;</span> 
+			<span class="n">HANDLE</span>				<span class="n">fh</span><span class="p">,</span> <span class="n">hDib</span><span class="p">,</span> <span class="n">hPal</span><span class="p">,</span><span class="n">hOldPal</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+			
+			<span class="n">iBits</span> <span class="o">=</span> <span class="n">GetDeviceCaps</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="n">BITSPIXEL</span><span class="p">)</span> <span class="o">*</span> <span class="n">GetDeviceCaps</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="n">PLANES</span><span class="p">);</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="n">iBits</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>  <span class="n">wBitCount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">iBits</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">)</span>  <span class="n">wBitCount</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">iBits</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">)</span>  <span class="n">wBitCount</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+			<span class="k">else</span>      <span class="n">wBitCount</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+			
+			<span class="n">GetObject</span><span class="p">(</span><span class="n">hBitmap</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Bitmap</span><span class="p">),</span> <span class="p">(</span><span class="n">LPSTR</span><span class="p">)</span><span class="o">&amp;</span><span class="n">Bitmap</span><span class="p">);</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biSize</span>   <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPINFOHEADER</span><span class="p">);</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biWidth</span>   <span class="o">=</span> <span class="n">Bitmap</span><span class="p">.</span><span class="n">bmWidth</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biHeight</span>   <span class="o">=</span> <span class="n">Bitmap</span><span class="p">.</span><span class="n">bmHeight</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biPlanes</span>   <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biBitCount</span>  <span class="o">=</span> <span class="n">wBitCount</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biCompression</span> <span class="o">=</span> <span class="n">BI_RGB</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biSizeImage</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biXPelsPerMeter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biYPelsPerMeter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biClrImportant</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="n">bi</span><span class="p">.</span><span class="n">biClrUsed</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			
+			<span class="n">dwBmBitsSize</span> <span class="o">=</span> <span class="p">((</span><span class="n">Bitmap</span><span class="p">.</span><span class="n">bmWidth</span> <span class="o">*</span> <span class="n">wBitCount</span> <span class="o">+</span> <span class="mi">31</span><span class="p">)</span> <span class="o">/</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">Bitmap</span><span class="p">.</span><span class="n">bmHeight</span><span class="p">;</span>
+			
+			<span class="n">hDib</span> <span class="o">=</span> <span class="n">GlobalAlloc</span><span class="p">(</span><span class="n">GHND</span><span class="p">,</span><span class="n">dwBmBitsSize</span> <span class="o">+</span> <span class="n">dwPaletteSize</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPINFOHEADER</span><span class="p">));</span>
+			<span class="n">lpbi</span> <span class="o">=</span> <span class="p">(</span><span class="n">LPBITMAPINFOHEADER</span><span class="p">)</span><span class="n">GlobalLock</span><span class="p">(</span><span class="n">hDib</span><span class="p">);</span>
+			<span class="o">*</span><span class="n">lpbi</span> <span class="o">=</span> <span class="n">bi</span><span class="p">;</span>
+			
+			<span class="n">hPal</span> <span class="o">=</span> <span class="n">GetStockObject</span><span class="p">(</span><span class="n">DEFAULT_PALETTE</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">hPal</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="n">hDC</span> <span class="o">=</span> <span class="o">::</span><span class="n">GetDC</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+				<span class="n">hOldPal</span> <span class="o">=</span> <span class="o">::</span><span class="n">SelectPalette</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="p">(</span><span class="n">HPALETTE</span><span class="p">)</span><span class="n">hPal</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+				<span class="n">RealizePalette</span><span class="p">(</span><span class="n">hDC</span><span class="p">);</span>
+			<span class="p">}</span>
+			
+			<span class="n">GetDIBits</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="n">hBitmap</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">UINT</span><span class="p">)</span> <span class="n">Bitmap</span><span class="p">.</span><span class="n">bmHeight</span><span class="p">,</span>
+				<span class="p">(</span><span class="n">LPSTR</span><span class="p">)</span><span class="n">lpbi</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPINFOHEADER</span><span class="p">)</span> <span class="o">+</span> <span class="n">dwPaletteSize</span><span class="p">,</span> 
+				<span class="p">(</span><span class="n">BITMAPINFO</span> <span class="o">*</span><span class="p">)</span><span class="n">lpbi</span><span class="p">,</span> <span class="n">DIB_RGB_COLORS</span><span class="p">);</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="n">hOldPal</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="o">::</span><span class="n">SelectPalette</span><span class="p">(</span><span class="n">hDC</span><span class="p">,</span> <span class="p">(</span><span class="n">HPALETTE</span><span class="p">)</span><span class="n">hOldPal</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">);</span>
+				<span class="n">RealizePalette</span><span class="p">(</span><span class="n">hDC</span><span class="p">);</span>
+				<span class="o">::</span><span class="n">ReleaseDC</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">hDC</span><span class="p">);</span>
+			<span class="p">}</span>
+			
+			<span class="n">fh</span> <span class="o">=</span> <span class="n">CreateFile</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="n">GENERIC_WRITE</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CREATE_ALWAYS</span><span class="p">,</span>
+				<span class="n">FILE_ATTRIBUTE_NORMAL</span> <span class="o">|</span> <span class="n">FILE_FLAG_SEQUENTIAL_SCAN</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="n">fh</span> <span class="o">==</span> <span class="n">INVALID_HANDLE_VALUE</span><span class="p">)</span>  
+				<span class="k">return</span> 	<span class="mi">0</span><span class="p">;</span>
+			
+			<span class="n">bmfHdr</span><span class="p">.</span><span class="n">bfType</span> <span class="o">=</span> <span class="mh">0x4D42</span><span class="p">;</span> <span class="c1">// "BM"
+</span>			<span class="n">dwDIBSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPFILEHEADER</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPINFOHEADER</span><span class="p">)</span> <span class="o">+</span> <span class="n">dwPaletteSize</span> <span class="o">+</span> <span class="n">dwBmBitsSize</span><span class="p">;</span> 
+			<span class="n">bmfHdr</span><span class="p">.</span><span class="n">bfSize</span> <span class="o">=</span> <span class="n">dwDIBSize</span><span class="p">;</span>
+			<span class="n">bmfHdr</span><span class="p">.</span><span class="n">bfReserved1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="n">bmfHdr</span><span class="p">.</span><span class="n">bfReserved2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="n">bmfHdr</span><span class="p">.</span><span class="n">bfOffBits</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPFILEHEADER</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">DWORD</span><span class="p">)</span><span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPINFOHEADER</span><span class="p">)</span> <span class="o">+</span> <span class="n">dwPaletteSize</span><span class="p">;</span>
+			
+			<span class="n">WriteFile</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="p">(</span><span class="n">LPSTR</span><span class="p">)</span><span class="o">&amp;</span><span class="n">bmfHdr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BITMAPFILEHEADER</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">dwWritten</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+			<span class="n">WriteFile</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="p">(</span><span class="n">LPSTR</span><span class="p">)</span><span class="n">lpbi</span><span class="p">,</span> <span class="n">dwDIBSize</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dwWritten</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+			
+			<span class="n">GlobalUnlock</span><span class="p">(</span><span class="n">hDib</span><span class="p">);</span>
+			<span class="n">GlobalFree</span><span class="p">(</span><span class="n">hDib</span><span class="p">);</span>
+			<span class="n">CloseHandle</span><span class="p">(</span><span class="n">fh</span><span class="p">);</span> 
+			<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="kt">char</span> <span class="n">m_szV</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+	<span class="p">};</span>
+<span class="k">class</span> <span class="nc">CBlWnd</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">CBlWnd</span><span class="o">::</span><span class="n">CBlWnd</span><span class="p">(</span><span class="n">HINSTANCE</span> <span class="n">h</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+		
+		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_szTitle</span><span class="p">,</span><span class="n">pvGetV</span><span class="p">());</span>
+		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_szWindowClass</span><span class="p">,</span><span class="s">"BlW32V001"</span><span class="p">);</span> 
+		<span class="n">pvInit</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">CBlWnd</span><span class="o">::~</span><span class="n">CBlWnd</span><span class="p">(){}</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="kt">char</span> <span class="n">m_szV</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+	<span class="n">HINSTANCE</span>	<span class="n">m_hInst</span><span class="p">;</span> 
+	<span class="n">TCHAR</span>		<span class="n">m_szTitle</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span> 
+	<span class="n">TCHAR</span>		<span class="n">m_szWindowClass</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+	
+	<span class="kt">char</span><span class="o">*</span> <span class="n">pvGetV</span><span class="p">(){</span> <span class="k">return</span> <span class="s">"CBlWnd: V0.0.1"</span><span class="p">;};</span>
+
+	<span class="k">static</span>	<span class="n">LRESULT</span> <span class="n">CALLBACK</span>	<span class="nf">pvWndProc</span><span class="p">(</span><span class="n">HWND</span> <span class="n">hWnd</span><span class="p">,</span> <span class="n">UINT</span> <span class="n">message</span><span class="p">,</span> <span class="n">WPARAM</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">LPARAM</span> <span class="n">lParam</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="kt">int</span>			<span class="n">wmId</span><span class="p">,</span> <span class="n">wmEvent</span><span class="p">;</span>
+		<span class="n">PAINTSTRUCT</span> <span class="n">ps</span><span class="p">;</span>
+		<span class="n">HDC</span>			<span class="n">hdc</span><span class="p">;</span>
+		<span class="n">CXdBmp</span> <span class="n">myBmp</span><span class="p">;</span>
+
+		<span class="k">switch</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span> 
+		<span class="p">{</span>
+		<span class="k">case</span> <span class="n">WM_COMMAND</span><span class="p">:</span>
+			<span class="n">wmId</span>    <span class="o">=</span> <span class="n">LOWORD</span><span class="p">(</span><span class="n">wParam</span><span class="p">);</span> 
+			<span class="n">wmEvent</span> <span class="o">=</span> <span class="n">HIWORD</span><span class="p">(</span><span class="n">wParam</span><span class="p">);</span> 
+			<span class="c1">// Parse the menu selections:
+</span>			<span class="k">switch</span> <span class="p">(</span><span class="n">wmId</span><span class="p">)</span>
+			<span class="p">{</span>
+			<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+				<span class="k">break</span><span class="p">;</span>
+			<span class="nl">default:</span>
+				<span class="k">return</span> <span class="n">DefWindowProc</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">lParam</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">break</span><span class="p">;</span>
+			
+			<span class="k">case</span> <span class="n">WM_LBUTTONDOWN</span><span class="p">:</span>
+			<span class="c1">//	::MessageBox(NULL,"My Msg","My Title",MB_ICONINFORMATION|MB_YESNO);
+</span>			<span class="c1">//	::SetCapture(hWnd);
+</span>				
+				<span class="k">break</span><span class="p">;</span>
+			<span class="k">case</span> <span class="n">WM_RBUTTONDOWN</span><span class="p">:</span>
+			<span class="c1">//	::MessageBox(NULL,"My Msg","My Title",MB_ICONINFORMATION|MB_YESNO);
+</span>			<span class="c1">//	::ReleaseCapture();
+</span>				<span class="k">break</span><span class="p">;</span>
+
+			<span class="k">case</span> <span class="n">WM_PAINT</span><span class="p">:</span>
+				<span class="p">{</span>
+					<span class="n">hdc</span> <span class="o">=</span> <span class="n">BeginPaint</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span>
+				<span class="c1">// TODO: Add any drawing code here...
+</span> 
+					<span class="n">myBmp</span><span class="p">.</span><span class="n">OnPaint</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span><span class="n">hdc</span><span class="p">);</span>
+
+					<span class="n">EndPaint</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ps</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">break</span><span class="p">;</span>
+			<span class="k">case</span> <span class="n">WM_DESTROY</span><span class="p">:</span>
+				<span class="n">PostQuitMessage</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+				<span class="k">break</span><span class="p">;</span>
+			<span class="nl">default:</span>
+				<span class="k">return</span> <span class="n">DefWindowProc</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">wParam</span><span class="p">,</span> <span class="n">lParam</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">ATOM</span> <span class="nf">pvMyRegisterClass</span><span class="p">(</span><span class="n">HINSTANCE</span> <span class="n">hInstance</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">WNDCLASSEX</span> <span class="n">wcex</span><span class="p">;</span>
+		
+		<span class="n">wcex</span><span class="p">.</span><span class="n">cbSize</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">WNDCLASSEX</span><span class="p">);</span> 
+		
+		<span class="n">wcex</span><span class="p">.</span><span class="n">style</span>			<span class="o">=</span> <span class="n">CS_HREDRAW</span> <span class="o">|</span> <span class="n">CS_VREDRAW</span><span class="p">;</span>
+		<span class="n">wcex</span><span class="p">.</span><span class="n">lpfnWndProc</span>	<span class="o">=</span> <span class="p">(</span><span class="n">WNDPROC</span><span class="p">)</span><span class="n">pvWndProc</span><span class="p">;</span>
+		<span class="n">wcex</span><span class="p">.</span><span class="n">cbClsExtra</span>		<span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">wcex</span><span class="p">.</span><span class="n">cbWndExtra</span>		<span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">wcex</span><span class="p">.</span><span class="n">hInstance</span>		<span class="o">=</span> <span class="n">hInstance</span><span class="p">;</span> 
+		<span class="n">wcex</span><span class="p">.</span><span class="n">hIcon</span>			<span class="o">=</span> <span class="n">LoadIcon</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="n">IDI_WINLOGO</span><span class="p">);</span> 
+		<span class="n">wcex</span><span class="p">.</span><span class="n">hCursor</span>		<span class="o">=</span> <span class="n">LoadCursor</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">IDC_ARROW</span><span class="p">);</span>
+		<span class="n">wcex</span><span class="p">.</span><span class="n">hbrBackground</span>	<span class="o">=</span> <span class="p">(</span><span class="n">HBRUSH</span><span class="p">)(</span><span class="n">COLOR_WINDOW</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">wcex</span><span class="p">.</span><span class="n">lpszMenuName</span>	<span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> 
+		<span class="n">wcex</span><span class="p">.</span><span class="n">lpszClassName</span>	<span class="o">=</span> <span class="n">m_szWindowClass</span><span class="p">;</span> 
+		<span class="n">wcex</span><span class="p">.</span><span class="n">hIconSm</span>		<span class="o">=</span> <span class="n">LoadIcon</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="n">IDI_WINLOGO</span><span class="p">);</span>
+		
+		<span class="k">return</span> <span class="n">RegisterClassEx</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wcex</span><span class="p">);</span>
+	<span class="p">}</span> 
+	
+
+
+	<span class="kt">void</span> <span class="nf">pvInit</span><span class="p">(</span><span class="n">HINSTANCE</span> <span class="n">hInstance</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nCmdShow</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">HWND</span> <span class="n">hWnd</span><span class="p">;</span>
+		
+		<span class="n">m_hInst</span> <span class="o">=</span> <span class="n">hInstance</span><span class="p">;</span>  
+		<span class="n">pvMyRegisterClass</span><span class="p">(</span><span class="n">m_hInst</span><span class="p">);</span>
+		<span class="n">hWnd</span> <span class="o">=</span> <span class="n">CreateWindow</span><span class="p">(</span><span class="n">m_szWindowClass</span><span class="p">,</span> <span class="n">m_szTitle</span><span class="p">,</span> <span class="n">WS_OVERLAPPEDWINDOW</span><span class="p">,</span>
+			<span class="n">CW_USEDEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">CW_USEDEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">hInstance</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+		
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hWnd</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">return</span> <span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="n">ShowWindow</span><span class="p">(</span><span class="n">hWnd</span><span class="p">,</span> <span class="n">nCmdShow</span><span class="p">);</span>
+		<span class="n">UpdateWindow</span><span class="p">(</span><span class="n">hWnd</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">CBlApp</span>
+<span class="p">{</span>
+<span class="cp">#pragma warning( disable : 4183 )
+</span><span class="k">public</span><span class="o">:</span>
+	<span class="n">CBlApp</span><span class="o">::</span><span class="n">CBlApp</span><span class="p">()</span>
+	<span class="p">{</span>
+	<span class="p">};</span>
+	<span class="n">CBlApp</span><span class="o">::~</span><span class="n">CBlApp</span><span class="p">(){};</span>
+
+<span class="k">public</span><span class="o">:</span>
+	<span class="kt">int</span>	<span class="n">plGo</span><span class="p">(</span><span class="n">HINSTANCE</span> <span class="n">hInstance</span><span class="p">,</span>
+                     <span class="kt">int</span>       <span class="n">nCmdShow</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">pvInitInstance</span> <span class="p">(</span><span class="n">hInstance</span><span class="p">,</span> <span class="n">nCmdShow</span><span class="p">))</span> 
+		<span class="p">{</span> 
+			<span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span> 
+		<span class="p">}</span>
+
+		<span class="n">MSG</span> <span class="n">msg</span><span class="p">;</span>
+		<span class="n">HACCEL</span> <span class="n">hAccelTable</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>   
+		
+		<span class="k">while</span> <span class="p">(</span><span class="n">GetMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> 
+		<span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">TranslateAccelerator</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">hwnd</span><span class="p">,</span> <span class="n">hAccelTable</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">))</span> 
+			<span class="p">{</span>
+				<span class="n">TranslateMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+				<span class="n">DispatchMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		
+		<span class="k">return</span> <span class="n">msg</span><span class="p">.</span><span class="n">wParam</span><span class="p">;</span>
+		
+	<span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="n">BOOL</span> <span class="n">CBlApp</span><span class="o">::</span><span class="n">pvInitInstance</span><span class="p">(</span><span class="n">HINSTANCE</span> <span class="n">hInstance</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nCmdShow</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">CBlWnd</span><span class="p">(</span><span class="n">hInstance</span><span class="p">,</span><span class="n">nCmdShow</span><span class="p">);</span>
+		<span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">APIENTRY</span> <span class="nf">WinMain</span><span class="p">(</span><span class="n">HINSTANCE</span> <span class="n">hInstance</span><span class="p">,</span>
+                     <span class="n">HINSTANCE</span> <span class="n">hPrevInstance</span><span class="p">,</span>
+                     <span class="n">LPSTR</span>     <span class="n">lpCmdLine</span><span class="p">,</span>
+                     <span class="kt">int</span>       <span class="n">nCmdShow</span><span class="p">)</span>
+<span class="p">{</span> 
+	
+	<span class="k">static</span> <span class="n">CBlApp</span> <span class="n">g_myApp</span><span class="p">;</span>
+
+	<span class="k">return</span>	<span class="n">g_myApp</span><span class="p">.</span><span class="n">plGo</span><span class="p">(</span><span class="n">hInstance</span><span class="p">,</span><span class="n">nCmdShow</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/littleflute/vc6">vc6</a> is maintained by <a href="https://github.com/littleflute">littleflute</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+  </body>
+</html>
