@@ -5,22 +5,22 @@
 	        	{
 
             		"albumName": "cd1",
-		        "albumCoverMax": "images/index.jpg",
+		        "albumCoverMax": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg",
 		        "albumSong": [
 		
                 {
 
 		                    "musicName": "cd1_01.mp3",
 
-		                    "musicSinger": "Sor",
+		                    "musicSinger": "xdTest",
 		
-                    "musicLink": "cd1/01.mp3",
+                    "musicLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/01.mp3",
  
-              			    "lyricsLink": "cd1/01.lrc",
+              			    "lyricsLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/01.lrc",
 		
                     "musicTime": "01:12",
 
-		                    "albumCoverMin": "images/index.jpg"
+		                    "albumCoverMin": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg"
 
 		                },
 
@@ -29,15 +29,15 @@
 
 		                    "musicName": "cd1_02.mp3",
 
-		                    "musicSinger": "Sor",
+		                    "musicSinger": "xdTest",
 		
-                    "musicLink": "cd1/02.mp3",
+                    "musicLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/02.mp3",
  
-              			    "lyricsLink": "cd1/02.lrc",
+              			    "lyricsLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/02.lrc",
 		
                     "musicTime": "02:12",
 
-		                    "albumCoverMin": "images/index.jpg"
+		                    "albumCoverMin": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg"
 
 		                },
 
@@ -48,13 +48,13 @@
 
 		                    "musicSinger": "xd",
 		
-                    "musicLink": "cd1/03.mp3",
+                    "musicLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/03.mp3",
  
-              			    "lyricsLink": "cd1/03.lrc",
+              			    "lyricsLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/03.lrc",
 		
                     "musicTime": "03:12",
 
-		                    "albumCoverMin": "images/index.jpg"
+		                    "albumCoverMin": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg"
 
 		                },
 
@@ -65,13 +65,13 @@
 
 		                    "musicSinger": "xd",
 		
-                    "musicLink": "cd1/04.mp3",
+                    "musicLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/04.mp3",
  
-              			    "lyricsLink": "cd1/04.lrc",
+              			    "lyricsLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/04.lrc",
 		
                     "musicTime": "04:12",
 
-		                    "albumCoverMin": "images/index.jpg"
+		                    "albumCoverMin": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg"
 
 		                },
 
@@ -82,13 +82,13 @@
 
 		                    "musicSinger": "xd",
 		
-                    "musicLink": "cd1/05.mp3",
+                    "musicLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/05.mp3",
  
-              			    "lyricsLink": "cd1/05.lrc",
+              			    "lyricsLink": "file:///C:/Users/13699/xd/Mp3Player/blMp3Player-master/cd1/05.lrc",
 		
                     "musicTime": "05:12",
 
-		                    "albumCoverMin": "images/index.jpg"
+		                    "albumCoverMin": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg"
 
 		                },
 
@@ -101,7 +101,7 @@
 
 		            "albumName": "cd2",
 		
-            "albumCoverMax": "images/index.jpg",
+            "albumCoverMax": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg",
 		
             "albumSong": 
 				[ 		
@@ -117,7 +117,7 @@
 		
                     		"musicTime": "01:12",
 
-		                    		"albumCoverMin": "images/index.jpg"
+		                    		"albumCoverMin": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg"
 
 		                	},
 					{
@@ -131,7 +131,7 @@
 		
                     		"musicTime": "02:12",
 
-		                    		"albumCoverMin": "images/index.jpg"
+		                    		"albumCoverMin": "file:///C:/Users/13699/xd/Usb16G/BlABooks/0010/CDs/index.jpg"
 
 		                	}
 				]
