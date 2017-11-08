@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>W3Schools Color Test. Background=CornflowerBlue</title>
+<title>W3Schools Color Test</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="Keywords" content="HTML,CSS,JavaScript,SQL,PHP,jQuery,XML,DOM,Bootstrap,Web development,W3C,tutorials,programming,training,learning,quiz,primer,lessons,references,examples,source code,colors,demos,tips">
@@ -464,10 +464,10 @@ googletag.cmd.push(function() {
 
 
 <div class="w3-container w3-center">
-<h2>W3Schools Color Test</h2>
-<h3 style="font-size:1.01em;">The background color of the table below is: "CornflowerBlue", shown together with different text colors.</h3>
+<h2 id="idXdTitle">W3Schools Color Test</h2>
+<h3 style="font-size:1.01em;"><a href = "default_asp.html">[default_asp.html]</a></h3>
 <div class="w3-responsive">
-<table class="w3-table w3-bordered w3-border" style="background-color:CornflowerBlue">
+<table id = "idXdTable" class="w3-table w3-bordered w3-border" style="background-color:CornflowerBlue">
 <tr style="background-color:white;">
 <th>Colorname</th>
 <th>HEX</th>
@@ -477,5 +477,74 @@ googletag.cmd.push(function() {
 </table>
 </div>
 </div>
+
+<script>
+var QueryString = function () 
+{
+  // This function is anonymous, is executed immediately and 
+  // the return value is assigned to QueryString!
+
+  var query_string = {};
+
+  var query = window.location.search.substring(1);
+
+  var vars = query.split("&");
+
+  for (var i=0;i<vars.length;i++) {
+
+    var pair = vars[i].split("=");
+
+        // If first entry with this name
+
+    if (typeof query_string[pair[0]] === "undefined") {
+
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
+
+        // If second entry with this name
+
+    } else if (typeof query_string[pair[0]] === "string") {
+
+      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+
+      query_string[pair[0]] = arr;
+
+        // If third or later entry with this name
+
+    } else {
+
+      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+
+    }
+
+  }
+ 
+  return query_string;
+
+}();
+
+ 
+  
+
+var tbl = document.getElementById("idXdTable");
+if(tbl)
+{
+	if(QueryString.color)
+	{ 
+		tbl.style.backgroundColor = QueryString.color;
+	}
+	else if(QueryString.hex)
+	{  
+		tbl.style.backgroundColor = "#"+QueryString.hex;
+	}
+	
+}
+else
+{
+	alert("xddbg: No this table");
+}
+var xdTitle = document.getElementById("idXdTitle");
+xdTitle.innerHTML = "W3Schools Color Test_v0.1.3";
+
+</script>
 </body>
 </html>
