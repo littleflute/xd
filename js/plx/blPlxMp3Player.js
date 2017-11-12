@@ -3,7 +3,7 @@
 // 2017/11/5 13:10 bjt
 var blPlxMp3Player 	= {};
 blPlxMp3Player.name 	= "blPlxMp3Player";
-blPlxMp3Player.v 	= "v0.3.6";
+blPlxMp3Player.v 	= "v0.3.8";
 blPlxMp3Player.path	= "https://littleflute.github.io/Elton-John/Captain%20Fantastic%20and%20the%20Brown%20Dirt%20Cowboy/cd01/";
 
 var _blPlayer = function (oBoss){ 
@@ -74,6 +74,10 @@ blPlxMp3Player.blrList = function(btn,div){
 	var b1 = blo.blBtn(div,"idBtn1","b1","white");
 	b1.onclick = function (){
 		t.value = "https://littleflute.github.io/Elton-John/Captain%20Fantastic%20and%20the%20Brown%20Dirt%20Cowboy/m.js";
+	}
+	var b2 = blo.blBtn(div,"idBtn2","b2","white");
+	b2.onclick = function (){
+		t.value = "file:///C:/Users/13699/xd/blMp3Player-master/blMp3Player-master/cd1/m.js";
 	}
 	var n = 0;
 	bMake.myTimeFun = function (){

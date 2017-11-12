@@ -1,0 +1,1 @@
+notepad blclass.js

@@ -4,7 +4,7 @@
 
 function blClass ()
 { 
-    	this.v = "v1.0.3";
+    this.v = "v1.0.12";
 
     this.blShowObj2Div = function (oDivBoss,obj)
     {        
@@ -433,4 +433,14 @@ function xdBoard(div,x0,y0,Dxy)
 		btnBoard.click();
 	}									
 }//END: blCChess
+
+function _loadThisFileOK(){ 
+	var blo = new blClass;
+	var d = document.getElementById("idBlDbgDiv");
+	if( d ){ 
+		var d1 = blo.blDiv(d,"idFile_blclass_js", "[blclass.js " + blo.v + " loaded OK!","GreenYellow");
+	}
+	blo = null;
+}
+_loadThisFileOK();
 								
