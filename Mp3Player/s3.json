@@ -1,0 +1,146 @@
+﻿var s3 = {
+    
+	"songData": [
+
+	        	{
+
+            		"albumName": "cd1",
+		        "albumCoverMax": "images/index.jpg",
+		        "albumSong": [
+		
+                {
+
+		                    "musicName": "u0101.mp3",
+
+		                    "musicSinger": "Family Album USA",
+		
+                    "musicLink": "file:///C:/Users/13699/xd/vc6/files/u0101.mp3",
+ 
+              			    "lyricsLink": "file:///C:/Users/13699/xd/vc6/files/01.lrc",
+		
+                    "musicTime": "01:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "u0102.mp3",
+
+		                    "musicSinger": "Family Album USA",
+		
+                    "musicLink": "file:///C:/Users/13699/xd/vc6/files/u0102.mp3",
+ 
+              			    "lyricsLink": "file:///C:/Users/13699/xd/vc6/files/02.lrc",
+		
+                    "musicTime": "02:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "cd3_03.mp3",
+
+		                    "musicSinger": "xd",
+		
+                    "musicLink": "cd3/03.mp3",
+ 
+              			    "lyricsLink": "cd3/03.lrc",
+		
+                    "musicTime": "03:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "cd3_04.mp3",
+
+		                    "musicSinger": "xd",
+		
+                    "musicLink": "cd3/04.mp3",
+ 
+              			    "lyricsLink": "cd3/04.lrc",
+		
+                    "musicTime": "04:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+		
+                {
+
+		                    "musicName": "cd3_05.mp3",
+
+		                    "musicSinger": "xd",
+		
+                    "musicLink": "cd3/05.mp3",
+ 
+              			    "lyricsLink": "cd3/05.lrc",
+		
+                    "musicTime": "05:12",
+
+		                    "albumCoverMin": "images/index.jpg"
+
+		                },
+
+         			]
+        
+			},
+  
+
+      			{
+
+		            "albumName": "cd2",
+		
+            "albumCoverMax": "images/index.jpg",
+		
+            "albumSong": 
+				[ 		
+               
+					 {
+		                    		"musicName": "cd2_01.mp3",
+
+		                    		"musicSinger": "xd",
+		
+                    		"musicLink": "cd2/01.mp3",
+ 
+              			    		"lyricsLink": "cd2/01.lrc",
+		
+                    		"musicTime": "01:12",
+
+		                    		"albumCoverMin": "images/index.jpg"
+
+		                	},
+					{
+		                    		"musicName": "cd2_02.mp3",
+
+		                    		"musicSinger": "xd",
+		
+                    		"musicLink": "cd2/02.mp3",
+ 
+              			    		"lyricsLink": "cd2/02.lrc",
+		
+                    		"musicTime": "02:12",
+
+		                    		"albumCoverMin": "images/index.jpg"
+
+		                	}
+				]
+		
+        }
+    
+	],
+
+    "songNum": 13
+
+}
+;

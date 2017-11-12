@@ -34,6 +34,8 @@
 cite{ display:block; }
 </style>
 </head>
+
+
 <body>
 
 <div class="page-info clearfix">
@@ -42,7 +44,7 @@ cite{ display:block; }
 
     	<a href="../index.html">[..]</a>
   
-    	<a href="https://github.com/littleflute/blMp3Player/edit/master/index.html" target="_blank">v0.1.9</a>
+    	<a href="https://github.com/littleflute/blMp3Player/edit/master/index.html" target="_blank">v0.1.18</a>
     
 	<a href="https://github.com/littleflute/blMp3Player" title="回到 PrjPage 首页">PrjPage</a>
 	<a href="https://littleflute.github.io/blog">blog</a>
@@ -77,7 +79,8 @@ cite{ display:block; }
 		<a href="https://littleflute.github.io/blMp3Player/?l=Family-Album-USA" title="Family-Album-USA" target="_blank">Family-Album-USA</a>
 	
        	<a href="https://github.com/littleflute/Family-Album-USA/edit/master/l.json" title="edit" target="_blank">e</a>
-      </li>
+      
+	      </li>
 
 	      <li>
 		<a href="#" title="Family-Album-USA" onclick="onXdTest('Family-Album-USA')">Family-Album-USA</a> 
@@ -92,6 +95,8 @@ cite{ display:block; }
 	    	<p>
 			<div id="xdToolBar" style="border:1px green solid;"></div>
  
+			<div id = "idBlDbgDiv" style = "background-color: Bisque; ">BlDbgDiv</div>	
+ 
 	    	</p>
 	</div>
 
@@ -102,35 +107,63 @@ cite{ display:block; }
 
 
 <!--播放器开始 { -->
+
 <div id="musicPlayerWrap" class="m-player-wrap">
+
   <div id="musicPlayer" class="m-player">
+
     <div id="musicInfo" class="m-info">
+
       <img src="images/index.jpg" alt="" id="albumFrontCover" class="album-front-cover">
+
       <div class="front-cover-mask" title=""></div>
+
       <div id="infoWrap" class="info-wrap">
+
         <dl>
+
           <dt id="musicName" title="FeelPlayer">FeelPlayer</dt>
+
           <dd id="musicSinger" title="播放最爱的音乐">播放最爱的音乐</dd>
+
           <dd id="albumName" title=""></dd>
+
         </dl>
 
+
         <div id="musicFunction" class="m-function clearfix">
+
           <a href="javascript:void(0);" id="albumLists" class="album-lists" title="打开专辑列表"></a>
+
           <a href="javascript:void(0);" id="lyrics" class="lyrics" title="打开歌词"></a>
+
           <!-- <a href="javascript:void(0);" id="favorites" class="favorites" title="打开收藏夹"></a> -->
+
         </div>
+
       </div>
+
     </div>
+
     <div id="broadcastControl" class="broadcast-control clearfix">
+
       <div class="broadcast-control-l"></div>
+
       <div class="broadcast-control-m">
+
         <a href="javascript:void(0);" id="play" class="m-play" title="播放"></a>
+
         <a href="javascript:void(0);" id="pause" class="m-pause hidden" title="暂停"></a>
+
         <a href="javascript:void(0);" id="next" class="m-next" title="下一曲"></a>
+
         <a href="javascript:void(0);" id="prev" class="m-prev" title="上一曲"></a>
 
+
         <div class="play-progress-rate">
+
           <span id="playTime" class="play-time">0:00</span>
+
           <div id="progressRateBg" class="progress-rate-bg">
             <div id="progressRateColor" class="progress-rate-color" style="width:0;"></div>
           </div>
@@ -164,21 +197,47 @@ cite{ display:block; }
     <a href="javascript:void(0);" id="playerSwitchBtn" class="switch-on"></a>
   </div>
 
-  <div id="lrcWrap" class="lrc-wrap hidden">
+  
+<div id="lrcWrap" class="lrc-wrap hidden">
     <div id="loadLrc" class="load-lrc hidden">歌曲载入中...</div>
     <div id="lrcBox" class="lrc-box"></div>
   </div>
 </div>
 
 
+
 <!--播放器结束 } -->
+
 </body>
 </html>
+
+
 <script type="text/javascript" src="javascript/musicPlayer.js"></script>
+
 <script>
+
 function onXdTest(json)
 { 
     var url = "https://littleflute.github.io/" + json + "/l.json";
     XMLHttpData(url);
 }
+
 </script>
+
+
+<script type="text/javascript" src="../js/blclass.js"></script>
+<script language="JavaScript" src="../js/blclassTest.js"></script>
+			 
+<script>											
+var nBlPageLeve		= 1; 											
+function loadPlxOK(o){ 								
+		var d = document.getElementById("blpMainDiv");				
+		var html = d.innerHTML;							
+		html += "<br> plx: " + o.name + " is loaded OK.<br>";			
+		d.innerHTML = html;							
+		blt.blPlxUI(o.name + "Test",55,233,o);					
+}										
+var blt = new blClassTest;								
+blt.blGo(); 									 
+blt.blLoadPlx("blPlxLyric.js");						
+</script>									
