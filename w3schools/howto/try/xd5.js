@@ -1,7 +1,7 @@
 
 //xd5.js
 var thisFileName = "xd5";
-var thisFileV	 = "v0.2.1";
+var thisFileV	 = "v0.2.2";
 var thisCodeFun		= function(){
 /* xd5 code:
 _begin_ 
@@ -61,10 +61,13 @@ divCode.onclick = function(){alert(divCode.id);}
 divCode.innerHTML = thisCodeFun;
 od.appendChild(divCode); 
 
-var s0 = divCode.innerHTML ;
+
+taCode.value = thisCodeFun;
+
+var s0 = taCode.value ;
 var s1 = s0.split("_begin_");
 var s2 = s1[1];
 var s3 = s2.split("_end_");
-var s4 = s3[0];
-//od.innerHTML = s4 ;
-taCode.value = thisCodeFun;
+var s4 = s3[0]; 
+
+taCode.value = s4;
