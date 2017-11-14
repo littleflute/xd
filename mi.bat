@@ -3,7 +3,7 @@ echo ^<!DOCTYPE html^>  >>index.html
 echo ^<html^>		>>index.html
 echo ^<head^>		>>index.html
 echo ^<title^>		>>index.html
-echo index_v1.1.18	>>index.html 
+echo index_v1.1.22	>>index.html 
 echo ^</title^>						>>index.html
 echo ^<meta charset="UTF-8"^>								>>index.html 
 echo ^<meta name="viewport" content="width=device-width, initial-scale=1"^>		>>index.html 
@@ -29,8 +29,11 @@ echo    ^<div class="w3-dropdown-hover w3-hide-small"^>		 	>>index.html
 echo      ^<button class="w3-padding-large w3-button" title="More"^>MORE* ^<i class="fa fa-caret-down"^>^</i^>^</button^>		 	>>index.html       
 echo       ^<div class="w3-dropdown-content w3-bar-block w3-card-4"^>		 	>>index.html  
 echo         ^<a target="_blank" href="https://github.com/littleflute/xd" class="w3-bar-item w3-button"^>github_xd^</a^>	 	>>index.html  
-echo         ^<a href="#" class="w3-bar-item w3-button"^>Extras^</a^>		 	>>index.html  
-echo         ^<a href="#" class="w3-bar-item w3-button"^>Media^</a^>		 	>>index.html  
+echo         ^<a target="_blank" href="https://www.w3schools.com" class="w3-bar-item w3-button"^>w3schools.com^</a^>		 	>>index.html  
+echo         ^<a target="_blank" href="http://www.google.com" class="w3-bar-item w3-button"^>google^</a^>		 		>>index.html  
+echo         ^<a target="_blank" href="https://cbcpubliclibrary.net/" class="w3-bar-item w3-button"^>cbcpubliclibrary.net/^</a^>	>>index.html  
+echo         ^<a target="_blank" href="https://littleflute.github.io/Programming-Windows/" class="w3-bar-item w3-button"^>cbcpubliclibrary.net/^</a^>	>>index.html  
+
 echo       ^</div^>								 	>>index.html  
 echo     ^</div^>		 							>>index.html  
 echo     ^<a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"^>^<i class="fa fa-search"^>^</i^>^</a^>		 	>>index.html  
