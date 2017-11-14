@@ -1,9 +1,9 @@
 
-//xd5.js
-var thisFileName = "xd5";
-var thisFileV	 = "v0.2.7";
+//tryw3js_filters_list.js
+var thisFileName = "tryw3js_filters_list";
+var thisFileV	 = "v0.2.3";
 var thisCodeFun		= function(){
-/* xd5 code:
+/* tryw3js_filters_list code:
 _begin_ 
 <!DOCTYPE html>
 <html>
@@ -48,13 +48,11 @@ _end_
 //alert(thisFileV + ":" + thisCodeFun );
  
 var idDiv = "idDiv_"+thisFileName;
-var od = document.getElementById(idDiv); 
+var od = document.getElementById(idDiv);
 
 var taCode = document.createElement("textarea");
 taCode.id 	= "idTaCode";
 taCode.value	= "alert('xd test');";
-
-
 od.appendChild(taCode); 
 
 var divCode = document.createElement("div");
