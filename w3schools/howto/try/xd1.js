@@ -1,7 +1,7 @@
 
 //xd1.js
 var thisFileName = "xd1";
-var thisFileV	 = "v0.2.16";
+var thisFileV	 = "v0.3.5";
 var thisCodeFun		= function(){
 /* xd1 code:
 _begin_ 
@@ -46,10 +46,10 @@ _end_
 };
 var _blXd1 = {};
 _blXd1.name = "_blXd1";
-_blXd1.v = "v0.0.7";
+_blXd1.v = "v0.0.9";
 
-_blXd1.blrF = function(b,v){
-	v.innerHTML = b.id;
+_blXd1.blrShow_xd5 = function(b,v){
+	v.innerHTML = "<a target='_blank' href='tryit_asp.html?l=xd5'>xd5_js</a>";
 };
 
 var blo = new blClass;
@@ -57,12 +57,10 @@ var blo = new blClass;
  
 var idDiv = "idDiv_"+thisFileName;
 var od = document.getElementById(idDiv); 
-var blod1 = blo.blDiv(od,"blod1","blod1","gray");
 
 var blt = new blClassTest;	 
 blt.blGo1 = function(p){	
-	p.blPlxUI(thisFileName + "_" + thisFileV,700,50,_blXd1);
-
+	p.blPlxUI(thisFileName + "_" + thisFileV,900,0,_blXd1);
 };						
 blt.blGo1(blt); 		
 
@@ -70,16 +68,11 @@ blt.blGo1(blt);
 var taCode = document.createElement("textarea");
 taCode.id 	= "idTaCode";
 taCode.value	= "alert('xd test');";
+taCode.style.display = "none";
 
 
 od.appendChild(taCode); 
-
-var divCode = document.createElement("div");
-divCode.id	= "idDivCode";
-divCode.onclick = function(){alert(divCode.id);}
-divCode.innerHTML = thisCodeFun;
-od.appendChild(divCode); 
-
+ 
 
 taCode.value = thisCodeFun;
 
