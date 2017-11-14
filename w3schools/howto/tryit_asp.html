@@ -250,7 +250,7 @@ a.w3schoolslink:hover,a.w3schoolslink:active {
   overflow:hidden;
   text-align:center;
   margin-top:5px;
-  height:90px;
+  height:190px;
 }
   .w3-dropdown-content {width:350px}
   
@@ -1000,18 +1000,25 @@ blrLoadFileJS(QueryString.l);
 
 var xdLoad = document.getElementById("xdLoad");
 xdLoad.onclick = function()
-{ 
+{
+/* 
 	var id = "idDivCode";
 	var d = document.getElementById(id);
 	if(!d) {alert(id +" not exist!");return;}
 	var code = d.innerHTML;
+*/
+	var id = "idTaCode";
+	var ta = document.getElementById(id);
+	if(!ta) {alert(id +" not exist!");return;}
+	var code = ta.value;
 	
+
 	document.getElementById("textareaCode").value = code ;
 	 window.editor.getDoc().setValue(code);
 
 }
 var xdv = document.getElementById("xd2");
-xdv.innerHTML = "v0.2.1";
+xdv.innerHTML = "v0.2.4";
 
 
 </script>
