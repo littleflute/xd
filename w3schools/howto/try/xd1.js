@@ -1,7 +1,7 @@
 
 //xd1.js
 var thisFileName = "xd1";
-var thisFileV	 = "v0.3.5";
+var thisFileV	 = "v0.3.6";
 var thisCodeFun		= function(){
 /* xd1 code:
 _begin_ 
@@ -46,7 +46,12 @@ _end_
 };
 var _blXd1 = {};
 _blXd1.name = "_blXd1";
-_blXd1.v = "v0.0.9";
+_blXd1.v = "v0.1.2";
+
+_blXd1.blrLoad = function(b,v){ 
+	var a = document.getElementById("xdLoad");
+	a.click(); submitTryit(1);
+};
 
 _blXd1.blrShow_xd5 = function(b,v){
 	v.innerHTML = "<a target='_blank' href='tryit_asp.html?l=xd5'>xd5_js</a>";
