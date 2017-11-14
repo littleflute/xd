@@ -331,7 +331,7 @@ font-style:normal;
 
 <div id='tryitLeaderboard' style="background-color:#1fffff">
 <!-- TryitLeaderboard -->
-  <div id='div-gpt-ad-1428407818244-0'>xdgoogleid1 v0.0.6
+  <div id='div-gpt-ad-1428407818244-0'>xdgoogleid1 v0.0.10
     <script type='text/javascript'>
 	//googletag.cmd.push(function() { googletag.display('div-gpt-ad-1428407818244-0'); });
     </script>
@@ -410,6 +410,7 @@ font-style:normal;
 <div class="trytopnav">
 <div class="w3-bar w3-light-grey" style="border-top:1px solid #f1f1f1;overflow:auto">
   <a id="tryXdHome" href="./default_asp.html" title="xd Home" class="w3-button w3-bar-item topnav-icons" style="font-size:28px;color:#f99999;margin-top:-2px">xdHome</a>
+  <a id="xdLoad" href="javascript:void(0)" class="w3-button w3-bar-item topnav-icons" style="font-size:28px;color:#f99f99;margin-top:-2px">xdLoad</a>
   <a id="tryhome" href="https://www.w3schools.com" target="_blank" title="w3schools.com Home" class="w3-button w3-bar-item topnav-icons fa fa-home" style="font-size:28px;color:#999999;margin-top:-2px"></a>
   <a href="javascript:void(0);" onclick="openMenu()" id="menuButton" title="Open Menu"class="w3-dropdown-click w3-button w3-bar-item topnav-icons fa fa-menu" style="font-size:28px;color:#999999;margin-top:-2px"></a>
   <a href="javascript:void(0);" onclick="restack(currentStack)" title="Change Orientation" class="w3-button w3-bar-item topnav-icons fa fa-rotate" style="font-size:28px;color:#999999;margin-top:-2px"></a>
@@ -440,50 +441,9 @@ font-style:normal;
   <div id="textareacontainer">
     <div id="textarea">
       <div id="textareawrapper">
-        <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false"><!DOCTYPE html>
-<html>
-<style>
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-}
-
-#myBar {
-  width: 1%;
-  height: 30px;
-  background-color: #4CAF50;
-}
-</style>
-<body>
-
-<h1>JavaScript Progress Bar</h1>
-
-<div id="myProgress">
-  <div id="myBar"></div>
-</div>
-
-<br>
-<button onclick="move()">Click Me</button> 
-
-<script>
-function move() {
-  var elem = document.getElementById("myBar");   
-  var width = 1;
-  var id = setInterval(frame, 10);
-  function frame() {
-    if (width >= 100) {
-      clearInterval(id);
-    } else {
-      width++; 
-      elem.style.width = width + '%'; 
-    }
-  }
-}
-</script>
-
-</body>
-</html>
-</textarea>
+        <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
+	xd1
+	</textarea>
         <form id="codeForm" autocomplete="off" style="margin:0px;display:none;">
           <input type="hidden" name="code" id="code" />
         </form>
@@ -1001,6 +961,17 @@ window.onclick = function(event) {
     }
     
 }
+var xdLoad = document.getElementById("xdLoad");
+xdLoad.onclick = function()
+{ 
+	var code = "codexd";
+	document.getElementById("textareaCode").value = code ;
+	 window.editor.getDoc().setValue(code);
+
+}
+var xdv = document.getElementById("div-gpt-ad-1428407818244-0");
+xdv.innerHTML = "v0.1.0";
+
 
 </script>
  
