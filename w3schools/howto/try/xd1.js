@@ -1,7 +1,7 @@
 
 //xd1.js
 var thisFileName = "xd1";
-var thisFileV	 = "v0.3.6";
+var thisFileV	 = "v0.3.7";
 var thisCodeFun		= function(){
 /* xd1 code:
 _begin_ 
