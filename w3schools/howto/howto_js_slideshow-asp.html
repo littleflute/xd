@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-<title>How To Slide Down a Bar on Scroll</title>
+<title>How To Create a Slideshow</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="Keywords" content="HTML,CSS,JavaScript,SQL,PHP,jQuery,XML,DOM,Bootstrap,Web development,W3C,tutorials,programming,training,learning,quiz,primer,lessons,references,examples,source code,colors,demos,tips">
@@ -400,11 +400,97 @@ function w3_getStyleValue(elmnt,style) {
 </script>
 
 <style>
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade{
+    from{opacity:.4} 
+    to{opacity:1}
+}
+@keyframes fade{
+    from{opacity:.4} 
+    to{opacity:1}
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin:0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.slprev, .slnext {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index:1;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  width:auto;
+  padding: 16px;
+  top:50%;
+  margin-top: -22px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+.slprev:hover, .slnext:hover {
+  color: white;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.slnext {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width:100%;
+    text-align:center;
+}
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+@media only screen and (max-width: 400px) {
+.slprev, .slnext,.text {
+    font-size:12px;
+  }
+}
+
+.slideractive,.dot:hover {
+background-color:#717171;
+}
+.mySlides {
+  display:none;
+}
 </style>
 </head>
 <body>
 <div class='w3-container top'>
-  <a class='w3schools-logo' href='../index.html'>xd*:w3schools<span class='dotcom'>.com</span></a>
+  <a class='w3schools-logo' href='//www.w3schools.com'>w3schools<span class='dotcom'>.com</span></a>
   <div class='w3-right w3-hide-small w3-wide toptext' style="font-family:'Segoe UI',Arial,sans-serif">THE WORLD'S LARGEST WEB DEVELOPER SITE</div>
 </div>
 
@@ -417,21 +503,21 @@ function w3_getStyleValue(elmnt,style) {
   <div style="overflow:auto;">
     <div class="w3-bar w3-left" style="width:100%;overflow:hidden;height:44px">
       <a href='javascript:void(0);' class='topnav-icons fa fa-menu w3-hide-large w3-left w3-bar-item w3-button' onclick='open_menu()' title='Menu'></a>
-      <a href='../index.html' class='topnav-icons fa fa-home w3-left w3-bar-item w3-button' title='Home'></a>
-      <a class="w3-bar-item w3-button" href='/html/default-asp.html' title='HTML Tutorial'>HTML</a>
-      <a class="w3-bar-item w3-button" href='/css/default-asp.html' title='CSS Tutorial'>CSS</a>
-      <a class="w3-bar-item w3-button" href='/js/default-asp.html' title='JavaScript Tutorial'>JAVASCRIPT</a>
-      <a class="w3-bar-item w3-button" href='/sql/default-asp.html' title='SQL Tutorial'>SQL</a>
-      <a class="w3-bar-item w3-button" href='/php/default-asp.html' title='PHP Tutorial'>PHP</a>
-      <a class="w3-bar-item w3-button" href='/bootstrap/default-asp.html' title='Bootstrap Tutorial'>BOOTSTRAP</a>
-      <a class="w3-bar-item w3-button" href='/jquery/default-asp.html' title='jQuery Tutorial'>JQUERY</a>
-      <a class="w3-bar-item w3-button" href='/angular/default-asp.html' title='Angular Tutorial'>ANGULAR</a>
-      <a class="w3-bar-item w3-button" href='/w3css/default-asp.html' title='W3.CSS Tutorial'>W3.CSS</a>
-      <a class="w3-bar-item w3-button" href='/xml/default-asp.html' title='XML Tutorial'>XML</a>
+      <a href='/default_asp.html' class='topnav-icons fa fa-home w3-left w3-bar-item w3-button' title='Home'></a>
+      <a class="w3-bar-item w3-button" href='/html/default_asp.html' title='HTML Tutorial'>HTML</a>
+      <a class="w3-bar-item w3-button" href='/css/default_asp.html' title='CSS Tutorial'>CSS</a>
+      <a class="w3-bar-item w3-button" href='/js/default_asp.html' title='JavaScript Tutorial'>JAVASCRIPT</a>
+      <a class="w3-bar-item w3-button" href='/sql/default_asp.html' title='SQL Tutorial'>SQL</a>
+      <a class="w3-bar-item w3-button" href='/php/default_asp.html' title='PHP Tutorial'>PHP</a>
+      <a class="w3-bar-item w3-button" href='/bootstrap/default_asp.html' title='Bootstrap Tutorial'>BOOTSTRAP</a>
+      <a class="w3-bar-item w3-button" href='/jquery/default_asp.html' title='jQuery Tutorial'>JQUERY</a>
+      <a class="w3-bar-item w3-button" href='/angular/default_asp.html' title='Angular Tutorial'>ANGULAR</a>
+      <a class="w3-bar-item w3-button" href='/w3css/default_asp.html' title='W3.CSS Tutorial'>W3.CSS</a>
+      <a class="w3-bar-item w3-button" href='/xml/default_asp.html' title='XML Tutorial'>XML</a>
       <a class="w3-bar-item w3-button" id='topnavbtn_tutorials' href='javascript:void(0);' onclick='w3_open_nav("tutorials")' title='Tutorials'>MORE <i class='fa fa-caret-down'></i><i class='fa fa-caret-up' style='display:none'></i></a>
       <a href='javascript:void(0);' class='topnav-icons fa w3-right w3-bar-item w3-button' onclick='open_search(this)' title='Search W3Schools'>&#xe802;</a>
       <a href='javascript:void(0);' class='topnav-icons fa w3-right w3-bar-item w3-button' onclick='open_translate(this)' title='Translate W3Schools'>&#xe801;</a>
-      <a class="w3-bar-item w3-button w3-right" href='/forum/default-asp.html'>FORUM</a>
+      <a class="w3-bar-item w3-button w3-right" href='/forum/default_asp.html'>FORUM</a>
       <a class="w3-bar-item w3-button w3-right" id='topnavbtn_examples' href='javascript:void(0);' onclick='w3_open_nav("examples")' title='Examples'>EXAMPLES <i class='fa fa-caret-down'></i><i class='fa fa-caret-up' style='display:none'></i></a>
       <a class="w3-bar-item w3-button w3-right" id='topnavbtn_references' href='javascript:void(0);' onclick='w3_open_nav("references")' title='References'>REFERENCES <i class='fa fa-caret-down'></i><i class='fa fa-caret-up' style='display:none'></i></a>
     </div>
@@ -440,42 +526,42 @@ function w3_getStyleValue(elmnt,style) {
       <div class='w3-row-padding' style="padding:24px 48px">
         <div class='w3-col l3 m6'>
           <h3>HTML and CSS</h3>
-          <a class="w3-bar-item w3-button" href='/html/default-asp.html'>Learn HTML</a>
-          <a class="w3-bar-item w3-button" href='/css/default-asp.html'>Learn CSS</a>
-          <a class="w3-bar-item w3-button" href='/w3css/default-asp.html'>Learn W3.CSS</a>
-          <a class="w3-bar-item w3-button" href='/colors/default-asp.html'>Learn Colors</a>
-          <a class="w3-bar-item w3-button" href='/bootstrap/default-asp.html'>Learn Bootstrap 3</a>
-          <a class="w3-bar-item w3-button" href='/bootstrap4/default-asp.html'>Learn Bootstrap 4</a>
-          <a class="w3-bar-item w3-button" href='/graphics/default-asp.html'>Learn Graphics</a>
-          <a class="w3-bar-item w3-button" href='/icons/default-asp.html'>Learn Icons</a>
-          <a class="w3-bar-item w3-button" href='/howto/default-asp.html'>Learn How To</a>
+          <a class="w3-bar-item w3-button" href='/html/default_asp.html'>Learn HTML</a>
+          <a class="w3-bar-item w3-button" href='/css/default_asp.html'>Learn CSS</a>
+          <a class="w3-bar-item w3-button" href='/w3css/default_asp.html'>Learn W3.CSS</a>
+          <a class="w3-bar-item w3-button" href='/colors/default_asp.html'>Learn Colors</a>
+          <a class="w3-bar-item w3-button" href='/bootstrap/default_asp.html'>Learn Bootstrap 3</a>
+          <a class="w3-bar-item w3-button" href='/bootstrap4/default_asp.html'>Learn Bootstrap 4</a>
+          <a class="w3-bar-item w3-button" href='/graphics/default_asp.html'>Learn Graphics</a>
+          <a class="w3-bar-item w3-button" href='/icons/default_asp.html'>Learn Icons</a>
+          <a class="w3-bar-item w3-button" href='../howto/default_asp.html'>Learn How To</a>
         </div>
         <div class='w3-col l3 m6'>  
           <h3>JavaScript</h3>
-          <a class="w3-bar-item w3-button" href='/js/default-asp.html'>Learn JavaScript</a>
-          <a class="w3-bar-item w3-button" href='/jquery/default-asp.html'>Learn jQuery</a>
-          <a class="w3-bar-item w3-button" href='/angular/default-asp.html'>Learn AngularJS</a>
+          <a class="w3-bar-item w3-button" href='/js/default_asp.html'>Learn JavaScript</a>
+          <a class="w3-bar-item w3-button" href='/jquery/default_asp.html'>Learn jQuery</a>
+          <a class="w3-bar-item w3-button" href='/angular/default_asp.html'>Learn AngularJS</a>
           <a class="w3-bar-item w3-button" href="/js/js_json_intro-asp.html">Learn JSON</a>
           <a class="w3-bar-item w3-button" href='/js/js_ajax_intro-asp.html'>Learn AJAX</a>
-          <a class="w3-bar-item w3-button" href='/w3js/default-asp.html'>Learn W3.JS</a>
-          <a class="w3-bar-item w3-button" href='/appml/default-asp.html'>Learn AppML</a>
+          <a class="w3-bar-item w3-button" href='/w3js/default_asp.html'>Learn W3.JS</a>
+          <a class="w3-bar-item w3-button" href='/appml/default_asp.html'>Learn AppML</a>
           <div class="w3-hide-small"><br><br></div>
         </div>
         <div class='w3-col l3 m6'>
           <h3>Server Side</h3>
-          <a class="w3-bar-item w3-button" href='/sql/default-asp.html'>Learn SQL</a>
-          <a class="w3-bar-item w3-button" href='/php/default-asp.html'>Learn PHP</a>
-          <a class="w3-bar-item w3-button" href='/asp/default-asp.html'>Learn ASP</a>
-          <a class="w3-bar-item w3-button" href='/nodejs/default-asp.html'>Learn Node.js</a>
+          <a class="w3-bar-item w3-button" href='/sql/default_asp.html'>Learn SQL</a>
+          <a class="w3-bar-item w3-button" href='/php/default_asp.html'>Learn PHP</a>
+          <a class="w3-bar-item w3-button" href='/asp/default_asp.html'>Learn ASP</a>
+          <a class="w3-bar-item w3-button" href='/nodejs/default_asp.html'>Learn Node.js</a>
           <a class="w3-bar-item w3-button" href='/nodejs/nodejs_raspberrypi-asp.html'>Learn Raspberry Pi</a>          
           <h3>Web Building</h3>
           <a class="w3-bar-item w3-button" href="/w3css/w3css_templates-asp.html">Web Templates</a>
-          <a class="w3-bar-item w3-button" href='/browsers/default-asp.html'>Web Statistics</a>
-          <a class="w3-bar-item w3-button" href='/cert/default-asp.html'>Web Certificates</a>
+          <a class="w3-bar-item w3-button" href='/browsers/default_asp.html'>Web Statistics</a>
+          <a class="w3-bar-item w3-button" href='/cert/default_asp.html'>Web Certificates</a>
         </div>
         <div class='w3-col l3 m6'>
           <h3>XML</h3>
-          <a class="w3-bar-item w3-button" href='/xml/default-asp.html'>Learn XML</a>
+          <a class="w3-bar-item w3-button" href='/xml/default_asp.html'>Learn XML</a>
           <a class="w3-bar-item w3-button" href='/xml/ajax_intro-asp.html'>Learn XML AJAX</a>
           <a class="w3-bar-item w3-button" href="/xml/dom_intro-asp.html">Learn XML DOM</a>
           <a class="w3-bar-item w3-button" href='/xml/xml_dtd_intro-asp.html'>Learn XML DTD</a>
@@ -492,15 +578,15 @@ function w3_getStyleValue(elmnt,style) {
       <div class='w3-row-padding' style="padding:24px 48px">
         <div class='w3-col m4'>
           <h3>HTML</h3>
-          <a class="w3-bar-item w3-button" href='/tags/default-asp.html'>HTML Tag Reference</a>
+          <a class="w3-bar-item w3-button" href='/tags/default_asp.html'>HTML Tag Reference</a>
           <a class="w3-bar-item w3-button" href='/tags/ref_eventattributes-asp.html'>HTML Event Reference</a>
-          <a class="w3-bar-item w3-button" href='/colors/default-asp.html'>HTML Color Reference</a>
+          <a class="w3-bar-item w3-button" href='/colors/default_asp.html'>HTML Color Reference</a>
           <a class="w3-bar-item w3-button" href='/tags/ref_attributes-asp.html'>HTML Attribute Reference</a>
           <a class="w3-bar-item w3-button" href='/tags/ref_canvas-asp.html'>HTML Canvas Reference</a>
           <a class="w3-bar-item w3-button" href='/graphics/svg_reference-asp.html'>HTML SVG Reference</a>
           <a class="w3-bar-item w3-button" href='/graphics/google_maps_reference-asp.html'>Google Maps Reference</a>
           <h3>CSS</h3>
-          <a class="w3-bar-item w3-button" href='/cssref/default-asp.html'>CSS Reference</a>
+          <a class="w3-bar-item w3-button" href='/cssref/default_asp.html'>CSS Reference</a>
           <a class="w3-bar-item w3-button" href='/cssref/css_selectors-asp.html'>CSS Selector Reference</a>
           <a class="w3-bar-item w3-button" href='/w3css/w3css_references-asp.html'>W3.CSS Reference</a>
           <a class="w3-bar-item w3-button" href='/bootstrap/bootstrap_ref_all_classes-asp.html'>Bootstrap Reference</a>
@@ -508,8 +594,8 @@ function w3_getStyleValue(elmnt,style) {
         </div>
         <div class='w3-col m4'>
           <h3>JavaScript</h3>
-          <a class="w3-bar-item w3-button" href='/jsref/default-asp.html'>JavaScript Reference</a>
-          <a class="w3-bar-item w3-button" href='/jsref/default-asp.html'>HTML DOM Reference</a>
+          <a class="w3-bar-item w3-button" href='/jsref/default_asp.html'>JavaScript Reference</a>
+          <a class="w3-bar-item w3-button" href='/jsref/default_asp.html'>HTML DOM Reference</a>
           <a class="w3-bar-item w3-button" href='/jquery/jquery_ref_selectors-asp.html'>jQuery Reference</a>
           <a class="w3-bar-item w3-button" href='/angular/angular_ref_directives-asp.html'>AngularJS Reference</a>
           <a class="w3-bar-item w3-button" href='/w3js/w3js_references-asp.html'>W3.JS Reference</a>
@@ -521,7 +607,7 @@ function w3_getStyleValue(elmnt,style) {
         </div>
         <div class='w3-col m4'>
           <h3>Charsets</h3>
-          <a class="w3-bar-item w3-button" href='/charsets/default-asp.html'>HTML Character Sets</a>
+          <a class="w3-bar-item w3-button" href='/charsets/default_asp.html'>HTML Character Sets</a>
           <a class="w3-bar-item w3-button" href='/charsets/ref_html_ascii-asp.html'>HTML ASCII</a>
           <a class="w3-bar-item w3-button" href='/charsets/ref_html_ansi-asp.html'>HTML ANSI</a>
           <a class="w3-bar-item w3-button" href='/charsets/ref_html_ansi-asp.html'>HTML Windows-1252</a>
@@ -649,7 +735,7 @@ function filterContent(elmnt) {
 <br class="w3-hide-large">
 <input class="searchinput" placeholder="Search..." oninput="filterContent(this)">
 <h2 class="left">HOW TO</h2>
-<a target="_top" href="default_asp.html">xd*:HowTo Home</a>
+<a target="_top" href="default_asp.html">xd0:HowTo Home</a>
 <br>
 <h2>Menus</h2>
 <a target="_top" href="howto_css_icon_bar-asp.html">Icon Bar</a>
@@ -669,7 +755,7 @@ function filterContent(elmnt) {
 <a target="_top" href="howto_css_bottom_nav-asp.html">Bottom Navigation</a>
 <a target="_top" href="howto_js_bottom_nav_responsive-asp.html">Responsive Bottom Nav</a>
 <a target="_top" href="howto_css_fixed_menu-asp.html">Fixed Menu</a>
-<a target="_top" href="howto_js_navbar_slide-asp.html">xd*:Slide Down Bar on Scroll v0.1.9</a>
+<a target="_top" href="howto_js_navbar_slide-asp.html">Slide Down Bar on Scroll</a>
 <a target="_top" href="howto_js_navbar_sticky-asp.html">Sticky Navbar</a>
 <a target="_top" href="howto_css_dropdown-asp.html">Hover Dropdowns</a>
 <a target="_top" href="howto_js_dropdown-asp.html">Click Dropdowns</a>
@@ -682,7 +768,7 @@ function filterContent(elmnt) {
 <br>
 
 <h2>Images</h2>
-<a target="_top" href="howto_js_slideshow-asp.html">Slideshow</a>
+<a target="_top" href="howto_js_slideshow-asp.html">xd1:Slideshow v0.0.3</a>
 <a target="_top" href="howto_css_modal_images-asp.html">Modal Images</a>
 <a target="_top" href="howto_js_lightbox-asp.html">Lightbox</a>
 <a target="_top" href="howto_css_image_grid_responsive-asp.html">Responsive Image Grid</a>
@@ -819,57 +905,157 @@ function filterContent(elmnt) {
 <div class='w3-main w3-light-grey' id='belowtopnav' style='margin-left:220px;'>
   <div class='w3-row w3-white'>
     <div class='w3-col l10 m12' id='main'>
-      <div id='mainLeaderboard' style='overflow:hidden;border:1px red solid;'>
+      <div id='mainLeaderboard' style='overflow:hidden;'>xda1
         <!-- MainLeaderboard-->
-        <div id='div-gpt-ad-1422003450156-2'>xdgoogle1 
-          <script type='text/javascript'>//googletag.cmd.push(function() { googletag.display('div-gpt-ad-1422003450156-2'); });</script>
+        <div id='div-gpt-ad-1422003450156-2'>
+          <script type='text/javascript'>
+	//googletag.cmd.push(function() { googletag.display('div-gpt-ad-1422003450156-2'); });
+	</script>
         </div>
       </div>
-<h1>How TO - Slide Down a Bar on Scroll</h1>
+<h1>How TO - Slideshow</h1>
 <div class="w3-clear nextprev">
-    <a class="w3-left w3-btn" href="howto_css_fixed_menu-asp.html">&#10094; Previous</a>
-  <a class="w3-right w3-btn" href="howto_js_navbar_sticky-asp.html">Next &#10095;</a>
+<a class="w3-left w3-btn" href="howto_css_button_group_vertical-asp.html">&#10094; Previous</a>
+<a class="w3-right w3-btn" href="howto_css_modal_images-asp.html">Next &#10095;</a>
 </div>
 <hr>
-<p class="intro">Learn how to slide down a navigation bar on scroll with CSS and JavaScript.</p>
+<p class="intro">Learn how to create a Slideshow with CSS and JavaScript.</p>
 <hr>
-<iframe src="tryhow_js_navbar_slide.htm" class="w3-border w3-border-light-grey" style="width:100%;border:none;height:200px;padding:0"></iframe>
-<p>
-<a target="_blank" href="tryit_asp.html?l=tryhow_js_navbar_slide" class="w3-btn w3-margin-bottom">xd*:Try it Yourself &raquo;</a>
-</p>
+<h2>Slideshow / Carousel</h2>
+<p>A slideshow is used to cycle through elements:</p>
+
+<div style="max-width:1000px;min-width:250px;position:relative;margin:auto;">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 4</div>
+  <img src="img_nature_wide.jpg" style="width:100%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 4</div>
+  <img src="img_fjords_wide.jpg" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 4</div>
+  <img src="img_lights_wide.jpg" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">4 / 4</div>
+  <img src="img_mountains_wide.jpg" style="width:100%">
+  <div class="text">Caption Four</div>
+</div>
+
+
+<a class="slprev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="slnext" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+
+<br>
+
+<div style="text-align:center">
+  <a href="javascript:void(0)" class="dot" onclick="currentSlide(1)" title="slide 1"></a> 
+  <a href="javascript:void(0)" class="dot" onclick="currentSlide(2)" title="slide 2"></a> 
+  <a href="javascript:void(0)" class="dot" onclick="currentSlide(3)" title="slide 3"></a> 
+  <a href="javascript:void(0)" class="dot" onclick="currentSlide(4)" title="slide 4"></a> 
+</div>
+
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length} ;
+  for (i = 0; i < slides.length; i++) {
+     slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].classList.remove("slideractive");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].classList.add("slideractive");
+}
+</script>
+
+<p><a target="_blank" href="tryit_asp.html?l=tryhow_js_slideshow" class="w3-btn">xd2:Try it Yourself &raquo;</a></p>
+
 <hr>
 
-<h2>How To Slide Down a Bar</h2>
+<h2>Create A Slideshow</h2>
 <h5>Step 1) Add HTML:</h5>
-<p>Create a navigation bar:</p>
 <div class="w3-example">
 <h3>Example</h3>
 <div class="w3-code notranslate htmlHigh">
-  &lt;div id=&quot;navbar&quot;&gt;<br>&nbsp; &lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;<br>&nbsp; &lt;a href=&quot;#news&quot;&gt;News&lt;/a&gt;<br>&nbsp; 
-  &lt;a href=&quot;#contact&quot;&gt;Contact&lt;/a&gt;<br>&lt;/div&gt;</div>
+&lt;div class=&quot;slideshow-container&quot;&gt;<br>&nbsp; &lt;div class=&quot;mySlides fade&quot;&gt;<br>&nbsp;&nbsp;&nbsp; 
+&lt;div class=&quot;numbertext&quot;&gt;1 / 3&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp; &lt;img src=&quot;img1.jpg&quot; 
+style=&quot;width:100%&quot;&gt;<br>&nbsp;&nbsp;&nbsp; &lt;div class=&quot;text&quot;&gt;Caption 
+Text&lt;/div&gt;<br>&nbsp; &lt;/div&gt;<br><br>&nbsp; &lt;div class=&quot;mySlides fade&quot;&gt;<br>&nbsp;&nbsp;&nbsp; 
+&lt;div class=&quot;numbertext&quot;&gt;2 / 3&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp; &lt;img src=&quot;img2.jpg&quot; 
+style=&quot;width:100%&quot;&gt;<br>&nbsp;&nbsp;&nbsp; &lt;div class=&quot;text&quot;&gt;Caption 
+Two&lt;/div&gt;<br>&nbsp; &lt;/div&gt;<br><br>&nbsp; &lt;div class=&quot;mySlides fade&quot;&gt;<br>&nbsp;&nbsp;&nbsp; 
+&lt;div class=&quot;numbertext&quot;&gt;3 / 3&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp; &lt;img src=&quot;img3.jpg&quot; 
+style=&quot;width:100%&quot;&gt;<br>&nbsp;&nbsp;&nbsp; &lt;div class=&quot;text&quot;&gt;Caption 
+Three&lt;/div&gt;<br>&nbsp; &lt;/div&gt;<br><br>&nbsp; &lt;a class=&quot;prev&quot; onclick=&quot;plusSlides(-1)&quot;&gt;&amp;#10094;&lt;/a&gt;<br>&nbsp; 
+&lt;a class=&quot;next&quot; onclick=&quot;plusSlides(1)&quot;&gt;&amp;#10095;&lt;/a&gt;<br>&lt;/div&gt;<br>&lt;br&gt;<br>
+<br>&lt;div style=&quot;text-align:center&quot;&gt;<br>&nbsp; &lt;span class=&quot;dot&quot; onclick=&quot;currentSlide(1)&quot;&gt;&lt;/span&gt;
+<br>&nbsp; &lt;span class=&quot;dot&quot; onclick=&quot;currentSlide(2)&quot;&gt;&lt;/span&gt; <br>&nbsp; 
+&lt;span class=&quot;dot&quot; onclick=&quot;currentSlide(3)&quot;&gt;&lt;/span&gt; <br>&lt;/div&gt;</div>
 </div>
 <hr>
 <h5>Step 2) Add CSS:</h5>
-<p>Style the navigation bar:</p>
+<p>Style the next and previous buttons, the caption text and the dots:</p>
 <div class="w3-example">
 <h3>Example</h3>
 <div class="w3-code notranslate cssHigh">
-  #navbar {<br>&nbsp;&nbsp;&nbsp; background-color: #333; /* Black background 
-  color */<br>&nbsp;&nbsp;&nbsp; position: fixed; /* Make it stick/fixed  
-  */<br>&nbsp;&nbsp;&nbsp; top: -50px; /* Hide the navbar 50 px outside of the 
-  top view */<br>&nbsp;&nbsp;&nbsp; width: 100%; /* Full width */<br>&nbsp;&nbsp;&nbsp; 
-  transition: top 0.3s; /* Transition effect when sliding down (and up) */<br>}<br>
-  <br>/* Style the navbar links */<br>#navbar a {<br>&nbsp;&nbsp;&nbsp; float: left;<br>&nbsp;&nbsp;&nbsp; 
-  display: block;<br>&nbsp;&nbsp;&nbsp; color: white;<br>&nbsp;&nbsp;&nbsp; 
-  text-align: center;<br>&nbsp;&nbsp;&nbsp; padding: 15px;<br>&nbsp;&nbsp;&nbsp; 
-  text-decoration: none;<br>}<br><br>#navbar 
-  a:hover {<br>&nbsp;&nbsp;&nbsp; background-color: #ddd;<br>&nbsp;&nbsp;&nbsp; 
-  color: black;<br>}</div>
+  * {box-sizing:border-box}<br><br>/* Slideshow container */<br>.slideshow-container {<br>&nbsp; max-width: 1000px;<br>&nbsp; position: 
+relative;<br>&nbsp; margin: auto;<br>}<br><br>.mySlides {<br>&nbsp;&nbsp;&nbsp; 
+  display: none;<br>}<br><br>/* Next &amp; previous buttons */<br>
+.prev, .next {<br>&nbsp; 
+cursor: pointer;<br>&nbsp; position: absolute;<br>&nbsp; 
+top: 50%;<br>&nbsp; width: auto;<br>&nbsp; margin-top: -22px;<br>&nbsp; padding: 16px;<br>&nbsp; color: 
+white;<br>&nbsp; font-weight: bold;<br>&nbsp; font-size: 18px;<br>&nbsp; 
+transition: 0.6s ease;<br>&nbsp; border-radius: 0 3px 3px 0;<br>}<br><br>/* 
+Position the &quot;next button&quot; to the right */<br>.next {<br>&nbsp; 
+right: 0;<br>&nbsp; border-radius: 3px 0 0 3px;<br>}<br><br>/* On hover, add 
+a black background color with a little bit see-through */<br>.prev:hover, .next:hover {<br>&nbsp; 
+background-color: rgba(0,0,0,0.8);<br>}<br><br>/* Caption text */<br>.text {<br>&nbsp; color: #f2f2f2;<br>&nbsp; font-size: 15px;<br>&nbsp; padding: 
+8px 12px;<br>&nbsp; position: absolute;<br>&nbsp; bottom: 8px;<br>&nbsp; 
+width: 100%;<br>&nbsp; text-align: center;<br>}<br><br>/* Number text (1/3 
+etc) */<br>.numbertext {<br>&nbsp; color: #f2f2f2;<br>&nbsp; font-size: 
+12px;<br>&nbsp; padding: 8px 12px;<br>&nbsp; position: absolute;<br>&nbsp; 
+top: 0;<br>}<br><br>/* The dots/bullets/indicators */<br>.dot {<br>&nbsp; cursor:pointer;<br>&nbsp; 
+height: 15px;<br>&nbsp; width: 15px;<br>&nbsp; margin: 0 2px;<br>&nbsp; 
+background-color: #bbb;<br>&nbsp; border-radius: 50%;<br>&nbsp; display: 
+inline-block;<br>&nbsp; transition: background-color 0.6s ease;<br>}<br><br>
+.active, .dot:hover {<br>&nbsp; background-color: #717171;<br>}<br><br>/* 
+Fading animation */<br>.fade {<br>&nbsp; -webkit-animation-name: 
+fade;<br>&nbsp; -webkit-animation-duration: 1.5s;<br>&nbsp; animation-name: 
+fade;<br>&nbsp; animation-duration: 1.5s;<br>}<br><br>@-webkit-keyframes 
+fade {<br>&nbsp; from {opacity: .4} <br>&nbsp; to {opacity: 1}<br>}<br><br>@keyframes 
+fade {<br>&nbsp; from {opacity: .4} <br>&nbsp; to {opacity: 1}<br>}</div>
 </div>
 <hr>
-<div style="overflow:auto;text-align:center;;border:1px red solid;">
+<div style="overflow:auto;text-align:center">
 <!-- MidContent -->
-  <div id='div-gpt-ad-1493883843099-0' style="display: inline-block"> xdgooglead MidContend
+  <div id='div-gpt-ad-1493883843099-0' style="display: inline-block">xda2
     <script>
   //  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1493883843099-0'); });
     </script>
@@ -881,33 +1067,53 @@ function filterContent(elmnt) {
 <div class="w3-example">
 <h3>Example</h3>
 <div class="w3-code notranslate jsHigh">
-  // When the user scrolls down 20px from the top of the document, slide down 
-  the navbar<br>// When the user scrolls to the top of the page, slide up the 
-  navbar (50px out of the top view)<br>window.onscroll = function() {scrollFunction()};<br>
-  <br>function 
-  scrollFunction() {<br>&nbsp; if (document.body.scrollTop &gt; 20 || 
-  document.documentElement.scrollTop &gt; 20) {<br>&nbsp;&nbsp;&nbsp; 
-  document.getElementById(&quot;navbar&quot;).style.top = &quot;0&quot;;<br>&nbsp; } else {<br>&nbsp;&nbsp;&nbsp; 
-  document.getElementById(&quot;navbar&quot;).style.top = &quot;-50px&quot;;<br>&nbsp; }<br>}</div>
-<a target="_blank" href="tryit_asp.html?l=tryhow_js_navbar_slide" class="w3-btn w3-margin-bottom">xd*:Try it Yourself &raquo;</a>
+var slideIndex = 1;<br>showSlides(slideIndex);<br><br>function plusSlides(n) 
+{<br>&nbsp; showSlides(slideIndex += n);<br>}<br><br>function currentSlide(n) {<br>&nbsp; 
+showSlides(slideIndex = n);<br>}<br><br>function showSlides(n) {<br>&nbsp; 
+var i;<br>&nbsp; var slides = document.getElementsByClassName(&quot;mySlides&quot;);<br>&nbsp; 
+var dots = document.getElementsByClassName(&quot;dot&quot;);<br>&nbsp; if (n &gt; 
+slides.length) {slideIndex = 1} <br>&nbsp; if (n &lt; 1) {slideIndex = 
+slides.length}<br>&nbsp; for (i = 0; i &lt; slides.length; i++) {<br>&nbsp;&nbsp;&nbsp; &nbsp; 
+slides[i].style.display = &quot;none&quot;; <br>&nbsp; }<br>&nbsp; for (i = 0; i &lt; 
+dots.length; i++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dots[i].className = dots[i].className.replace(&quot; 
+active&quot;, &quot;&quot;);<br>&nbsp; 
+}<br>&nbsp; slides[slideIndex-1].style.display = &quot;block&quot;; <br>&nbsp; 
+dots[slideIndex-1].className += &quot; active&quot;;<br>}</div>
+<a target="_blank" href="tryit_asp.html?l=tryhow_js_slideshow" class="w3-btn w3-margin-bottom">xd3:Try it Yourself &raquo;</a>
 </div>
+<hr>
 
+<h2>Automatic Slideshow</h2>
+<p>To display an automatic slideshow, use the following code:</p>
+<div class="w3-example">
+<h3>Example</h3>
+<div class="w3-code notranslate jsHigh">
+var slideIndex = 0;<br>showSlides();<br><br>function showSlides() {<br>&nbsp;&nbsp;&nbsp; 
+var i;<br>&nbsp;&nbsp;&nbsp; var slides = document.getElementsByClassName(&quot;mySlides&quot;);<br>&nbsp;&nbsp;&nbsp; 
+for (i = 0; i &lt; slides.length; i++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+slides[i].style.display = &quot;none&quot;; <br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; 
+slideIndex++;<br>&nbsp;&nbsp;&nbsp; if (slideIndex &gt; slides.length) {slideIndex 
+= 1} <br>&nbsp;&nbsp;&nbsp; slides[slideIndex-1].style.display = &quot;block&quot;;
+<br>&nbsp;&nbsp;&nbsp; setTimeout(showSlides, 2000); // Change image every 2 
+seconds<br>}</div>
+<a target="_blank" href="tryit_asp.html?l=tryhow_js_slideshow_auto" class="w3-btn w3-margin-bottom">xd4:Try it Yourself &raquo;</a>
+</div>
 
 <br>
 <div class="w3-clear nextprev">
-    <a class="w3-left w3-btn" href="howto_css_fixed_menu-asp.html">&#10094; Previous</a>
-  <a class="w3-right w3-btn" href="howto_js_navbar_sticky-asp.html">Next &#10095;</a>
+<a class="w3-left w3-btn" href="howto_css_button_group_vertical-asp.html">&#10094; Previous</a>
+<a class="w3-right w3-btn" href="howto_css_modal_images-asp.html">Next &#10095;</a>
 </div>
 </div>
 <div class="w3-col l2 m12" id="right">
 
 <div class="sidesection">
-  <div id="skyscraper" style="border:1px red solid;">xdgoogle2
-    <div id="div-gpt-ad-1422003450156-5">
+  <div id="skyscraper">
+    <div id="div-gpt-ad-1422003450156-5">xda3
       <script>
-     // googletag.cmd.push(function() {
-     // googletag.display('div-gpt-ad-1422003450156-5');
-     // });
+  //    googletag.cmd.push(function() {
+    //  googletag.display('div-gpt-ad-1422003450156-5');
+   //   });
       </script> 
     </div>
   </div>
@@ -923,26 +1129,26 @@ function filterContent(elmnt) {
 </div>
 
 <div class="sidesection">
-<h4><a href="/howto/default-asp.html">HOW TO</a></h4>
+<h4><a href="../howto/default_asp.html">HOW TO</a></h4>
 <p>
-<a href="/howto/howto_js_tabs-asp.html">Tabs</a><br>
-<a href="/howto/howto_css_dropdown-asp.html">Dropdowns</a><br>
-<a href="/howto/howto_js_accordion-asp.html">Accordions</a><br>
-<a href="/howto/howto_js_weight_converter-asp.html">Convert Weights</a><br>
-<a href="/howto/howto_css_animate_buttons-asp.html">Animated Buttons</a><br>
-<a href="/howto/howto_js_sidenav-asp.html">Side Navigation</a><br>
-<a href="/howto/howto_js_topnav-asp.html">Top Navigation</a><br>
-<a href="/howto/howto_css_modals-asp.html">Modal Boxes</a><br>
-<a href="/howto/howto_js_progressbar-asp.html">Progress Bars</a><br>
-<a href="/howto/howto_css_parallax-asp.html">Parallax</a><br>
-<a href="/howto/howto_css_login_form-asp.html">Login Form</a><br>
-<a href="/howto/howto_html_include-asp.html">HTML Includes</a><br>
-<a href="/howto/howto_google_maps-asp.html">Google Maps</a><br>
-<a href="/howto/howto_js_rangeslider-asp.html">Range Sliders</a><br>
-<a href="/howto/howto_css_tooltip-asp.html">Tooltips</a><br>
-<a href="/howto/howto_js_slideshow-asp.html">Slideshow</a><br>
-<a href="/howto/howto_js_filter_lists-asp.html">Filter List</a><br>
-<a href="/howto/howto_js_sort_list-asp.html">Sort List</a><br>
+<a href="../howto/howto_js_tabs-asp.html">Tabs</a><br>
+<a href="../howto/howto_css_dropdown-asp.html">Dropdowns</a><br>
+<a href="../howto/howto_js_accordion-asp.html">Accordions</a><br>
+<a href="../howto/howto_js_weight_converter-asp.html">Convert Weights</a><br>
+<a href="../howto/howto_css_animate_buttons-asp.html">Animated Buttons</a><br>
+<a href="../howto/howto_js_sidenav-asp.html">Side Navigation</a><br>
+<a href="../howto/howto_js_topnav-asp.html">Top Navigation</a><br>
+<a href="../howto/howto_css_modals-asp.html">Modal Boxes</a><br>
+<a href="../howto/howto_js_progressbar-asp.html">Progress Bars</a><br>
+<a href="../howto/howto_css_parallax-asp.html">Parallax</a><br>
+<a href="../howto/howto_css_login_form-asp.html">Login Form</a><br>
+<a href="../howto/howto_html_include-asp.html">HTML Includes</a><br>
+<a href="../howto/howto_google_maps-asp.html">Google Maps</a><br>
+<a href="../howto/howto_js_rangeslider-asp.html">Range Sliders</a><br>
+<a href="../howto/howto_css_tooltip-asp.html">Tooltips</a><br>
+<a href="../howto/howto_js_slideshow-asp.html">xd1:Slideshow</a><br>
+<a href="../howto/howto_js_filter_lists-asp.html">Filter List</a><br>
+<a href="../howto/howto_js_sort_list-asp.html">Sort List</a><br>
 </p>
 </div>
 
@@ -953,7 +1159,7 @@ function filterContent(elmnt) {
 <!--
 try{
 loc=location.pathname;
-if (loc.toUpperCase().indexOf("-asp.html")<0) loc=loc+"default-asp.html";
+if (loc.toUpperCase().indexOf("-asp.html")<0) loc=loc+"default_asp.html";
 txt='<a href="http://www.facebook.com/sharer.php?u=https://www.w3schools.com'+loc+'" target="_blank" title="Facebook"><span class="fa fa-facebook-square fa-2x"></span></a>';
 txt=txt+'<a href="https://twitter.com/home?status=Currently reading https://www.w3schools.com'+loc+'" target="_blank" title="Twitter"><span class="fa fa-twitter-square fa-2x"></span></a>';
 txt=txt+'<a href="https://plus.google.com/share?url=https://www.w3schools.com'+loc+'" target="_blank" title="Google+"><span class="fa fa-google-plus-square fa-2x"></span></a>';
@@ -971,20 +1177,20 @@ document.write(txt);
 </div>
 
 <div class="sidesection">
-<h4><a target="_blank" href="//www.w3schools.com/cert/default-asp.html">CERTIFICATES</a></h4>
+<h4><a target="_blank" href="//www.w3schools.com/cert/default_asp.html">CERTIFICATES</a></h4>
 <p>HTML, CSS, JavaScript, PHP, jQuery, Bootstrap and XML.</p>
-<a target="_blank" href="//www.w3schools.com/cert/default-asp.html" class="w3-button w3-dark-grey" style="text-decoration:none">
+<a target="_blank" href="//www.w3schools.com/cert/default_asp.html" class="w3-button w3-dark-grey" style="text-decoration:none">
 Read More &raquo;</a>
 </div>
 
-<div id="stickypos" class="sidesection" style="text-align:center;border:1px red solid;">
+<div id="stickypos" class="sidesection" style="text-align:center;">
   <div id="stickyadcontainer">
-    <div style="position:relative;margin:auto;"> 
-      <div id='div-gpt-ad-1472547360578-0'> xdgooglead stickyadcontainer
+    <div style="position:relative;margin:auto;">
+      <div id='div-gpt-ad-1472547360578-0'>xda4
         <script>
-    //    if (Number(w3_getStyleValue(document.getElementById("main"), "height").replace("px", "")) > 2200) {
-     //   googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472547360578-0'); });
-        }
+   //     if (Number(w3_getStyleValue(document.getElementById("main"), "height").replace("px", "")) > 2200) {
+    //    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472547360578-0'); });
+    //    }
         </script>
       </div>
     </div>
@@ -1001,17 +1207,17 @@ Read More &raquo;</a>
 <div id="footer" class="footer w3-container w3-white">
 
 <hr>
-<div style="overflow:auto;border:1px blue solid;">
+<div style="overflow:auto">
   <!-- BottomMediumRectangle -->
-  <div class="bottomad" id='div-gpt-ad-1422003450156-0'> xdgoogle3 bottomad
+  <div class="bottomad" id='div-gpt-ad-1422003450156-0'>xda5
     <script type='text/javascript'>
 //    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1422003450156-0'); });
     </script>
   </div>
   <!-- RightBottomMediumRectangle -->
-  <div class="bottomad" id='div-gpt-ad-1422003450156-3'> xdgoogle4 bottomad
+  <div class="bottomad" id='div-gpt-ad-1422003450156-3'>xda6
     <script type='text/javascript'>
-  //  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1422003450156-3'); });
+ //   googletag.cmd.push(function() { googletag.display('div-gpt-ad-1422003450156-3'); });
     </script>
   </div>
 </div>
@@ -1024,10 +1230,10 @@ Read More &raquo;</a>
 <a href="javascript:void(0);" target="_blank" onclick="printPage();return false;">PRINT PAGE</a>
 </div>
 <div class="w3-col l3 m3 s12">
-<a href="/forum/default-asp.html" target="_blank">FORUM</a>
+<a href="/forum/default_asp.html" target="_blank">FORUM</a>
 </div>
 <div class="w3-col l3 m3 s12">
-<a href="/about/default-asp.html" target="_top">ABOUT</a>
+<a href="/about/default_asp.html" target="_top">ABOUT</a>
 </div>
 </div>
 <hr>
@@ -1063,29 +1269,29 @@ Read More &raquo;</a>
 <div class="w3-col l3 m6 s12">
 <div class="top10">
 <h4>Top 10 Tutorials</h4>
-<a href="/html/default-asp.html">HTML Tutorial</a><br>
-<a href="/css/default-asp.html">CSS Tutorial</a><br>
-<a href="/js/default-asp.html">JavaScript Tutorial</a><br>
-<a href="/w3css/default-asp.html">W3.CSS Tutorial</a><br>
-<a href="/bootstrap/default-asp.html">Bootstrap Tutorial</a><br>
-<a href="/sql/default-asp.html">SQL Tutorial</a><br>
-<a href="/php/default-asp.html">PHP Tutorial</a><br>
-<a href="/jquery/default-asp.html">jQuery Tutorial</a><br>
-<a href="/angular/default-asp.html">Angular Tutorial</a><br>
-<a href="/xml/default-asp.html">XML Tutorial</a><br>
+<a href="/html/default_asp.html">HTML Tutorial</a><br>
+<a href="/css/default_asp.html">CSS Tutorial</a><br>
+<a href="/js/default_asp.html">JavaScript Tutorial</a><br>
+<a href="/w3css/default_asp.html">W3.CSS Tutorial</a><br>
+<a href="/bootstrap/default_asp.html">Bootstrap Tutorial</a><br>
+<a href="/sql/default_asp.html">SQL Tutorial</a><br>
+<a href="/php/default_asp.html">PHP Tutorial</a><br>
+<a href="/jquery/default_asp.html">jQuery Tutorial</a><br>
+<a href="/angular/default_asp.html">Angular Tutorial</a><br>
+<a href="/xml/default_asp.html">XML Tutorial</a><br>
 </div>
 </div>
 <div class="w3-col l3 m6 s12">
 <div class="top10">
 <h4>Top 10 References</h4>
-<a href="/tags/default-asp.html">HTML Reference</a><br>
-<a href="/cssref/default-asp.html">CSS Reference</a><br>
-<a href="/jsref/default-asp.html">JavaScript Reference</a><br>
+<a href="/tags/default_asp.html">HTML Reference</a><br>
+<a href="/cssref/default_asp.html">CSS Reference</a><br>
+<a href="/jsref/default_asp.html">JavaScript Reference</a><br>
 <a href="/w3css/w3css_references-asp.html">W3.CSS Reference</a><br>
-<a href="/browsers/default-asp.html">Browser Statistics</a><br>
+<a href="/browsers/default_asp.html">Browser Statistics</a><br>
 <a href="/php/php_ref_array-asp.html">PHP Reference</a><br>
 <a href="/colors/colors_names-asp.html">HTML Colors</a><br>
-<a href="/charsets/default-asp.html">HTML Character Sets</a><br>
+<a href="/charsets/default_asp.html">HTML Character Sets</a><br>
 <a href="/jquery/jquery_ref_selectors-asp.html">jQuery Reference</a><br>
 <a href="/angular/angular_ref_directives-asp.html">AngularJS Reference</a><br>
 </div>
@@ -1108,13 +1314,13 @@ Read More &raquo;</a>
 <div class="w3-col l3 m6 s12">
 <div class="top10">
 <h4>Web Certificates</h4>
-<a href="/cert/default-asp.html">HTML Certificate</a><br>
-<a href="/cert/default-asp.html">CSS Certificate</a><br>
-<a href="/cert/default-asp.html">JavaScript Certificate</a><br>
-<a href="/cert/default-asp.html">jQuery Certificate</a><br>
-<a href="/cert/default-asp.html">PHP Certificate</a><br>
-<a href="/cert/default-asp.html">Bootstrap Certificate</a><br>
-<a href="/cert/default-asp.html">XML Certificate</a><br>
+<a href="/cert/default_asp.html">HTML Certificate</a><br>
+<a href="/cert/default_asp.html">CSS Certificate</a><br>
+<a href="/cert/default_asp.html">JavaScript Certificate</a><br>
+<a href="/cert/default_asp.html">jQuery Certificate</a><br>
+<a href="/cert/default_asp.html">PHP Certificate</a><br>
+<a href="/cert/default_asp.html">Bootstrap Certificate</a><br>
+<a href="/cert/default_asp.html">XML Certificate</a><br>
 </div>
 </div>        
 </div>        
@@ -1135,7 +1341,6 @@ While using this site, you agree to have read and accepted our <a href="/about/a
 
 </div>
 
-<script src="../lib/w3schools_footer.js"></script>
-
+<script src="../lib/w3schools_footer.js"></script> 
 </body>
 </html>
