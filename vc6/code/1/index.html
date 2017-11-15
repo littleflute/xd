@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<title>Call JavaScript from Visual C++ v0.0.3 | vc6</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="../../style.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">vc6</h1>
+      <h2 class="project-tagline"></h2>
+      
+        <a href="https://github.com/littleflute/vc6" class="btn">View on GitHub</a>
+      	<a href="../index.html" class="btn">[..]</a>
+      
+      
+    </section>
+
+    <section class="main-content">
+      <h2 id="call-javascript-from-visual-c-v002">Call JavaScript from Visual C++ <a href="https://github.com/littleflute/vc6/edit/master/code/1/readme.md">v0.0.2</a></h2>
+<h3 id="usage">Usage</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+	<span class="n">CWebPage</span>		<span class="n">m_webPage</span><span class="p">;</span>
+	<span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IDispatch</span><span class="o">&gt;</span> <span class="n">spDisp</span> <span class="o">=</span> <span class="n">CHtmlView</span><span class="o">::</span><span class="n">GetHtmlDocument</span><span class="p">();</span>
+	<span class="n">m_webPage</span><span class="p">.</span><span class="n">SetDocument</span><span class="p">(</span><span class="n">spDisp</span><span class="p">);</span>
+	<span class="n">m_webPage</span><span class="p">.</span><span class="n">CallJScript</span><span class="p">(</span><span class="s">"add"</span><span class="p">,</span><span class="s">"1"</span><span class="p">,</span><span class="s">"2"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="webpageh">WebPage.h</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WebPage.h: interface for the CWebPage class.
+//
+//////////////////////////////////////////////////////////////////////
+</span>
+<span class="cp">#if !defined(AFX_WEBPAGE_H__AEBD50B8_EE66_40AB_8B92_C4EECB9BCD22__INCLUDED_)
+#define AFX_WEBPAGE_H__AEBD50B8_EE66_40AB_8B92_C4EECB9BCD22__INCLUDED_
+</span>
+<span class="cp">#if _MSC_VER &gt; 1000
+#pragma once
+#endif // _MSC_VER &gt; 1000
+</span>
+<span class="cp">#include &lt;atlbase.h&gt;
+#include &lt;Mshtml.h&gt;
+</span>
+<span class="k">class</span> <span class="nc">CWebPage</span>  
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">CWebPage</span><span class="p">();</span>
+	<span class="k">virtual</span> <span class="o">~</span><span class="n">CWebPage</span><span class="p">();</span>
+
+	<span class="kt">bool</span> <span class="n">SetDocument</span><span class="p">(</span><span class="n">IDispatch</span><span class="o">*</span> <span class="n">pDisp</span><span class="p">);</span>
+	<span class="n">LPDISPATCH</span> <span class="n">GetHtmlDocument</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+	<span class="k">const</span> <span class="n">CString</span> <span class="n">GetLastError</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+	<span class="kt">bool</span> <span class="n">GetJScript</span><span class="p">(</span><span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IDispatch</span><span class="o">&gt;&amp;</span> <span class="n">spDisp</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">GetJScripts</span><span class="p">(</span><span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IHTMLElementCollection</span><span class="o">&gt;&amp;</span> <span class="n">spColl</span><span class="p">);</span>
+
+	<span class="n">CString</span> <span class="n">ScanJScript</span><span class="p">(</span><span class="n">CString</span><span class="o">&amp;</span> <span class="n">strAText</span><span class="p">,</span> <span class="n">CStringArray</span><span class="o">&amp;</span> <span class="n">args</span><span class="p">);</span>
+
+	<span class="kt">bool</span> <span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg1</span><span class="p">,</span>
+			<span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg1</span><span class="p">,</span>
+			<span class="k">const</span> <span class="n">CString</span> <span class="n">strArg2</span><span class="p">,</span><span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg1</span><span class="p">,</span>
+			<span class="k">const</span> <span class="n">CString</span> <span class="n">strArg2</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg3</span><span class="p">,</span>
+			<span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span>
+		<span class="k">const</span> <span class="n">CStringArray</span><span class="o">&amp;</span> <span class="n">paramArray</span><span class="p">,</span>
+		<span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">);</span>
+
+<span class="k">protected</span><span class="o">:</span>
+
+
+	<span class="kt">void</span> <span class="n">ShowError</span><span class="p">(</span><span class="n">LPCSTR</span> <span class="n">lpszText</span><span class="p">);</span>
+
+<span class="k">protected</span><span class="o">:</span>
+
+	<span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IHTMLDocument2</span><span class="o">&gt;</span>	<span class="n">m_spDoc</span><span class="p">;</span>
+	<span class="n">CString</span>	<span class="n">m_strError</span><span class="p">;</span>
+
+<span class="p">};</span>
+
+<span class="kr">inline</span>
+<span class="kt">void</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">ShowError</span><span class="p">(</span><span class="n">LPCSTR</span> <span class="n">lpszText</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">m_strError</span> <span class="o">=</span> <span class="s">"JSCall Error:</span><span class="se">\n</span><span class="s">"</span> <span class="o">+</span> <span class="n">CString</span><span class="p">(</span><span class="n">lpszText</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kr">inline</span> 
+<span class="k">const</span> <span class="n">CString</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">GetLastError</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">m_strError</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">inline</span>
+<span class="n">LPDISPATCH</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">GetHtmlDocument</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">m_spDoc</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">CString</span> <span class="n">GetNextToken</span><span class="p">(</span><span class="n">CString</span><span class="o">&amp;</span> <span class="n">strSrc</span><span class="p">,</span> <span class="k">const</span> <span class="n">CString</span> <span class="n">strDelim</span><span class="p">,</span>
+					 <span class="kt">bool</span> <span class="n">bTrim</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> 
+					 <span class="kt">bool</span> <span class="n">bFindOneOf</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
+
+<span class="cp">#endif // !defined(AFX_WEBPAGE_H__AEBD50B8_EE66_40AB_8B92_C4EECB9BCD22__INCLUDED_)
+</span>
+</code></pre></div></div>
+
+<h3 id="webpagecpp">WebPage.cpp</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/////////////////////////////////////////////////////////////////
+//             By Eugene Khodakovsky                           //
+//                  April,2002                                 //
+//            Last Update: April, 2002                         //
+/////////////////////////////////////////////////////////////////
+</span>
+<span class="cp">#include "stdafx.h"
+</span><span class="c1">//#include "JSCall.h"
+</span><span class="cp">#include "WebPage.h"
+</span>
+<span class="cp">#ifdef _DEBUG
+#undef THIS_FILE
+</span><span class="k">static</span> <span class="kt">char</span> <span class="n">THIS_FILE</span><span class="p">[]</span><span class="o">=</span><span class="n">__FILE__</span><span class="p">;</span>
+<span class="cp">#define new DEBUG_NEW
+#endif
+</span>
+<span class="cp">#define CHECK_POINTER(p)\
+	ATLASSERT(p != NULL);\
+	if(p == NULL)\
+	{\
+		ShowError("NULL pointer");\
+		return false;\
+	}
+</span>
+<span class="k">const</span> <span class="n">CString</span> <span class="nf">GetSystemErrorMessage</span><span class="p">(</span><span class="n">DWORD</span> <span class="n">dwError</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CString</span> <span class="n">strError</span><span class="p">;</span>
+	<span class="n">LPTSTR</span> <span class="n">lpBuffer</span><span class="p">;</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">FormatMessage</span><span class="p">(</span><span class="n">FORMAT_MESSAGE_ALLOCATE_BUFFER</span> <span class="o">|</span> <span class="n">FORMAT_MESSAGE_FROM_SYSTEM</span><span class="p">,</span>
+			<span class="nb">NULL</span><span class="p">,</span>  <span class="n">dwError</span><span class="p">,</span>
+			<span class="n">MAKELANGID</span><span class="p">(</span><span class="n">LANG_NEUTRAL</span><span class="p">,</span> <span class="n">SUBLANG_SYS_DEFAULT</span><span class="p">),</span>
+			<span class="p">(</span><span class="n">LPTSTR</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">lpBuffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">))</span>
+
+	<span class="p">{</span>
+		<span class="n">strError</span> <span class="o">=</span> <span class="s">"FormatMessage Netive Error"</span> <span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span>
+	<span class="p">{</span>
+		<span class="n">strError</span> <span class="o">=</span> <span class="n">lpBuffer</span><span class="p">;</span>
+		<span class="n">LocalFree</span><span class="p">(</span><span class="n">lpBuffer</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">strError</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">CString</span> <span class="nf">GetNextToken</span><span class="p">(</span><span class="n">CString</span><span class="o">&amp;</span> <span class="n">strSrc</span><span class="p">,</span> <span class="k">const</span> <span class="n">CString</span> <span class="n">strDelim</span><span class="p">,</span><span class="kt">bool</span> <span class="n">bTrim</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">bFindOneOf</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CString</span> <span class="n">strToken</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">bFindOneOf</span><span class="o">?</span> <span class="n">strSrc</span><span class="p">.</span><span class="n">FindOneOf</span><span class="p">(</span><span class="n">strDelim</span><span class="p">)</span> <span class="o">:</span> <span class="n">strSrc</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="n">strDelim</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">strToken</span>  <span class="o">=</span> <span class="n">strSrc</span><span class="p">.</span><span class="n">Left</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+		<span class="n">strSrc</span> <span class="o">=</span> <span class="n">strSrc</span><span class="p">.</span><span class="n">Right</span><span class="p">(</span><span class="n">strSrc</span><span class="p">.</span><span class="n">GetLength</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">else</span>
+	<span class="p">{</span>
+		<span class="n">strToken</span> <span class="o">=</span> <span class="n">strSrc</span><span class="p">;</span>
+		<span class="n">strSrc</span><span class="p">.</span><span class="n">Empty</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">bTrim</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">strToken</span><span class="p">.</span><span class="n">TrimLeft</span><span class="p">();</span>
+		<span class="n">strToken</span><span class="p">.</span><span class="n">TrimRight</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">strToken</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+</span>
+<span class="n">CWebPage</span><span class="o">::</span><span class="n">CWebPage</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="n">CWebPage</span><span class="o">::~</span><span class="n">CWebPage</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">SetDocument</span><span class="p">(</span><span class="n">IDispatch</span><span class="o">*</span> <span class="n">pDisp</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CHECK_POINTER</span><span class="p">(</span><span class="n">pDisp</span><span class="p">);</span>
+
+	<span class="n">m_spDoc</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+	<span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IDispatch</span><span class="o">&gt;</span> <span class="n">spDisp</span> <span class="o">=</span> <span class="n">pDisp</span><span class="p">;</span>
+
+	<span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">spDisp</span><span class="o">-&gt;</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">IID_IHTMLDocument2</span><span class="p">,(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">m_spDoc</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="n">ShowError</span><span class="p">(</span><span class="s">"Failed to get HTML document COM object"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">GetJScript</span><span class="p">(</span><span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IDispatch</span><span class="o">&gt;&amp;</span> <span class="n">spDisp</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CHECK_POINTER</span><span class="p">(</span><span class="n">m_spDoc</span><span class="p">);</span>
+	<span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">m_spDoc</span><span class="o">-&gt;</span><span class="n">get_Script</span><span class="p">(</span><span class="o">&amp;</span><span class="n">spDisp</span><span class="p">);</span>
+	<span class="n">ATLASSERT</span><span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">));</span>
+	<span class="k">return</span> <span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">GetJScripts</span><span class="p">(</span><span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IHTMLElementCollection</span><span class="o">&gt;&amp;</span> <span class="n">spColl</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CHECK_POINTER</span><span class="p">(</span><span class="n">m_spDoc</span><span class="p">);</span>
+	<span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">m_spDoc</span><span class="o">-&gt;</span><span class="n">get_scripts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">spColl</span><span class="p">);</span>
+	<span class="n">ATLASSERT</span><span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">));</span>
+	<span class="k">return</span> <span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CStringArray</span> <span class="n">paramArray</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">CallJScript</span><span class="p">(</span><span class="n">strFunc</span><span class="p">,</span><span class="n">paramArray</span><span class="p">,</span><span class="n">pVarResult</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg1</span><span class="p">,</span>
+						   <span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CStringArray</span> <span class="n">paramArray</span><span class="p">;</span>
+	<span class="n">paramArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strArg1</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">CallJScript</span><span class="p">(</span><span class="n">strFunc</span><span class="p">,</span><span class="n">paramArray</span><span class="p">,</span><span class="n">pVarResult</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg1</span><span class="p">,</span>
+						   <span class="k">const</span> <span class="n">CString</span> <span class="n">strArg2</span><span class="p">,</span><span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CStringArray</span> <span class="n">paramArray</span><span class="p">;</span>
+	<span class="n">paramArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strArg1</span><span class="p">);</span>
+	<span class="n">paramArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strArg2</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">CallJScript</span><span class="p">(</span><span class="n">strFunc</span><span class="p">,</span><span class="n">paramArray</span><span class="p">,</span><span class="n">pVarResult</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg1</span><span class="p">,</span>
+						   <span class="k">const</span> <span class="n">CString</span> <span class="n">strArg2</span><span class="p">,</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strArg3</span><span class="p">,</span>
+						   <span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CStringArray</span> <span class="n">paramArray</span><span class="p">;</span>
+	<span class="n">paramArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strArg1</span><span class="p">);</span>
+	<span class="n">paramArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strArg2</span><span class="p">);</span>
+	<span class="n">paramArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strArg3</span><span class="p">);</span>
+	<span class="k">return</span> <span class="n">CallJScript</span><span class="p">(</span><span class="n">strFunc</span><span class="p">,</span><span class="n">paramArray</span><span class="p">,</span><span class="n">pVarResult</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">CallJScript</span><span class="p">(</span><span class="k">const</span> <span class="n">CString</span> <span class="n">strFunc</span><span class="p">,</span>
+						   <span class="k">const</span> <span class="n">CStringArray</span><span class="o">&amp;</span> <span class="n">paramArray</span><span class="p">,</span>
+						   <span class="n">CComVariant</span><span class="o">*</span> <span class="n">pVarResult</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IDispatch</span><span class="o">&gt;</span> <span class="n">spScript</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">GetJScript</span><span class="p">(</span><span class="n">spScript</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="n">ShowError</span><span class="p">(</span><span class="s">"Cannot GetScript"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">CComBSTR</span> <span class="n">bstrMember</span><span class="p">(</span><span class="n">strFunc</span><span class="p">);</span>
+	<span class="n">DISPID</span> <span class="n">dispid</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">spScript</span><span class="o">-&gt;</span><span class="n">GetIDsOfNames</span><span class="p">(</span><span class="n">IID_NULL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">bstrMember</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+					<span class="n">LOCALE_SYSTEM_DEFAULT</span><span class="p">,</span><span class="o">&amp;</span><span class="n">dispid</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="n">ShowError</span><span class="p">(</span><span class="n">GetSystemErrorMessage</span><span class="p">(</span><span class="n">hr</span><span class="p">));</span>
+		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">const</span> <span class="kt">int</span> <span class="n">arraySize</span> <span class="o">=</span> <span class="n">paramArray</span><span class="p">.</span><span class="n">GetSize</span><span class="p">();</span>
+
+	<span class="n">DISPPARAMS</span> <span class="n">dispparams</span><span class="p">;</span>
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispparams</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">dispparams</span><span class="p">);</span>
+	<span class="n">dispparams</span><span class="p">.</span><span class="n">cArgs</span> <span class="o">=</span> <span class="n">arraySize</span><span class="p">;</span>
+	<span class="n">dispparams</span><span class="p">.</span><span class="n">rgvarg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VARIANT</span><span class="p">[</span><span class="n">dispparams</span><span class="p">.</span><span class="n">cArgs</span><span class="p">];</span>
+	
+	<span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arraySize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">CComBSTR</span> <span class="n">bstr</span> <span class="o">=</span> <span class="n">paramArray</span><span class="p">.</span><span class="n">GetAt</span><span class="p">(</span><span class="n">arraySize</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// back reading
+</span>		<span class="n">bstr</span><span class="p">.</span><span class="n">CopyTo</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dispparams</span><span class="p">.</span><span class="n">rgvarg</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">bstrVal</span><span class="p">);</span>
+		<span class="n">dispparams</span><span class="p">.</span><span class="n">rgvarg</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">vt</span> <span class="o">=</span> <span class="n">VT_BSTR</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">dispparams</span><span class="p">.</span><span class="n">cNamedArgs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="n">EXCEPINFO</span> <span class="n">excepInfo</span><span class="p">;</span>
+	<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">excepInfo</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">excepInfo</span><span class="p">);</span>
+   	<span class="n">CComVariant</span> <span class="n">vaResult</span><span class="p">;</span>
+	<span class="n">UINT</span> <span class="n">nArgErr</span> <span class="o">=</span> <span class="p">(</span><span class="n">UINT</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>  <span class="c1">// initialize to invalid arg
+</span>         
+	<span class="n">hr</span> <span class="o">=</span> <span class="n">spScript</span><span class="o">-&gt;</span><span class="n">Invoke</span><span class="p">(</span><span class="n">dispid</span><span class="p">,</span><span class="n">IID_NULL</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+							<span class="n">DISPATCH_METHOD</span><span class="p">,</span><span class="o">&amp;</span><span class="n">dispparams</span><span class="p">,</span><span class="o">&amp;</span><span class="n">vaResult</span><span class="p">,</span>
+							<span class="o">&amp;</span><span class="n">excepInfo</span><span class="p">,</span><span class="o">&amp;</span><span class="n">nArgErr</span><span class="p">);</span>
+
+	<span class="k">delete</span> <span class="p">[]</span> <span class="n">dispparams</span><span class="p">.</span><span class="n">rgvarg</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+	<span class="p">{</span>
+		<span class="n">ShowError</span><span class="p">(</span><span class="n">GetSystemErrorMessage</span><span class="p">(</span><span class="n">hr</span><span class="p">));</span>
+		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="k">if</span><span class="p">(</span><span class="n">pVarResult</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="o">*</span><span class="n">pVarResult</span> <span class="o">=</span> <span class="n">vaResult</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// returned java script function name, input string is truncating
+</span><span class="n">CString</span> <span class="n">CWebPage</span><span class="o">::</span><span class="n">ScanJScript</span><span class="p">(</span><span class="n">CString</span><span class="o">&amp;</span> <span class="n">strAText</span><span class="p">,</span> <span class="n">CStringArray</span><span class="o">&amp;</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">args</span><span class="p">.</span><span class="n">RemoveAll</span><span class="p">();</span>
+	<span class="n">CString</span> <span class="n">strDelim</span><span class="p">(</span><span class="s">" </span><span class="se">\n\r\t</span><span class="s">"</span><span class="p">),</span><span class="n">strSrc</span><span class="p">(</span><span class="n">strAText</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">bFound</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">strSrc</span><span class="p">.</span><span class="n">IsEmpty</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">CString</span> <span class="n">strStart</span> <span class="o">=</span> <span class="n">GetNextToken</span><span class="p">(</span><span class="n">strSrc</span><span class="p">,</span><span class="n">strDelim</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">strStart</span> <span class="o">==</span> <span class="s">"function"</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">bFound</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">strStart</span> <span class="o">==</span> <span class="s">"/*"</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="c1">// Skip comments
+</span>			<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">strSrc</span><span class="p">.</span><span class="n">IsEmpty</span><span class="p">())</span>
+			<span class="p">{</span>
+				<span class="n">CString</span> <span class="n">strStop</span> <span class="o">=</span> <span class="n">GetNextToken</span><span class="p">(</span><span class="n">strSrc</span><span class="p">,</span><span class="n">strDelim</span><span class="p">);</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">strStop</span> <span class="o">==</span> <span class="s">"*/"</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="k">break</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">bFound</span><span class="p">)</span>
+		<span class="k">return</span> <span class="s">""</span><span class="p">;</span>
+	
+	<span class="n">CString</span> <span class="n">strFunc</span> <span class="o">=</span> <span class="n">GetNextToken</span><span class="p">(</span><span class="n">strSrc</span><span class="p">,</span><span class="s">"("</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
+	<span class="n">CString</span> <span class="n">strArgs</span> <span class="o">=</span> <span class="n">GetNextToken</span><span class="p">(</span><span class="n">strSrc</span><span class="p">,</span><span class="s">")"</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
+
+	<span class="c1">// Parse arguments
+</span>	<span class="n">CString</span> <span class="n">strArg</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">strArg</span> <span class="o">=</span> <span class="n">GetNextToken</span><span class="p">(</span><span class="n">strArgs</span><span class="p">,</span><span class="s">","</span><span class="p">)).</span><span class="n">IsEmpty</span><span class="p">())</span>
+		<span class="n">args</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strArg</span><span class="p">);</span>
+
+	<span class="n">strAText</span><span class="o">=</span> <span class="n">strSrc</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">strFunc</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+</code></pre></div></div>
+
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/littleflute/vc6">vc6</a> is maintained by <a href="https://github.com/littleflute">littleflute</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+  </body>
+</html>
