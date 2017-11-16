@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {margin:0;}
+.navbar {  z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;  width: 100%;}
+.navbar a {  float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;
+  font-size: 17px;}
+.main {  padding: 16px;  margin-bottom: 30px;  height: 1500px; /* Used in this example to enable scrolling */}
+</style>
+</head>
+<body>
+<div class="navbar">  <a href="../index.html">Home</a>  <a href="./index.html">[.]</a>  <a href="#">v0.0.7</a></div>
+<div class="main">
+  <h1>Fixed Bottom Menu</h1>
+  <h2>Scroll this page to see the effect</h2>
+  <h2>The navigation bar will stay at the bottom of the page while scrolling</h2>  
+  <p>Some text some text some text some text..</p> 
+</div>
+
+<script type="text/javascript" src="../js/blclass.js"></script>
+<script language="JavaScript" src="../js/blclassTest.js"></script><script>											
+var nBlPageLeve		= 1; 
+						
+var blt = new blClassTest;								
+blt.blGo(); 									 
+blt.blLoadPlx("blPlxLyric.js");						
+</script>		
+</body>
+</html>
