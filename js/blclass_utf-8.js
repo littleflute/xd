@@ -1,10 +1,10 @@
-// file: blclass.js
+ï»¿// file: blclass_utf-8.js
 // by littleflute
-// 2017/11/3 23:55am bjt
+// 2017/11/17 3:31m bjt
 
 function blClass ()
 { 
-    this.v = "v1.0.17";
+    this.v = "v1.0.22";
 
     this.blShowObj2Div = function (oDivBoss,obj)
     {        
@@ -325,27 +325,27 @@ function _pos(o,x0,y0,i,j,Dxy)
     xdLine(o,x1+d,y1+d,x1+d,y1+2*d,"#00f");
   }
 }
-//»­ÆåÅÌº¯Êý
+//ç”»æ£‹ç›˜å‡½æ•°
 function xdBoard(div,x0,y0,Dxy)
 {
   var o = div;
   var i = 1;
   var x1 = x0, y1 = y0;
-  for(;i<=10;i++)//Ê®ºáÏß
+  for(;i<=10;i++)//åæ¨ªçº¿
   {
     xdLine(o,x1,y1,x1+8*Dxy,y1,"#00f");
     y1 += Dxy;    
   }
   x1 = x0;
   y1 = y0;
-  for(i=0;i<=1;i++)//×óÓÒ±ß½ç
+  for(i=0;i<=1;i++)//å·¦å³è¾¹ç•Œ
   {
     xdLine(o,x1,y1,x1,y1+9*Dxy,"#00f");
     x1 += Dxy*8;    
   }
   x1 = x0;
   y1 = y0;
-  for(i=0;i<=7;i++)//Ë«·½°ë³¡ÄÚÊúÏß
+  for(i=0;i<=7;i++)//åŒæ–¹åŠåœºå†…ç«–çº¿
   {
     xdLine(o,x1+Dxy,y1,x1+Dxy,y1+4*Dxy,"#00f");
     xdLine(o,x1+Dxy,y1+5*Dxy,x1+Dxy,y1+9*Dxy,"#00f");
@@ -354,7 +354,7 @@ function xdBoard(div,x0,y0,Dxy)
 
   x1 = x0 + 3*Dxy;
   y1 = y0;
-  for(i=0;i<=1;i++)//Ë«·½ÊËÏß
+  for(i=0;i<=1;i++)//åŒæ–¹ä»•çº¿
   {
     xdLine(o,x1,y1,x1+2*Dxy,y1+2*Dxy,"#00f");
     xdLine(o,x1,y1+2*Dxy,x1+2*Dxy,y1,"#00f");
@@ -364,7 +364,7 @@ function xdBoard(div,x0,y0,Dxy)
   x1 = x0 + 1*Dxy;
   y1 = y0 + 2*Dxy;
   var d = Dxy/8;
-  for(i=0;i<=1;i++)//Ë«·½ÅÚÎ»Ïß
+  for(i=0;i<=1;i++)//åŒæ–¹ç‚®ä½çº¿
   {
     xdLine(o,x1-d,y1-d,x1-2*d,y1-d,"#00f");
     xdLine(o,x1-d,y1-d,x1-d,y1-2*d,"#00f");
@@ -380,7 +380,7 @@ function xdBoard(div,x0,y0,Dxy)
  
   x1 = x0 + 7*Dxy;
   y1 = y0 + 2*Dxy;
-  for(i=0;i<=1;i++)//Ë«·½ÅÚÎ»Ïß
+  for(i=0;i<=1;i++)//åŒæ–¹ç‚®ä½çº¿
   {
     xdLine(o,x1-d,y1-d,x1-2*d,y1-d,"#00f");
     xdLine(o,x1-d,y1-d,x1-d,y1-2*d,"#00f");
@@ -440,7 +440,7 @@ function _loadThisFileOK(){
 	var blo = new blClass;
 	var d = document.getElementById("idBlDbgDiv");
 	if( d ){ 
-		var d1 = blo.blDiv(d,"idFile_blclass_js", "¡¾blclass.js " + blo.v + "¡¿ loaded OK!","GreenYellow");
+		var d1 = blo.blDiv(d,"idFile_blclass_utf-8_js", "æ’ä»¶ã€blcass_utf-8.jsã€‘ loaded OK!","GreenYellow");
 	}
 	blo = null;
 }

@@ -21,10 +21,14 @@ blPlxLyric.blrShow	= function(b,v){
 }; 
  
 blPlxLyric.name 	= "blPlxLyric";
-blPlxLyric.v 		= "v0.0.36"; 
+blPlxLyric.v 		= "v0.0.43"; 
 
 blPlxLyric.blrMySource	= function(b,v){ 
-	v.innerHTML = "<a target='_blank' href='../js/plx/blPlxLyric.js' style='color:red;'>sourc</a>";
+	var f = "blPlxLyric.js";
+	var sPath = "js/plx/";
+	if(1==nBlPageLeve) sPath = "../" + sPath;
+	var src = sPath + f;
+	v.innerHTML = "<a target='_blank' href=" + src + " style='color:red;'>sourc</a>";
 }; 
  
   
@@ -104,17 +108,11 @@ function blLrcClass(oUI,tt)
 		return function(){ 
 			var d = document.getElementById("idMyTimer");
 			if(d)
-			{
-			var s = "";//d.innerHTML;
-			nMyTimer++;
-			s += nMyTimer;
-			var playerObj = document.getElementById("idLyricMP");
-			s += " QueryString.l = " + QueryString.l;
-			s += " blVMP.blrGetCP = " + blVMP.blrGetCP();
-			s += "idMovingLyr.style.top = " + idMovingLyr.style.top;
-			s += "<br>";
-			d.innerHTML = s;
+			{			 	
+				var dMsg = o.blDiv(d,"idTimerMsg","TimerMsg");
+				dMsg.innerHTML =  nMyTimer++;
 			}
+			var playerObj = document.getElementById("idLyricMP");
 			_this.xdRun(playerObj);
 		}
   }(this);
@@ -173,7 +171,9 @@ function blLrcClass(oUI,tt)
 	var xdVer	= "v1.0.27";
 	var xdPlayerDiv = o.blDiv(oBass,"xdPlayerDiv","xdPlayerDiv");	 
 	var divMP = o.blDiv(xdPlayerDiv,"mp1","xdxdxd","red"); 
-	_InitPlayer(xdType,divMP,"file:///C:/Users/13699/xd/vc6/files/u0102.mp3"); 
+//	_InitPlayer(xdType,divMP,"file:///C:/Users/13699/xd/vc6/files/u0102.mp3"); 
+	_InitPlayer(xdType,divMP,"https://littleflute.github.io/Elton-John/Elton John/Elton John [Bonus Tracks]/01 Your Song.mp3"); 
+	
 	var xddbgDiv = o.blDiv(oBass,"xddbgLyric",xdVer,"green");
 	var MyTimer = o.blDiv(oBass,"idMyTimer","idMyTimer");
 

@@ -1,0 +1,1 @@
+notepad blclass_utf-8.js

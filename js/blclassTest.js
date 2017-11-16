@@ -1,12 +1,13 @@
-function blClassTest(){				
-	this.v		= "v0.0.29";			
+
+function blClassTest(){	
+	var _blPlxMng = null;			
+	this.v		= "v0.0.46";			
 	this.name	= "blClassTest";				
 	var blo 	= new blClass;								 
 	this.blrTest1 	= function(b,v){	
 		v.innerHTML = "plxA[nPlxA-1].id = " + plxA[nPlxA-1].id;	 						
 	}	 
 
-	var m = blo.blDiv(document.body,"blpMainDiv","blpMainDiv","BlueViolet" );
 					 								 
 	function _uiDivMovable(id,x,y){							
 		var o = blo;								 
@@ -66,15 +67,15 @@ function blClassTest(){
 		o.blLink(mi3,id+"a1","readme","ReadMe.txt?a=100","blue");						 
 	}										 
 	function _test1(){								
-		var t = blo.blTextarea(document.body,"t1","alert('xd');","Aquamarine");	 
-		t.style.backgroundColor = "green"; 
-
+		var t = blo.blTextarea(document.body,"t1","blt.blLoadPlx('blPlxXau.js');","skyblue");
 		var b = blo.blBtn(document.body,"idBtnRun","run","green");		
-		b.onclick = function(){eval(t.value);}					
+		b.onclick = function(){eval(t.value);}	
+		_blPlxMng = blo.blDiv(document.body,"blPlxMng","blPlxMng","BlueViolet" );
+		_blPlxMng.style.width = 500+"px";				
 	}									 
 	this.blGo = function(){								
 		_test1();		  					
-		_test2("blClass",400,100,blo);					
+		_test2("blClass",700,10,blo);					
 		_test2("blClassTest",700,100,this);							 						
 	}									 
 	this.blPlxUI = function(t,x,y,o){		
@@ -88,8 +89,8 @@ function blClassTest(){
 			sPath = "../" + sPath;
 		}
 		var id = "plxA_" + nPlxA;
-		var src = sPath + f;
-		plxA[nPlxA] = blo.blScript("s1",src);
+		var src = sPath + f;		
+		plxA[nPlxA] = blo.blScript(id,src);
 		nPlxA++;							 						
 	}	  
 }	
@@ -108,4 +109,17 @@ function _loadThisFileOK(){
 	_blt = null;
 }
 _loadThisFileOK();
+
+var nPlx = 0, x = 685, y = 100, dy = 80;							
+function loadPlxOK(o){nPlx++;							
+		var d = document.getElementById("blPlxMng");				
+		var html = d.innerHTML;							
+		var name = o.name;							
+		if(undefined == name) name = o.blhGetName();				
+		html += "<br> plx: " + name + " is loaded OK.<br>";			
+		d.innerHTML = html;							
+		blt.blPlxUI(name + "Test",x,y+nPlx*dy,o);				
+		if( (undefined != o.blhLoadMeFinished)) o.blhLoadMeFinished();	
+}
+
 			
