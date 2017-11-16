@@ -2,7 +2,7 @@
 <html>		
 <head>		
 <title>		
-index_v1.1.25	 
+index_v1.1.56					 
 </title>						
 <meta charset="UTF-8">								 
 <meta name="viewport" content="width=device-width, initial-scale=1">		 
@@ -23,16 +23,17 @@ body {font-family: "Lato", sans-serif}
    <a href="vc6/index.html" class="w3-bar-item w3-button w3-padding-large">vc6</a>						
    <a href="Mp3Player/index.html" class="w3-bar-item w3-button w3-padding-large">Mp3Player</a>					
    <a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large">w3schools</a>					
-   <div class="w3-dropdown-hover w3-hide-small">		 	  
-     <button class="w3-padding-large w3-button" title="More">MORE* <i class="fa fa-caret-down"></i></button>		 	       
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">		 	  
+   <!-- ----------------------------------------------More----------------------------------------------------- -->		 
+   <div class="w3-dropdown-hover w3-hide-small">		 									  
+     <button class="w3-padding-large w3-button" title="More">MORE* <i class="fa fa-caret-down"></i></button>		        
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">		 							  
         <a target="_blank" href="https://github.com/littleflute/xd" class="w3-bar-item w3-button">github_xd</a>	 	  
         <a target="_blank" href="https://www.w3schools.com" class="w3-bar-item w3-button">w3schools.com</a>		 	  
         <a target="_blank" href="http://littleflute.github.io/CodeMirror/" class="w3-bar-item w3-button">CodeMirror</a>	 
         <a target="_blank" href="http://www.google.com" class="w3-bar-item w3-button">google</a>		 		  
         <a target="_blank" href="https://cbcpubliclibrary.net/" class="w3-bar-item w3-button">cbcpubliclibrary.net/</a>	  
-        <a target="_blank" href="https://littleflute.github.io/Programming-Windows/" class="w3-bar-item w3-button">cbcpubliclibrary.net/</a>	  
       </div>								 	  
+    <!-- --------------------------------------------------------------------------------------------------- -->			 
     </div>		 							  
     <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>		 	  
   </div>		 	  
@@ -44,11 +45,11 @@ body {font-family: "Lato", sans-serif}
 <!-- Page content -->		
 <div class="w3-content" style="max-width:2000px;margin-top:46px">		
 <div id="xdMainDiv" ></div>				
-<div id = "idBlDbgDiv" style = "background-color: Bisque; ">BlDbgDiv</div>		
+<div id = "idBlDbgDiv" style = "background-color: Bisque; "><a href="?l=0">Refresh</a></div>		
 </div>										
 <!-- End Page Content -->							
-<script src="js/blclass.js"></script>			 
-<script src="js/blclassTest.js"></script>			 
+<script src="js/blclass_utf-8.js"></script>					 
+<script src="js/blclassTest.js"></script>					 
 <script>											
 // Used to toggle the menu on small screens when clicking on the menu button		
 function myFunction() {									
@@ -59,18 +60,12 @@ function myFunction() {
         x.className = x.className.replace(" w3-show", "");					
     }											
 }												
-	function loadPlxOK(o){ 								
-		var d = document.getElementById("blpMainDiv");				
-		var html = d.innerHTML;							
-		html += "<br> plx: " + o.name + " is loaded OK.<br>";			
-		d.innerHTML = html;							
-		blt.blPlxUI(o.name + "Test",55,233,o);					
-	}										
 var nBlPageLeve = 0;								
 var blt = new blClassTest;								
 blt.blGo(); 									 
-//blt.blLoadPlx("blPlxMp3Player.js");						
-blt.blLoadPlx("blPlxLyric.js");						
+blt.blLoadPlx("blPlxMp3Player.js");						
+blt.blLoadPlx("blPlxLyric.js");							
+// blt.blLoadPlx("blPlxXau.js");							
 </script>									
 </body>			
 </html>			
