@@ -1,15 +1,17 @@
 
 function blClassTest(){	
-	var _name	= "blClassTest";
+	this.v		= "v0.0.81";	 
+	var _myName	= "blclassTest";
+	this.blhGetName	= function(){		
+		return _myName;
+	};
 	function _PlxMngClass(){
 		this.v = "v0.0.4";
 		var oMsg = null;
 		this.blhSetMsgUI = function(o){oMsg = o;};
 		this.blhShow = function(s){oMsg.style.display = s;};		
 	};			
-	var _blPlxMng = new _PlxMngClass;
-	this.v		= "v0.0.76";			
-	this.name	= "blClassTest";				
+	var _blPlxMng = new _PlxMngClass;				
 	var blo 	= new blClass;	 					 
 	this.blrPlxMng 	= function(b,v){	
 		var b1 = blo.blBtn(v,"PlxMng"+1,"btn1","red");
@@ -17,8 +19,8 @@ function blClassTest(){
 		var b2 = blo.blBtn(v,"PlxMng"+2,"btn2","green");	
 		b2.onclick = function(){_blPlxMng.blhShow("block");}					
 	}	 
-	_htmlMySrc 	= function(){
-		var f = _name + ".js";
+	_htmlThisFileURL 	= function(){
+		var f = _myName + ".js";
 		var sPath = "js/";
 		if(1==nBlPageLeve) sPath = "../" + sPath;
 		var src = sPath + f;
@@ -31,7 +33,7 @@ function blClassTest(){
 		{
 			_bShowAbout = false; 
 			b.style.backgroundColor = "purple";
-			s += _htmlMySrc();
+			s += _htmlThisFileURL();
 		}
 		else{
 			_bShowAbout = true;
@@ -140,8 +142,8 @@ function _loadThisFileOK(){
 	var _blt = new blClassTest;
 	var d = document.getElementById("idBlDbgDiv");
 	if( d ){ 
-		var id 		= "id_" + _blt.name + "_js";
-		var html 	= "[" + _blt.name + " " + _blt.v + "] loaded OK!";
+		var id 		= "id_" + _blt.blhGetName() + "_js";
+		var html 	= "[" + _blt.blhGetName() + " " + _blt.v + "] loaded OK!";
 		var d1 		= _blc.blDiv(d,id, html,"Aquamarine"); 
 	}
 	_blc = null;
