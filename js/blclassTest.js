@@ -1,9 +1,45 @@
 
 function blClassTest(){	
-	var _blPlxMng = null;			
-	this.v		= "v0.0.46";			
+	var _name	= "blClassTest";
+	function _PlxMngClass(){
+		this.v = "v0.0.4";
+		var oMsg = null;
+		this.blhSetMsgUI = function(o){oMsg = o;};
+		this.blhShow = function(s){oMsg.style.display = s;};		
+	};			
+	var _blPlxMng = new _PlxMngClass;
+	this.v		= "v0.0.76";			
 	this.name	= "blClassTest";				
-	var blo 	= new blClass;								 
+	var blo 	= new blClass;	 					 
+	this.blrPlxMng 	= function(b,v){	
+		var b1 = blo.blBtn(v,"PlxMng"+1,"btn1","red");
+		b1.onclick = function(){_blPlxMng.blhShow("none");}
+		var b2 = blo.blBtn(v,"PlxMng"+2,"btn2","green");	
+		b2.onclick = function(){_blPlxMng.blhShow("block");}					
+	}	 
+	_htmlMySrc 	= function(){
+		var f = _name + ".js";
+		var sPath = "js/";
+		if(1==nBlPageLeve) sPath = "../" + sPath;
+		var src = sPath + f;
+		return "<a target='_blank' href=" + src + " style='color:red;'>sourc</a>";
+	}
+	var _bShowAbout = true;
+	this.blrAbout 	= function(b,v){
+		var s = "";
+		if(_bShowAbout)
+		{
+			_bShowAbout = false; 
+			b.style.backgroundColor = "purple";
+			s += _htmlMySrc();
+		}
+		else{
+			_bShowAbout = true;
+			b.style.backgroundColor = "red";
+		}
+		v.innerHTML = s;
+	};
+							 
 	this.blrTest1 	= function(b,v){	
 		v.innerHTML = "plxA[nPlxA-1].id = " + plxA[nPlxA-1].id;	 						
 	}	 
@@ -70,8 +106,11 @@ function blClassTest(){
 		var t = blo.blTextarea(document.body,"t1","blt.blLoadPlx('blPlxXau.js');","skyblue");
 		var b = blo.blBtn(document.body,"idBtnRun","run","green");		
 		b.onclick = function(){eval(t.value);}	
-		_blPlxMng = blo.blDiv(document.body,"blPlxMng","blPlxMng","BlueViolet" );
-		_blPlxMng.style.width = 500+"px";				
+		
+		_test2("blPlxMngUI",10,310,_blPlxMng);	
+		var dMng = document.getElementById("blPlxMngUImi3");
+		var oMsg = blo.blDiv(dMng,"blPlxMng","blPlxMng","BlueViolet" );
+		_blPlxMng.blhSetMsgUI(oMsg);			
 	}									 
 	this.blGo = function(){								
 		_test1();		  					
@@ -110,16 +149,24 @@ function _loadThisFileOK(){
 }
 _loadThisFileOK();
 
-var nPlx = 0, x = 685, y = 100, dy = 80;							
+var nPlx = 0, x = 785, y = 100, dy = 80;							
 function loadPlxOK(o){nPlx++;							
-		var d = document.getElementById("blPlxMng");				
-		var html = d.innerHTML;							
-		var name = o.name;							
-		if(undefined == name) name = o.blhGetName();				
-		html += "<br> plx: " + name + " is loaded OK.<br>";			
-		d.innerHTML = html;							
-		blt.blPlxUI(name + "Test",x,y+nPlx*dy,o);				
-		if( (undefined != o.blhLoadMeFinished)) o.blhLoadMeFinished();	
+	var d 		= document.getElementById("blPlxMng");
+	var blo 	= new blClass;	
+	var id		= "id_Plx_Load_OK_" + nPlx;
+	var html 	= "";							
+	var name 	= o.name;							
+	if(undefined == name) name = o.blhGetName();				
+	html += " plx: " + name + " is loaded OK.";
+	blo.blDiv(d,id,html,"gray");
+	blo = null;
+	
+	var html = d.innerHTML;
+	html += new Date;
+	d.innerHTML = html; 
+
+	blt.blPlxUI(name + "Test",x,y+nPlx*dy,o);				
+	if( (undefined != o.blhLoadMeFinished)) o.blhLoadMeFinished();	
 }
 
 			
