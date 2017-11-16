@@ -3,7 +3,7 @@ echo ^<!DOCTYPE html^>  >>index.html
 echo ^<html^>		>>index.html
 echo ^<head^>		>>index.html
 echo ^<title^>		>>index.html
-echo index_v1.1.25	>>index.html 
+echo index_v1.1.56					>>index.html 
 echo ^</title^>						>>index.html
 echo ^<meta charset="UTF-8"^>								>>index.html 
 echo ^<meta name="viewport" content="width=device-width, initial-scale=1"^>		>>index.html 
@@ -15,6 +15,7 @@ echo ^<style^>										>>index.html
 echo body {font-family: "Lato", sans-serif}						>>index.html 
 echo .mySlides {display: none}								>>index.html 
 echo ^</style^>										>>index.html 
+
 
 echo ^</head^>	>> 	index.html
 echo ^<body^>	>> 	index.html
@@ -25,19 +26,21 @@ echo   ^<div class="w3-bar w3-black w3-card"^>	>>index.html
 echo    ^<a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"^>^<i class="fa fa-bars"^>^</i^>^</a^>			 	>>index.html  
 echo    ^<a href="vc6/index.html" class="w3-bar-item w3-button w3-padding-large"^>vc6^</a^>						>>index.html
 echo    ^<a href="Mp3Player/index.html" class="w3-bar-item w3-button w3-padding-large"^>Mp3Player^</a^>					>>index.html
-echo    ^<a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large"^>w3schools^</a^>					>>index.html
-echo    ^<div class="w3-dropdown-hover w3-hide-small"^>		 	>>index.html  
-echo      ^<button class="w3-padding-large w3-button" title="More"^>MORE* ^<i class="fa fa-caret-down"^>^</i^>^</button^>		 	>>index.html       
-echo       ^<div class="w3-dropdown-content w3-bar-block w3-card-4"^>		 	>>index.html  
+echo    ^<a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large"^>w3schools^</a^>					>>index.html
+
+echo    ^<!-- ----------------------------------------------More----------------------------------------------------- --^>		>>index.html 
+echo    ^<div class="w3-dropdown-hover w3-hide-small"^>		 									>>index.html  
+echo      ^<button class="w3-padding-large w3-button" title="More"^>MORE* ^<i class="fa fa-caret-down"^>^</i^>^</button^>		 >>index.html       
+echo       ^<div class="w3-dropdown-content w3-bar-block w3-card-4"^>		 							>>index.html  
 echo         ^<a target="_blank" href="https://github.com/littleflute/xd" class="w3-bar-item w3-button"^>github_xd^</a^>	 	>>index.html  
 echo         ^<a target="_blank" href="https://www.w3schools.com" class="w3-bar-item w3-button"^>w3schools.com^</a^>		 	>>index.html  
 echo         ^<a target="_blank" href="http://littleflute.github.io/CodeMirror/" class="w3-bar-item w3-button"^>CodeMirror^</a^>	>>index.html 
 
 echo         ^<a target="_blank" href="http://www.google.com" class="w3-bar-item w3-button"^>google^</a^>		 		>>index.html  
 echo         ^<a target="_blank" href="https://cbcpubliclibrary.net/" class="w3-bar-item w3-button"^>cbcpubliclibrary.net/^</a^>	>>index.html  
-echo         ^<a target="_blank" href="https://littleflute.github.io/Programming-Windows/" class="w3-bar-item w3-button"^>cbcpubliclibrary.net/^</a^>	>>index.html  
-
 echo       ^</div^>								 	>>index.html  
+echo     ^<!-- --------------------------------------------------------------------------------------------------- --^>			>>index.html 
+
 echo     ^</div^>		 							>>index.html  
 echo     ^<a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"^>^<i class="fa fa-search"^>^</i^>^</a^>		 	>>index.html  
 echo   ^</div^>		 	>>index.html  
@@ -52,13 +55,14 @@ echo ^<!-- Page content --^>		>>index.html
 echo ^<div class="w3-content" style="max-width:2000px;margin-top:46px"^>		>>index.html
 
 echo ^<div id="xdMainDiv" ^>^</div^>				>>index.html
-echo ^<div id = "idBlDbgDiv" style = "background-color: Bisque; "^>BlDbgDiv^</div^>		>>index.html
+echo ^<div id = "idBlDbgDiv" style = "background-color: Bisque; "^>^<a href="?l=0"^>Refresh^</a^>^</div^>		>>index.html
 
 echo ^</div^>										>>index.html
 echo ^<!-- End Page Content --^>							>>index.html
 
-echo ^<script src="js/blclass.js"^>^</script^>			>>index.html 
-echo ^<script src="js/blclassTest.js"^>^</script^>			>>index.html 
+
+echo ^<script src="js/blclass_utf-8.js"^>^</script^>					>>index.html 
+echo ^<script src="js/blclassTest.js"^>^</script^>					>>index.html 
 
 echo ^<script^>											>>index.html
 echo // Used to toggle the menu on small screens when clicking on the menu button		>>index.html
@@ -70,19 +74,13 @@ echo     } else { 										>>index.html
 echo         x.className = x.className.replace(" w3-show", "");					>>index.html
 echo     }											>>index.html
 echo }												>>index.html
-  
-echo 	function loadPlxOK(o){ 								>>index.html
-echo 		var d = document.getElementById("blpMainDiv");				>>index.html
-echo 		var html = d.innerHTML;							>>index.html
-echo 		html += "<br> plx: " + o.name + " is loaded OK.<br>";			>>index.html
-echo 		d.innerHTML = html;							>>index.html
-echo 		blt.blPlxUI(o.name + "Test",55,233,o);					>>index.html
-echo 	}										>>index.html
+ 
 echo var nBlPageLeve = 0;								>>index.html
 echo var blt = new blClassTest;								>>index.html
 echo blt.blGo(); 									>>index.html 
-echo //blt.blLoadPlx("blPlxMp3Player.js");						>>index.html
-echo blt.blLoadPlx("blPlxLyric.js");						>>index.html
+echo blt.blLoadPlx("blPlxMp3Player.js");						>>index.html
+echo blt.blLoadPlx("blPlxLyric.js");							>>index.html
+echo // blt.blLoadPlx("blPlxXau.js");							>>index.html
 echo ^</script^>									>>index.html
 
 
