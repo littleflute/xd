@@ -1,6 +1,6 @@
 
 function blClassTest(){	
-	this.v		= "v0.0.81";	 
+	this.v		= "v0.0.83";	 
 	var _myName	= "blclassTest";
 	this.blhGetName	= function(){		
 		return _myName;
@@ -82,7 +82,8 @@ function blClassTest(){
 		var o = blo;								 
 		var main = _uiDivMovable(id,x,y);					 
 		var mi1 = o.blDiv(main,id+"mi1",id+"mi1");				 
-		var mi1bOnOff 	= o.blBtn ( mi1,id+"mi1bOnOff",id+"mi1bOnOff"); 	 
+		var mi1bOnOff 	= o.blBtn ( mi1,id+"mi1bOnOff","*");
+		mi1bOnOff.style.float = "right"; 	 
 		mi1bOnOff.bOnOff = "+";							
 		mi1bOnOff.onclick = function (){  						 
 			var mi2 = o.blDiv(main,id+"mi2",id+"mi2");			 
