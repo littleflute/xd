@@ -1,21 +1,24 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head><title>player</title>
 <style>
 body {margin:0;}
 .navbar {  z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;  width: 100%;}
-.navbar a {  float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;
-  font-size: 17px;}
+.navbar a {  float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;  font-size: 17px;}
+.navbar1 {  z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;right: 0;  width: 10%;}
+.navbar1 a {  float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;  font-size: 17px;}
 .main {  padding: 16px;  margin-bottom: 30px;  height: 1500px; /* Used in this example to enable scrolling */}
 </style>
 </head>
 <body>
-<div class="navbar">  <a href="../index.html">Home</a>  <a href="./index.html">[.]</a>  <a href="#">v0.0.7</a></div>
+<div id = "myNav" class="navbar"><div id = "navContent">  <a href="../index.html">Home</a>  <a href="./index.html">[.]</a>  <a href="#">v0.0.34</a></div>
+<button id = "lock" style="background-color:red;float:right;">lock</button></div>
+
 <div class="main">
   <h1>Fixed Bottom Menu</h1>
   <h2>Scroll this page to see the effect</h2>
   <h2>The navigation bar will stay at the bottom of the page while scrolling</h2>  
-  <p>Some text some text some text some text..</p> 
+  <p id = "xddbg">xd test</p> 
 </div>
 
 <script type="text/javascript" src="../js/blclass.js"></script>
@@ -24,7 +27,46 @@ var nBlPageLeve		= 1;
 						
 var blt = new blClassTest;								
 blt.blGo(); 									 
-blt.blLoadPlx("blPlxLyric.js");						
+blt.blLoadPlx("blPlxLyric.js");	
+	
+var navContent = document.getElementById("navContent");
+var xddbg = document.getElementById("xddbg");
+var myNav = document.getElementById("myNav");
+var bLock = true;
+var lock = document.getElementById("lock");
+
+lock.onclick = function()
+{
+	if(bLock) {
+		navContent.style.display = "none";
+		bLock = false;lock.style.backgroundColor = "green";
+	}
+	else 		
+	{	
+		navContent.style.display = "block"; 
+		bLock = true;lock.style.backgroundColor = "red";
+	}
+}
+myNav.onmouseover = function(){ 
+	xddbg.innerHTML = this.id + " : mouse over. bLock = " + bLock;
+	this.classList.remove("navbar1");
+	this.classList.add("navbar");
+	navContent.style.display = "block"; 
+}
+myNav.onmouseout = function(){ 
+	if(bLock){
+		navContent.style.display = "block";
+		lock.innerHTML = "lock";
+	}
+	else{
+		xddbg.innerHTML = "mouse out. bLock = " + bLock;
+	
+		navContent.style.display = "none"; 
+		this.classList.remove("navbar");
+		this.classList.add("navbar1");
+		lock.innerHTML = "unlock";
+	}
+} 	
 </script>		
 </body>
 </html>
