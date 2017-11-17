@@ -1,6 +1,16 @@
 // file: blPlxXau.js
 // by littleflute
 // 2017/11/17 1:17 bjt
+function _newDataClass(oBoss)
+{
+	this.n = 0;
+	this.o = 0;
+	this.h = 0;
+	this.c = 0;
+	this.l = 0;
+	this.html = "xxx";
+	this.ui		= null;
+}
 function _main(oBoss)
 {
   var blo = new blClass;
@@ -8,22 +18,27 @@ function _main(oBoss)
   var b1 = blo.blBtn(mainToolBar,"xauMain_btn1","btn1","BurlyWood");
   var b2 = blo.blBtn(mainToolBar,"xauMain_btn2","btn2","BurlyWood");
   var mainView = blo.blDiv(mainToolBar,"xaumainView_1","mainView","black");
-  var w = {};
+  var w = new _newDataClass;
   w._2do = function(s){
-	mainView.innerHTML = s;
+	w.html = s;
+	w.d1.innerHTML = w.n;
+	w.d2.innerHTML = s;
   };
-  b1.onclick = function(){
-	mainView.innerHTML = "b1 click";
+  b1.onclick = function(){w.n++;
+	mainView.innerHTML = "b1 click: " + w.n;
 	blo.blAjx(w,"http://api.baidao.com/api/hq/npdata.do?ids=201");	
+	var d = document.getElementById("mainViewBtn2mi3");
+	w.d1 = blo.blDiv(d,d.id+"d1",w.n,"white");
+	w.d2 = blo.blDiv(d,d.id+"d2",w.n,"skyblue");
   };
   b2.onclick = function(){
 	var blt = new blClassTest;
-	blt.blPlxUI("mainViewBtn2",100,100,w);
+	w.ui = blt.blPlxUI("mainViewBtn2",100,100,w);
   };
 }
 function _blXauClass(){
 	var _name 	= "blPlxXau";
-	var _v 		= "v0.0.51";
+	var _v 		= "v0.0.59";
 	var _bOK	= false;
 	this.blhGetName	= function(){		
 		return _name;
