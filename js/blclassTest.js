@@ -52,7 +52,7 @@ function _nav(s)
 	} 	
 }
 function blClassTest(){	
-	this.v		= "v0.0.84";	 
+	this.v		= "v0.0.89";	 
 	var _myName	= "blclassTest";
 	this.blhGetName	= function(){		
 		return _myName;
@@ -69,7 +69,15 @@ function blClassTest(){
 		var b1 = blo.blBtn(v,"PlxMng"+1,"btn1","red");
 		b1.onclick = function(){_blPlxMng.blhShow("none");}
 		var b2 = blo.blBtn(v,"PlxMng"+2,"btn2","green");	
-		b2.onclick = function(){_blPlxMng.blhShow("block");}					
+		b2.onclick = function(){_blPlxMng.blhShow("block");}	
+		var b3 = blo.blBtn(v,"PlxMng"+3,"runOff","red");
+		b3.onclick = function(){
+			var blRunTA = document.getElementById("id_bl_RunTA");
+			if(blRunTA) blRunTA.style.display = "none";}
+		var b4 = blo.blBtn(v,"PlxMng"+4,"runOn","green");	
+		b4.onclick = function(){
+			var blRunTA = document.getElementById("id_bl_RunTA");
+			if(blRunTA) blRunTA.style.display = "block";}				
 	}	 
 	_htmlThisFileURL 	= function(){
 		var f = _myName + ".js";
@@ -157,11 +165,13 @@ function blClassTest(){
 		var mi3 = o.blDiv(main,id+"mi3",id+"mi3");	
 		o.blLink(mi3,id+"a1","readme","ReadMe.txt?a=100","blue");						 
 	}										 
-	function _test1(){								
-		var t = blo.blTextarea(document.body,"t1","blt.blLoadPlx('blPlxXau.js');","skyblue");
-		var b = blo.blBtn(document.body,"idBtnRun","run","green");		
-		b.onclick = function(){eval(t.value);}	
-		
+	function _test1(){		
+		var blRunTA = document.getElementById("id_bl_RunTA");
+		if(blRunTA){						
+			var t = blo.blTextarea(blRunTA,"t1","blt.blLoadPlx('blPlxXau.js');","skyblue");
+			var b = blo.blBtn(blRunTA,"idBtnRun","run","green");		
+			b.onclick = function(){eval(t.value);}	
+		}
 		_test2("blPlxMngUI",10,310,_blPlxMng);	
 		var dMng = document.getElementById("blPlxMngUImi3");
 		var oMsg = blo.blDiv(dMng,"blPlxMng","blPlxMng","BlueViolet" );
