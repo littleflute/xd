@@ -3,7 +3,7 @@ echo ^<!DOCTYPE html^>  >>index.html
 echo ^<html^>		>>index.html
 echo ^<head^>		>>index.html
 echo ^<title^>		>>index.html
-echo index_v1.1.61					>>index.html 
+echo index_v1.1.63					>>index.html 
 echo ^</title^>						>>index.html
 echo ^<meta charset="UTF-8"^>								>>index.html 
 echo ^<meta name="viewport" content="width=device-width, initial-scale=1"^>		>>index.html 
@@ -23,7 +23,8 @@ echo ^<body^>	>> 	index.html
 echo ^<!-- Navbar --^>						>>index.html 
 echo ^<div class="w3-top"^>						>>index.html 
 echo   ^<div class="w3-bar w3-black w3-card"^>	>>index.html 
-echo    ^<a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"^>^<i class="fa fa-bars"^>^</i^>^</a^>			 	>>index.html  
+echo    ^<a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"^>^<i class="fa fa-bars"^>^</i^>^</a^>			>>index.html  
+echo    ^<a href="?l=0" class="w3-bar-item w3-button w3-padding-large"^>Home^</a^>							>>index.html		 	 
 echo    ^<a href="vc6/index.html" class="w3-bar-item w3-button w3-padding-large"^>vc6^</a^>						>>index.html
 echo    ^<a href="Mp3Player/index.html" class="w3-bar-item w3-button w3-padding-large"^>Mp3Player^</a^>					>>index.html
 echo    ^<a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large"^>w3schools^</a^>					>>index.html
@@ -48,15 +49,17 @@ echo ^</div^>		 	>>index.html
 
 echo ^<!-- Navbar on small screens --^>			>>index.html
 echo ^<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px"^>		>>index.html
-echo  ^<a href="colors" class="w3-bar-item w3-button w3-padding-large"^>colors^</a^>		>>index.html 
+echo  ^<a href="vc6/index.html" class="w3-bar-item w3-button w3-padding-large"^>colors^</a^>						>>index.html 
+echo  ^<a href="Mp3Player/index.html" class="w3-bar-item w3-button w3-padding-large"^>Mp3Player^</a^>					>>index.html 
+echo  ^<a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large"^>w3schools^</a^>					>>index.html 
 echo ^</div^>		>>index.html
 
 echo ^<!-- Page content --^>		>>index.html
 echo ^<div class="w3-content" style="max-width:2000px;margin-top:46px"^>		>>index.html
 
-echo ^<div id="xdMainDiv" ^>^</div^>				>>index.html
-echo ^<div id = "id_div_blclass" style = "background-color: Bisque; "^>^<a href="?l=0"^>Refresh^</a^>^</div^>		>>index.html
-echo ^<div id="id_bl_RunTA"^>^</div^>		>>index.html
+echo ^<div id="xdMainDiv" ^>^</div^>							>>index.html
+echo ^<div id = "id_div_blclass" style = "background-color: Bisque;"^>^</div^>		>>index.html
+echo ^<div id="id_bl_RunTA"^>^</div^>							>>index.html
 echo ^</div^>										>>index.html
 echo ^<!-- End Page Content --^>							>>index.html
 
