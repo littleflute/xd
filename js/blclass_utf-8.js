@@ -5,7 +5,7 @@
 function blClass ()
 { 
     this.name	= "blClass";
-    this.v 	= "v1.0.34";
+    this.v 	= "v1.0.39";
  
     this.blShowObj2Div = function (oDivBoss,obj)
     {        
@@ -448,7 +448,26 @@ function _blLoadClass(c){
 			this.style.backgroundColor="green";
 		} 
 	}
-	function _showClass(){		
+	function _loadRunJS (){		
+		var d = oc.blDiv(this.parentElement,"id_div_RunJS","","lightblue"); 
+		if(d.innerHTML == "")	{
+			var d1 = oc.blDiv(d,"id_div_RunJS_test","","lightgray");
+			var t = oc.blTextarea(d1,"id_div_RunJS_TA","alert('xd');","skyblue");
+			t.style = "width:100%;";
+			var b1 = oc.blBtn(d,"id_btn_RunJS_run","run","green"); 
+			b1.style.float = "right";
+			b1.onclick = function(){eval(t.value);};
+			var bs1 = oc.blBtn(d,"id_btn_RunJS_src1","s1","purple"); 
+			bs1.style.float = "right";
+			bs1.onclick = function(){t.value = "//s1";};
+			this.style.backgroundColor="red";
+		}
+		else
+		{	d.innerHTML = ""; 
+			this.style.backgroundColor="green";
+		}
+	}
+	function _showClass (){		
 		var d = oc.blDiv(this.parentElement,"id_div_show_blclass","","lightblue");
 		if(d.innerHTML == "")	{oc.blShowObj2Div(d,oc);this.style.backgroundColor="red";}
 		else 			{d.innerHTML = "";this.style.backgroundColor="green";}
@@ -456,16 +475,18 @@ function _blLoadClass(c){
   	function _loadThisFileOK(rv){ 		
 		var d = document.getElementById("id_div_blclass");
 		if( d ){ 
-			var d1 = oc.blDiv(d,"idFile_blclass_utf-8_js", rv + " 插件【blcass_utf-8.js " + oc.v + "】 loaded OK!","GreenYellow");
+			var d1 = oc.blDiv(d,"idFile_blclass_utf-8_js", rv + " :: 插件【blcass_utf-8.js " + oc.v + "】 loaded OK!","GreenYellow");
 			var b1 = oc.blBtn(d1,"idBtn_blclass_1","blclass","gray");b1.onclick=_showClass;
 			var b2 = oc.blBtn(d1,"idBtn_blclass_2","blclassTest","gray");b2.onclick = _loadTestClass ;
+			var b3 = oc.blBtn(d1,"idBtn_blclass_3","RunJS");b3.onclick = _loadRunJS ;	
+			b3.style.float = "right";		
 		}
 	}
-	this.v 		= "v0.0.13";
+	this.v 		= "v0.0.19";
 	this.blrGo 	= function(rv){
 		_loadThisFileOK(rv); 
 	};
 }
 
 var l = new _blLoadClass(blClass);
-l.blrGo(32);			
+l.blrGo(47);			
