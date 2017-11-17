@@ -4,23 +4,23 @@
 
 	        	{
 
-            		"albumName": "cd3",
-		        "albumCoverMax": "images/index.jpg",
+            		"albumName": "xd Test Album 1",
+		        "albumCoverMax": "mp3/xdTestA1.jpg",
 		        "albumSong": [
 		
                 {
 
-		                    "musicName": "cd3_01.mp3",
+		                    "musicName": "01 Your Song",
 
-		                    "musicSinger": "Sor",
+		                    "musicSinger": "Elton John",
 		
-                    "musicLink": "cd3/01.mp3",
+                    "musicLink": "mp3/01 Your Song.mp3",
  
-              			    "lyricsLink": "cd3/01.lrc",
+              			    "lyricsLink": "mp3/01.lrc",
 		
                     "musicTime": "01:12",
 
-		                    "albumCoverMin": "images/index.jpg"
+		                    "albumCoverMin": "mp3/01_Small.jpg"
 
 		                },
 
