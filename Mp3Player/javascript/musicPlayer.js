@@ -1,4 +1,6 @@
-﻿var QueryString = function () 
+﻿var blMusicPlayerV = "v0.1.2";
+
+var QueryString = function () 
 {
   // This function is anonymous, is executed immediately and 
   // the return value is assigned to QueryString!
@@ -83,7 +85,7 @@ function xdDbgMsg(str)
 
 }
 
-xdDbgMsg("xddbg: v0.1.0");
+xdDbgMsg(blMusicPlayerV);
 
 xdDbgMsg(url);
 
@@ -183,6 +185,11 @@ function XMLHttpData(url){
 		var btnS2 = blBtn(divJSs,"btnS2","s2");
 		btnS2.onclick = function(){
 			formatPlayer(s2);
+		}
+	    	var s3File = blScript("s3File","s3.json");   
+		var btnS3 = blBtn(divJSs,"btnS3","s3");
+		btnS3.onclick = function(){
+			formatPlayer(s3);
 		}
 	}
     }
