@@ -21,7 +21,7 @@ blPlxLyric.blrShow	= function(b,v){
 }; 
  
 blPlxLyric.name 	= "blPlxLyric";
-blPlxLyric.v 		= "v0.0.46"; 
+blPlxLyric.v 		= "v0.0.47"; 
 
 blPlxLyric.blrMySource	= function(b,v){ 
 	var f = "blPlxLyric.js";
@@ -112,7 +112,8 @@ function blLrcClass(oUI,tt)
 				var dMsg = o.blDiv(d,"idTimerMsg","TimerMsg");
 				dMsg.innerHTML =  nMyTimer++;
 			}
-			var playerObj = document.getElementById("idLyricMP");
+			//var playerObj = document.getElementById("idLyricMP");
+			var playerObj = document.getElementById("musicEngine");
 			_this.xdRun(playerObj);
 		}
   }(this);
