@@ -2,11 +2,11 @@
 var blPlxLyric 		= {};
 blPlxLyric.blrLoadLyric	= function(b,v){ 
 	var o = new blClass;
-	var f = "01_lrc.js";
+	var f = "03_lrc.js";
 	var sPath = "js/lrc/";
 	if(1==nBlPageLeve) sPath = "../" + sPath;
 	var src = sPath + f;
-	var d1 = o.blDiv(v,"id_01_lrc","01_lrc","green"); 
+	var d1 = o.blDiv(v,"id_load_lrc","myLrc","purple"); 
 	var s1 = o.blScript("idS_01_lrc",src); 
 	o = null;
 }; 
@@ -14,14 +14,14 @@ blPlxLyric.blrLoadLyric	= function(b,v){
  
 blPlxLyric.blrShow	= function(b,v){ 
 	v.innerHTML = "show";
-	var o = document.getElementById("id_01_lrc");
+	var o = document.getElementById("id_load_lrc");
 	var txt = o.innerHTML;
 	lrcobj = new blLrcClass(v,txt); 
 	lrcobj.blRun(lrcobj);
 }; 
  
 blPlxLyric.name 	= "blPlxLyric";
-blPlxLyric.v 		= "v0.0.43"; 
+blPlxLyric.v 		= "v0.0.46"; 
 
 blPlxLyric.blrMySource	= function(b,v){ 
 	var f = "blPlxLyric.js";
