@@ -52,7 +52,7 @@ function _nav(s)
 	} 	
 }
 function blClassTest(){	
-	this.v		= "v0.0.89";	 
+	this.v		= "v0.0.94";	 
 	var _myName	= "blclassTest";
 	this.blhGetName	= function(){		
 		return _myName;
@@ -187,7 +187,7 @@ function blClassTest(){
 	}	
 	var plxA 	= [];
 	var nPlxA	= 0;								 
-	this.blLoadPlx = function(f){	
+	this.blLoadPlx = function(f){
 		var sPath = "js/plx/";
 		if(nBlPageLeve){
 			sPath = "../" + sPath;
@@ -200,23 +200,39 @@ function blClassTest(){
 }	
 
 
-function _loadThisFileOK(){ 
+function _loadThisFileOK(rv){ 
 	var _blc = new blClass;
 	var _blt = new blClassTest;
-	var d = document.getElementById("idBlDbgDiv");
-	if( d ){ 
-		var id 		= "id_" + _blt.blhGetName() + "_js";
-		var html 	= "[" + _blt.blhGetName() + " " + _blt.v + "] loaded OK!";
-		var d1 		= _blc.blDiv(d,id, html,"Aquamarine"); 
+	function _loadTestClass(){	
+		_blt.blLoadPlx('blPlxXau.js');
+		this.style.backgroundColor="green";
 	}
-	_blc = null;
-	_blt = null;
+	function _xdShowClass(){ 
+		var oc = _blc;		
+		var d = oc.blDiv(this.parentElement,"id_div_show_blclassTest","","lightblue");
+		if(d.innerHTML == "")	{oc.blShowObj2Div(d,_blt);this.style.backgroundColor="red";}
+		else 			{d.innerHTML = "";this.style.backgroundColor="green";}
+	}
+  	 
+	var d = document.getElementById("id_div_blclassTest");
+	if( d ){ 
+		var oc = _blc;
+		var id 		= "id_" + _blt.blhGetName() + "_js";
+		var html 	= rv + " [" + _blt.blhGetName() + " " + _blt.v + "] loaded OK!";
+		var d1 		= _blc.blDiv(d,id, html,"Aquamarine"); 
+		var b1 		= oc.blBtn(d1,"id_Btn_blClassTest_1","blClassTest","gray");b1.onclick=_xdShowClass;
+		var b2 		= oc.blBtn(d1,"id_Btn_blClassTest_2","test","gray");b2.onclick = _loadTestClass ;
+	}
 }
-_loadThisFileOK();
+_loadThisFileOK(21);
 
 var nPlx = 0, x = 785, y = 100, dy = 80;							
-function loadPlxOK(o){nPlx++;							
+function loadPlxOK(o){ 
+	nPlx++;						
 	var d 		= document.getElementById("blPlxMng");
+	if(!d){
+		d 	= document.getElementById("id_div_blclassTest");
+	}  
 	var blo 	= new blClass;	
 	var id		= "id_Plx_Load_OK_" + nPlx;
 	var html 	= "";							
@@ -224,14 +240,14 @@ function loadPlxOK(o){nPlx++;
 	if(undefined == name) name = o.blhGetName();				
 	html += " plx: " + name + " is loaded OK.";
 	blo.blDiv(d,id,html,"gray");
+	html = new Date;
+	blo.blDiv(d,id+"time",html,"gray");
 	blo = null;
+	 
 	
-	var html = d.innerHTML;
-	html += new Date;
-	d.innerHTML = html; 
-
-	blt.blPlxUI(name + "Test",x,y+nPlx*dy,o);				
+	var t 	= new blClassTest;	
+	t.blPlxUI(name + "Test",x,y+nPlx*dy,o);				
+	t = null;
 	if( (undefined != o.blhLoadMeFinished)) o.blhLoadMeFinished();	
 }
-
 			

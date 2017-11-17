@@ -4,8 +4,9 @@
 
 function blClass ()
 { 
-    this.v = "v1.0.22";
-
+    this.name	= "blClass";
+    this.v 	= "v1.0.34";
+ 
     this.blShowObj2Div = function (oDivBoss,obj)
     {        
         var oBoss = oDivBoss;
@@ -435,14 +436,36 @@ function xdBoard(div,x0,y0,Dxy)
 		btnBoard.click();
 	}									
 }//END: blCChess
-
-function _loadThisFileOK(){ 
-	var blo = new blClass;
-	var d = document.getElementById("idBlDbgDiv");
-	if( d ){ 
-		var d1 = blo.blDiv(d,"idFile_blclass_utf-8_js", "插件【blcass_utf-8.js】 loaded OK!","GreenYellow");
+ 
+function _blLoadClass(c){ 
+	var oc = new c;
+	function _loadTestClass(){	
+		var d = oc.blDiv(this.parentElement,"id_div_blclassTest","","skyblue");	 
+		if(d.innerHTML == "")	{
+			var s = document.baseURI;
+			var path = s.slice(0,1+s.lastIndexOf("/"));		 
+			oc.blScript("id_script_blclassTest",path+"js/blclassTest.js");
+			this.style.backgroundColor="green";
+		} 
 	}
-	blo = null;
+	function _showClass(){		
+		var d = oc.blDiv(this.parentElement,"id_div_show_blclass","","lightblue");
+		if(d.innerHTML == "")	{oc.blShowObj2Div(d,oc);this.style.backgroundColor="red";}
+		else 			{d.innerHTML = "";this.style.backgroundColor="green";}
+	}
+  	function _loadThisFileOK(rv){ 		
+		var d = document.getElementById("id_div_blclass");
+		if( d ){ 
+			var d1 = oc.blDiv(d,"idFile_blclass_utf-8_js", rv + " 插件【blcass_utf-8.js " + oc.v + "】 loaded OK!","GreenYellow");
+			var b1 = oc.blBtn(d1,"idBtn_blclass_1","blclass","gray");b1.onclick=_showClass;
+			var b2 = oc.blBtn(d1,"idBtn_blclass_2","blclassTest","gray");b2.onclick = _loadTestClass ;
+		}
+	}
+	this.v 		= "v0.0.13";
+	this.blrGo 	= function(rv){
+		_loadThisFileOK(rv); 
+	};
 }
-_loadThisFileOK();
-								
+
+var l = new _blLoadClass(blClass);
+l.blrGo(32);			
