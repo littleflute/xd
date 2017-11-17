@@ -1,22 +1,15 @@
-﻿var blMusicPlayerV = "v0.1.2";
+﻿var blMusicPlayerV = "v0.1.27";
 
 var QueryString = function () 
 {
-  // This function is anonymous, is executed immediately and 
-  // the return value is assigned to QueryString!
 
   var query_string = {};
-
   var query = window.location.search.substring(1);
 
   var vars = query.split("&");
-
   for (var i=0;i<vars.length;i++) {
 
     var pair = vars[i].split("=");
-
-        // If first entry with this name
-
     if (typeof query_string[pair[0]] === "undefined") {
 
       query_string[pair[0]] = decodeURIComponent(pair[1]);
@@ -55,14 +48,14 @@ if(QueryString.l)
 else
 {
 
-	url = "https://littleflute.github.io/blMp3Player/songList.json";
+	url = "songList.json";
 
 }
     
 
 (function(){
 
-	XMLHttpData(url);
+	_blLoadJSON4SongList(url);
 
 })();
 
@@ -91,40 +84,10 @@ xdDbgMsg(url);
 
 
 
-function blDiv(oBoss,id,html){
-    var r = document.getElementById(id);
-    if(!r){
-        r = document.createElement("div");
-        r.id = id;
-        r.style.border = "1px solid #3d3d3d";
-
-    }
-    r.innerHTML = html; 
-    oBoss.appendChild(r);
-    return r;
-}
-function blBtn(oBoss,id,html){
-    var r = document.getElementById(id);
-    if(!r){
-        r = document.createElement("button");
-        r.id = id;
-    }
-    r.innerHTML = html; 
-    oBoss.appendChild(r);
-    return r;
-}
-function blScript(id,src){
-    		var r = document.getElementById(id);
-        	r = document.createElement("script");
-        	r.id = id;
-    		 
-    		r.src = src; 
-    		document.body.appendChild(r);
-    		return r;
-	    }
+   
 //---------------------------------------------------【AJAX载入歌曲信息】
 
-function XMLHttpData(url){
+function _blLoadJSON4SongList(url){
 
     var xmlhttp,song;
 
@@ -174,20 +137,20 @@ function XMLHttpData(url){
 	else{ 
 	    	var boss = document.getElementById("xdToolBar");
 
-
-	    	var s1File = blScript("s1File","s1.json");  
-		var divJSs =  blDiv(boss,"jsonFile","jsonFile");
-		var btnS1 = blBtn(divJSs,"btnS1","s1");
+		var o = new blClass;
+	    	var s1File = o.blScript("s1File","s1.json");  
+		var divJSs = o.blDiv(boss,"jsonFile","jsonFile","skyblue");
+		var btnS1 = o.blBtn(divJSs,"btnS1","s1","red");
 		btnS1.onclick = function(){
 			formatPlayer(s1);
 		}
-	    	var s2File = blScript("s2File","s2.json");   
-		var btnS2 = blBtn(divJSs,"btnS2","s2");
+	    	var s2File = o.blScript("s2File","s2.json");   
+		var btnS2 = o.blBtn(divJSs,"btnS2","s2","red");
 		btnS2.onclick = function(){
 			formatPlayer(s2);
 		}
-	    	var s3File = blScript("s3File","s3.json");   
-		var btnS3 = blBtn(divJSs,"btnS3","s3");
+	    	var s3File = o.blScript("s3File","s3.json");   
+		var btnS3 = o.blBtn(divJSs,"btnS3","s3","gray");
 		btnS3.onclick = function(){
 			formatPlayer(s3);
 		}
