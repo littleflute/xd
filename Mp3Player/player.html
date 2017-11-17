@@ -18,59 +18,13 @@ body {margin:0;}
 <script type="text/javascript" src="../js/blclass.js"></script>
 <script language="JavaScript" src="../js/blclassTest.js"></script>
 <script>
-var v = "0.1.3";								
+var v = "0.1.4";								
 var nBlPageLeve		= 1; 						
 var blt = new blClassTest;								
 blt.blGo(); 									 
 blt.blLoadPlx("blPlxLyric.js");	
-var blo = new blClass;	
-var ss = 'z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;  width: 100%;';
-var ss1 = 'z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;right: 0;  width: 10%;';
-var sa = 'float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;  font-size: 17px;';
-var myNav = blo.blDiv(document.body,"myNav","","green");
-myNav.style = ss;
-var html = ' <a href="../index.html">Home</a> <a href="./index.html">[.]</a>  <a href="?l=0">'+v+'</a>';
-var navContent = blo.blDiv(myNav,"navContent",html,"#333");
-var m=navContent.getElementsByTagName('a');
-for(i in m)
-{
-	m[i].style = sa;
-}
-var xddbg = document.getElementById("xddbg");
-var bLock = true;
-var lock =  blo.blBtn(myNav,"lock","lock","red");
-lock.style.float = "right";
 
-lock.onclick = function()
-{
-	if(bLock) {
-		navContent.style.display = "none";
-		bLock = false;lock.style.backgroundColor = "green";
-	}
-	else 		
-	{	
-		navContent.style.display = "block"; 
-		bLock = true;lock.style.backgroundColor = "red";
-	}
-}
-myNav.onmouseover = function(){ 
-	xddbg.innerHTML = this.id + " : mouse over. bLock = " + bLock;
-        this.style = ss;
-	navContent.style.display = "block"; 
-}
-myNav.onmouseout = function(){ 
-	if(bLock){
-		navContent.style.display = "block";
-		lock.innerHTML = "lock";
-	}
-	else{
-		xddbg.innerHTML = "mouse out. bLock = " + bLock;
-	
-		navContent.style.display = "none";
-        this.style = ss1;
-		lock.innerHTML = "unlock";
-	}
-} 	
+_nav(v);	
 </script>		
 
 </body>
