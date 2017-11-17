@@ -1,0 +1,23 @@
+var myLyr = "";
+myLyr += "1: [11]:ssss1\n";
+myLyr += "2: ssss2\n";
+myLyr += "3: [11]:ssss1\n";
+myLyr += "4: ssss2\n";
+myLyr += "[00:00:00]00:00:  [by:littleflute]
+ \n";
+myLyr += "[00:01:00]00:01 01.lrc_1\n";
+myLyr += "[00:02:00]00:02 02.lrc_2\n";
+myLyr += "[00:03:00]03.lrc_3\n";
+myLyr += "[00:04:00]00:04: wu2...\n";
+myLyr += "[00:07:00]00:07: 01.lrc_4\n";
+myLyr += "[00:8.00]It's a little bit funny\n";
+
+myLyr += "[00:11:00]00:11 wu....01.lrc_4\n";
+myLyr += "[00:12.00]this feeling inside\n";
+myLyr += "[00:16.00]I'm not one of those who can easily hide\n";
+myLyr += "[00:23.00]I don't have much money but boy if I did
+\n";
+myLyr += "[00:30.00]I'd buy a big house where we both could live
+\n";
+myLyr += "[00:40.00]If I was a sculptor, 
+\n";
