@@ -1,6 +1,58 @@
 
+function _nav(s)
+{
+	var v = s;
+	var blo = new blClass;	
+	var ss = 'z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;  width: 100%;';
+	var ss1 = 'z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;right: 0;  width: 10%;';
+	var sa = 'float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;  font-size: 17px;';
+	var myNav = blo.blDiv(document.body,"myNav","","green");
+	myNav.style = ss;
+	var html = ' <a href="../index.html">Home</a> <a href="./index.html">[.]</a>  <a href="?l=0">'+v+'</a>';
+	var navContent = blo.blDiv(myNav,"navContent",html,"#333");
+	var m=navContent.getElementsByTagName('a');
+	for(i in m)
+	{
+		m[i].style = sa;
+	}
+	var xddbg = document.getElementById("xddbg");
+	var bLock = true;
+	var lock =  blo.blBtn(myNav,"lock","lock","red");
+	lock.style.float = "right";
+	
+	lock.onclick = function()
+	{
+		if(bLock) {
+			navContent.style.display = "none";
+			bLock = false;lock.style.backgroundColor = "green";
+		}
+		else 		
+		{	
+			navContent.style.display = "block"; 
+			bLock = true;lock.style.backgroundColor = "red";
+		}
+	}
+	myNav.onmouseover = function(){ 
+		xddbg.innerHTML = this.id + " : mouse over. bLock = " + bLock;
+        this.style = ss;
+		navContent.style.display = "block"; 
+	}
+	myNav.onmouseout = function(){ 
+		if(bLock){
+			navContent.style.display = "block";
+			lock.innerHTML = "lock";
+		}
+		else{
+			xddbg.innerHTML = "mouse out. bLock = " + bLock;
+			
+			navContent.style.display = "none";
+			this.style = ss1;
+			lock.innerHTML = "unlock";
+		}
+	} 	
+}
 function blClassTest(){	
-	this.v		= "v0.0.83";	 
+	this.v		= "v0.0.84";	 
 	var _myName	= "blclassTest";
 	this.blhGetName	= function(){		
 		return _myName;
