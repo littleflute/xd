@@ -1,42 +1,45 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head><title>player</title>
 <meta charset="UTF-8">								 
 <meta name="viewport" content="width=device-width, initial-scale=1">	 		 
 <link rel="icon" href="../favicon.png" type="image/x-icon">
 <style>
-body {margin:0;}
-.navbar {  z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;  width: 100%;}
-.navbar a {  float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;  font-size: 17px;}
-.navbar1 {  z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;right: 0;  width: 10%;}
-.navbar1 a {  float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;  font-size: 17px;}
+body {margin:0;}    
 .main {  padding: 16px;  margin-bottom: 30px;  height: 1500px; /* Used in this example to enable scrolling */}
 </style>
 </head>
-<body>
-<div id = "myNav" class="navbar"><div id = "navContent">  <a href="../index.html">Home</a>  <a href="./index.html">[.]</a>  <a href="?l=0">v0.0.36</a></div>
-<button id = "lock" style="background-color:red;float:right;">lock</button></div>
-
-<div class="main">
-  <h1>Fixed Bottom Menu</h1>
-  <h2>Scroll this page to see the effect</h2>
-  <h2>The navigation bar will stay at the bottom of the page while scrolling</h2>  
+<body>  
+<div class="main"> 
   <p id = "xddbg">xd test</p> 
 </div>
 
 <script type="text/javascript" src="../js/blclass.js"></script>
-<script language="JavaScript" src="../js/blclassTest.js"></script><script>											
-var nBlPageLeve		= 1; 
-						
+<script language="JavaScript" src="../js/blclassTest.js"></script>
+<script>
+var v = "0.1.3";								
+var nBlPageLeve		= 1; 						
 var blt = new blClassTest;								
 blt.blGo(); 									 
 blt.blLoadPlx("blPlxLyric.js");	
-	
-var navContent = document.getElementById("navContent");
+var blo = new blClass;	
+var ss = 'z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;  width: 100%;';
+var ss1 = 'z-index:100;overflow: hidden;  background-color: #333;  position: fixed;  bottom: 0;right: 0;  width: 10%;';
+var sa = 'float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;  font-size: 17px;';
+var myNav = blo.blDiv(document.body,"myNav","","green");
+myNav.style = ss;
+var html = ' <a href="../index.html">Home</a> <a href="./index.html">[.]</a>  <a href="?l=0">'+v+'</a>';
+var navContent = blo.blDiv(myNav,"navContent",html,"#333");
+var m=navContent.getElementsByTagName('a');
+for(i in m)
+{
+	m[i].style = sa;
+}
 var xddbg = document.getElementById("xddbg");
-var myNav = document.getElementById("myNav");
 var bLock = true;
-var lock = document.getElementById("lock");
+var lock =  blo.blBtn(myNav,"lock","lock","red");
+lock.style.float = "right";
 
 lock.onclick = function()
 {
@@ -52,8 +55,7 @@ lock.onclick = function()
 }
 myNav.onmouseover = function(){ 
 	xddbg.innerHTML = this.id + " : mouse over. bLock = " + bLock;
-	this.classList.remove("navbar1");
-	this.classList.add("navbar");
+        this.style = ss;
 	navContent.style.display = "block"; 
 }
 myNav.onmouseout = function(){ 
@@ -64,12 +66,12 @@ myNav.onmouseout = function(){
 	else{
 		xddbg.innerHTML = "mouse out. bLock = " + bLock;
 	
-		navContent.style.display = "none"; 
-		this.classList.remove("navbar");
-		this.classList.add("navbar1");
+		navContent.style.display = "none";
+        this.style = ss1;
 		lock.innerHTML = "unlock";
 	}
 } 	
-</script>		
+</script>		
+
 </body>
 </html>
