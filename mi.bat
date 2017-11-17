@@ -3,7 +3,7 @@ echo ^<!DOCTYPE html^>  >>index.html
 echo ^<html^>		>>index.html
 echo ^<head^>		>>index.html
 echo ^<title^>		>>index.html
-echo index_v1.1.56					>>index.html 
+echo index_v1.1.61					>>index.html 
 echo ^</title^>						>>index.html
 echo ^<meta charset="UTF-8"^>								>>index.html 
 echo ^<meta name="viewport" content="width=device-width, initial-scale=1"^>		>>index.html 
@@ -55,14 +55,13 @@ echo ^<!-- Page content --^>		>>index.html
 echo ^<div class="w3-content" style="max-width:2000px;margin-top:46px"^>		>>index.html
 
 echo ^<div id="xdMainDiv" ^>^</div^>				>>index.html
-echo ^<div id = "idBlDbgDiv" style = "background-color: Bisque; "^>^<a href="?l=0"^>Refresh^</a^>^</div^>		>>index.html
-
+echo ^<div id = "id_div_blclass" style = "background-color: Bisque; "^>^<a href="?l=0"^>Refresh^</a^>^</div^>		>>index.html
+echo ^<div id="id_bl_RunTA"^>^</div^>		>>index.html
 echo ^</div^>										>>index.html
 echo ^<!-- End Page Content --^>							>>index.html
 
 
 echo ^<script src="js/blclass_utf-8.js"^>^</script^>					>>index.html 
-echo ^<script src="js/blclassTest.js"^>^</script^>					>>index.html 
 
 echo ^<script^>											>>index.html
 echo // Used to toggle the menu on small screens when clicking on the menu button		>>index.html
@@ -76,10 +75,10 @@ echo     }											>>index.html
 echo }												>>index.html
  
 echo var nBlPageLeve = 0;								>>index.html
-echo var blt = new blClassTest;								>>index.html
-echo blt.blGo(); 									>>index.html 
-echo blt.blLoadPlx("blPlxMp3Player.js");						>>index.html
-echo blt.blLoadPlx("blPlxLyric.js");							>>index.html
+echo //var blt = new blClassTest;								>>index.html
+echo //blt.blGo(); 									>>index.html 
+echo //blt.blLoadPlx("blPlxMp3Player.js");						>>index.html
+echo //blt.blLoadPlx("blPlxLyric.js");							>>index.html
 echo // blt.blLoadPlx("blPlxXau.js");							>>index.html
 echo ^</script^>									>>index.html
 
