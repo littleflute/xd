@@ -5,9 +5,44 @@
 function blClass ()
 { 
     this.name	= "blClass";
-    this.v 	= "v1.0.39";
+    this.v 	= "v1.0.55";
+    this.blrSrc = function (b,v)
+    {
+	if(v.innerHTML == ""){
+		var s = document.baseURI;
+		var path = s.slice(0,1+s.lastIndexOf("/"));	
+		v.innerHTML = path;
+		_blDiv(v,"id_blclass_file_path",path);
+		var nXd = path.lastIndexOf("/xd/");
+		var tb = _blDiv(v,"id_blclass_file_xd_path",nXd);
+		if(nXd!=-1){
+			_blBtn(tb,"id_blclass_tb_b_1","b1");
+		}		
+	}
+	else{
+		v.innerHTML = "";
+	}
+    }
  
+    _blDiv = function (oBoss,id,html,bkClr){
+        var r = document.getElementById(id);
+        if(!r){
+            r = document.createElement("div");
+            r.id = id;
+    	    r.innerHTML = html; 
+            r.style.backgroundColor=bkClr?bkClr:"gray";
+    	    if(oBoss!=null)oBoss.appendChild(r);
+        }
+        return r;
+    }
+    this.blDiv = function (oBoss,id,html,bkClr){
+        return _blDiv(oBoss,id,html,bkClr);
+    }
     this.blShowObj2Div = function (oDivBoss,obj)
+    {
+	_blShowObj2Div(oDivBoss,obj);        
+    }
+    _blShowObj2Div = function (oDivBoss,obj)
     {        
         var oBoss = oDivBoss;
         if(!oBoss) {
@@ -98,17 +133,6 @@ function blClass ()
         xmlhttp.send();
     }
 
-    this.blDiv = function (oBoss,id,html,bkClr){
-        var r = document.getElementById(id);
-        if(!r){
-            r = document.createElement("div");
-            r.id = id;
-    	    r.innerHTML = html; 
-            r.style.backgroundColor=bkClr?bkClr:"gray";
-    	    if(oBoss!=null)oBoss.appendChild(r);
-        }
-        return r;
-    }
     this.blTextarea = function (oBoss,id,html,bkClr){
         var r = document.getElementById(id);
         if(!r){
@@ -121,7 +145,10 @@ function blClass ()
         return r;
     }
 
-    this.blBtn = function (oBoss,id,html,bkClr){
+    this.blBtn = function (oBoss,id,html,bkClr){ 
+        return _blBtn(oBoss,id,html,bkClr);
+    }
+    _blBtn = function (oBoss,id,html,bkClr){
         var r = document.getElementById(id);
         if(!r){
             r = document.createElement("button");
@@ -453,7 +480,7 @@ function _blLoadClass(c){
 		if(d.innerHTML == "")	{
 			var d1 = oc.blDiv(d,"id_div_RunJS_test","","lightgray");
 			var t = oc.blTextarea(d1,"id_div_RunJS_TA","alert('xd');","skyblue");
-			t.style = "width:100%;";
+			t.style = "width:95%;height:150px;";
 			var b1 = oc.blBtn(d,"id_btn_RunJS_run","run","green"); 
 			b1.style.float = "right";
 			b1.onclick = function(){eval(t.value);};
@@ -477,16 +504,16 @@ function _blLoadClass(c){
 		if( d ){ 
 			var d1 = oc.blDiv(d,"idFile_blclass_utf-8_js", rv + " :: 插件【blcass_utf-8.js " + oc.v + "】 loaded OK!","GreenYellow");
 			var b1 = oc.blBtn(d1,"idBtn_blclass_1","blclass","gray");b1.onclick=_showClass;
-			var b2 = oc.blBtn(d1,"idBtn_blclass_2","blclassTest","gray");b2.onclick = _loadTestClass ;
+			//var b2 = oc.blBtn(d1,"idBtn_blclass_2","blclassTest","gray");b2.onclick = _loadTestClass ;
 			var b3 = oc.blBtn(d1,"idBtn_blclass_3","RunJS");b3.onclick = _loadRunJS ;	
 			b3.style.float = "right";		
 		}
 	}
-	this.v 		= "v0.0.19";
+	this.v 		= "v0.0.22";
 	this.blrGo 	= function(rv){
 		_loadThisFileOK(rv); 
 	};
 }
 
 var l = new _blLoadClass(blClass);
-l.blrGo(47);			
+l.blrGo(48);			
