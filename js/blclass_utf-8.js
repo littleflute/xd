@@ -5,7 +5,7 @@
 function blClass ()
 {  
     	this.name	= "blClass";
-    	this.v 	= "v1.0.94"; 
+    	this.v 	= "v1.0.101"; 
 	function _uiDivMovable(id,x,y){		 					 
 		var idBody = id;							 
 		var idHead = id + "Header";						 
@@ -68,13 +68,17 @@ function blClass ()
 		var path = s.slice(0,1+s.lastIndexOf("/"));	
 		_blDiv(v,"id_blclass_file_path",path);
 		var nXd = path.lastIndexOf("/xd/");
-		var tb = _blDiv(v,"id_blclass_file_xd_path",nXd);
 		if(nXd!=-1){
 			var pathTest = path + "js/blclassTest.js";
+			var mySrcPath = path + "js/blclass_utf-8.js";
 		}
 		else{
-			var pathTest = "https://littleflute.github.io/xd/js/blclassTest.js";		
+			var pathTest = "https://littleflute.github.io/xd/js/blclassTest.js";
+			var mySrcPath = path + "https://littleflute.github.io/xd/js/blclass_utf-8.js";		
 		}
+		var html = "<a target='_blank' href='" + mySrcPath + "' style='color:purple;background-color:skyblue;'>src</a>";
+		var mySrc = _blDiv(v,"id_blclass_file_src",html,"silver");
+		var tb = _blDiv(v,"id_blclass_file_xd_path",nXd);
 		var b1 = _blBtn(tb,"id_blclass_tb_b_1","b1");
 		b1.onclick = function(){			
 			var d = _blDiv(v,"id_div_blclassTest","blClassTest","purple");	 

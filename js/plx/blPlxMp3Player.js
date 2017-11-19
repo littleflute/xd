@@ -1,9 +1,28 @@
-// file: blXau.plx
+// file: blPlxMp3Player.js
 // by littleflute
 // 2017/11/5 13:10 bjt
+
+function blPlxMp3PlayerClass(this_){
+	var f = "blPlxMp3Player"; //************************************ file name ***************
+	var v = "v0.0.37";
+	var blo = new blClass;
+	var p = document.getElementById("id_div_LoadPlx_blPlxMp3Player"); //*** parent div id ***
+	var html = "blPlxMp3Player.js - " + v + " is loaded OK!";
+	blo.blDiv(p,"id_div_blPlxMp3Player_1",html); //************************* my debug div id ***
+	var id = "id_board_" + f; //************************************ my board id  ***************
+	blo.blhCreateBoard2ShowObj(id,500,200,this_);
+	this.blrAboutMe = function(b,d){//test
+		d.innerHTML = v;
+	}
+	this.blrQuit = function(b,d){//test
+		var d0 = d.parentElement.parentElement.parentElement;
+		d.innerHTML = d0.id;
+	}
+	this.blTest = function(){//test
+	}
+}
+
 var blPlxMp3Player 	= {};
-blPlxMp3Player.name 	= "blPlxMp3Player";
-blPlxMp3Player.v 	= "v0.3.8";
 blPlxMp3Player.path	= "https://littleflute.github.io/Elton-John/Captain%20Fantastic%20and%20the%20Brown%20Dirt%20Cowboy/cd01/";
 
 var _blPlayer = function (oBoss){ 
@@ -21,7 +40,7 @@ var _blPlayer = function (oBoss){
     v.oLast = null;
     v.playObj = function (o){  
        if(v.oLast) {						
-            v.oLast.style.backgroundColor = "green";}
+            v.oLast.style.backgroundColor = "goldrod";}
        v.src = blPlxMp3Player.path + o.innerHTML;
        v.play();
        o.style.backgroundColor="yellow";	
@@ -35,22 +54,23 @@ var _blPlayer = function (oBoss){
  }
 };
 var _blMakeList = function(fs){	 		
-       var boss = document.getElementById("idDivBlMp3Player");			
+       	var boss = document.getElementById("idDivBlMp3Player");	
+
        for (var i = 1; i<fs.length;i++)
        {	
-          var d = document.createElement("button");
-          d.style.border = "1px solid blue";
-       	  d.id = i;//"song"+i;
-          d.onclick = function(){
+          var d = document.createElement("div");
+          boss.appendChild(d);
+          var b = document.createElement("button");
+          b.style.border = "1px solid blue";
+       	  b.id = i; 
+          b.onclick = function(){
 		var v = document.getElementById("idBlMp3Player");
                 v.playObj(this);
 	  }
-          d.innerHTML = fs[i];
-          boss.appendChild(d);
+          b.innerHTML = fs[i];
+          boss.appendChild(b);
        } 	
-	var b = document.getElementById("1");	
-        b.click();
-		 
+	document.getElementById("1").click();		 
 };		
 var _update = function()
 {
@@ -68,16 +88,31 @@ var _update = function()
 blPlxMp3Player.blrList = function(btn,div){
 	var blo = new blClass;
 	div.innerHTML = "";
-	var t = blo.blTextarea(div,"idTaList",blPlxMp3Player.path+"m.js","blue");
-	var bMake = blo.blBtn(div,"idBtnMakeList","make","green");
-	var bDbg = blo.blBtn(div,"idBtnDbg","dbg","gray");
-	var b1 = blo.blBtn(div,"idBtn1","b1","white");
+
+		var s = document.baseURI;
+		var path = s.slice(0,1+s.lastIndexOf("/"));	 
+		var nXd = path.lastIndexOf("/xd/");
+		if(nXd!=-1){ 
+			var mySrcPath = path + "js/plx/blPlxMp3Player.js";
+		}
+		else{ 
+			var mySrcPath = path + "https://littleflute.github.io/xd/js/plx/blPlxMp3Player.js";		
+		}
+		var html = "<a target='_blank' href='" + mySrcPath + "' style='color:purple;background-color:skyblue;'>src</a>";
+		var mySrc = blo.blDiv(div,"id_blPlxMp3Player_file_src",html,"silver");
+
+	var t = blo.blTextarea(div,"idTaList",blPlxMp3Player.path+"m.js","skyblue");
+	t.style.width = "100%";
+	var divList = blo.blDiv(div,"id_div_List_1","List:","silver");
+	var bMake = blo.blBtn(divList,"idBtnMakeList","make","green");
+	var bDbg = blo.blBtn(divList,"idBtnDbg","dbg","gray");
+	var b1 = blo.blBtn(divList,"idBtn1","b1","white");
 	b1.onclick = function (){
 		t.value = "https://littleflute.github.io/Elton-John/Captain%20Fantastic%20and%20the%20Brown%20Dirt%20Cowboy/m.js";
 	}
-	var b2 = blo.blBtn(div,"idBtn2","b2","white");
+	var b2 = blo.blBtn(divList,"idBtn2","b2","white");
 	b2.onclick = function (){
-		t.value = "file:///C:/Users/13699/xd/blMp3Player-master/blMp3Player-master/cd1/m.js";
+		t.value = "C:/Users/13699/xd1/Mp3Player/blMp3Player-master/cd1/m.js";
 	}
 	var n = 0;
 	bMake.myTimeFun = function (){
@@ -100,8 +135,5 @@ blPlxMp3Player.blrList = function(btn,div){
 		_blMakeList(f);
 	}
 }
- 
-if (typeof loadPlxOK == "function") {		    		
-	loadPlxOK(blPlxMp3Player);
-}
- 
+  
+new blPlxMp3PlayerClass(blPlxMp3Player);
