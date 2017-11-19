@@ -5,19 +5,28 @@
 function blClass ()
 { 
     this.name	= "blClass";
-    this.v 	= "v1.0.55";
+    this.v 	= "v1.0.69";
     this.blrSrc = function (b,v)
     {
 	if(v.innerHTML == ""){
 		var s = document.baseURI;
 		var path = s.slice(0,1+s.lastIndexOf("/"));	
-		v.innerHTML = path;
+		//v.innerHTML = path;
 		_blDiv(v,"id_blclass_file_path",path);
 		var nXd = path.lastIndexOf("/xd/");
 		var tb = _blDiv(v,"id_blclass_file_xd_path",nXd);
 		if(nXd!=-1){
-			_blBtn(tb,"id_blclass_tb_b_1","b1");
-		}		
+			var pathTest = path + "js/blclassTest.js";
+		}
+		else{
+			var pathTest = "https://littleflute.github.io/xd/js/blclassTest.js";		
+		}
+		var b1 = _blBtn(tb,"id_blclass_tb_b_1","b1");
+		b1.onclick = function(){			
+			var d = _blDiv(this.parentElement,"id_div_blclassTest","blClassTest","skyblue");	 
+			var s = _blScript("id_script_blclassTest",pathTest);
+		};
+				
 	}
 	else{
 		v.innerHTML = "";
@@ -100,7 +109,10 @@ function blClass ()
 	   	oBoss.innerHTML = s;						 
 	 }	
 
-	this.blScript = function (id,src){
+	this.blScript = function (id,src){  
+    		return _blScript(id,src);
+	}
+	_blScript = function (id,src){
     		var r = document.getElementById(id);
     		if(!r){
         		r = document.createElement("script");
@@ -479,8 +491,9 @@ function _blLoadClass(c){
 		var d = oc.blDiv(this.parentElement,"id_div_RunJS","","lightblue"); 
 		if(d.innerHTML == "")	{
 			var d1 = oc.blDiv(d,"id_div_RunJS_test","","lightgray");
-			var t = oc.blTextarea(d1,"id_div_RunJS_TA","alert('xd');","skyblue");
-			t.style = "width:95%;height:150px;";
+			var t = oc.blTextarea(d1,"id_div_RunJS_TA","alert('xd4');","skyblue");
+			t.style.width = "95%";// = "width:95%;height:150px;";
+			t.style.height = "150px";// = "width:95%;height:150px;";
 			var b1 = oc.blBtn(d,"id_btn_RunJS_run","run","green"); 
 			b1.style.float = "right";
 			b1.onclick = function(){eval(t.value);};
