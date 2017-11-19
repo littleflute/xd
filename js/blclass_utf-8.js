@@ -5,13 +5,12 @@
 function blClass ()
 { 
     this.name	= "blClass";
-    this.v 	= "v1.0.69";
-    this.blrSrc = function (b,v)
+    this.v 	= "v1.0.83";
+    this.blrExt = function (b,v)
     {
-	if(v.innerHTML == ""){
+	if(v.bShow == false){
 		var s = document.baseURI;
 		var path = s.slice(0,1+s.lastIndexOf("/"));	
-		//v.innerHTML = path;
 		_blDiv(v,"id_blclass_file_path",path);
 		var nXd = path.lastIndexOf("/xd/");
 		var tb = _blDiv(v,"id_blclass_file_xd_path",nXd);
@@ -23,15 +22,20 @@ function blClass ()
 		}
 		var b1 = _blBtn(tb,"id_blclass_tb_b_1","b1");
 		b1.onclick = function(){			
-			var d = _blDiv(this.parentElement,"id_div_blclassTest","blClassTest","skyblue");	 
+			var d = _blDiv(v,"id_div_blclassTest","blClassTest","purple");	 
 			var s = _blScript("id_script_blclassTest",pathTest);
 		};
-				
+		b.style.backgroundColor = "green";
+		v.bShow = true;	
+		v.style.display = "block";			
 	}
-	else{
-		v.innerHTML = "";
+	else{ 
+		b.style.backgroundColor = "red";
+		v.bShow = false;
+		v.style.display = "none";
 	}
     }
+    this.bll = function (){}
  
     _blDiv = function (oBoss,id,html,bkClr){
         var r = document.getElementById(id);
@@ -67,6 +71,12 @@ function blClass ()
         for(i in obj)
         {
           if(i[0]=="b"&&i[1]=="l"&&i[2]=="h") continue;
+          if(i[0]=="b"&&i[1]=="l"&&i[2]=="l"){
+          	var d = document.createElement("div");
+		d.innerHTML = "---";
+          	oBoss.appendChild(d);
+		continue;
+	  }
 
           var b = document.createElement("button");
           b.id = b.innerHTML = i;
@@ -79,9 +89,10 @@ function blClass ()
           d.style.color = "yellow";
           oBoss.appendChild(d);
 
-          if(i[0]=="b"&&i[1]=="l"&&i[2]=="r"){
+          if(i[0]=="b"&&i[1]=="l"&&i[2]=="r"){ 
 		b.style.backgroundColor = "red";
-		d.innerHTML = ""; 
+		d.innerHTML 	= ""; 
+		d.bShow		= false;
 		b.onclick = function(i_,b_,v_){
 			return function(){
 				var go = obj[i_];
@@ -512,21 +523,30 @@ function _blLoadClass(c){
 		if(d.innerHTML == "")	{oc.blShowObj2Div(d,oc);this.style.backgroundColor="red";}
 		else 			{d.innerHTML = "";this.style.backgroundColor="green";}
 	}
+	function _showTooBar (){		 
+		var d = oc.blDiv(this.parentElement,"id_div_toolBar_1","","purple");
+		if(d.innerHTML == "")	{d.innerHTML = "::";this.style.backgroundColor="red";}
+		else 			{d.innerHTML = "";this.style.backgroundColor="green";}
+	}
   	function _loadThisFileOK(rv){ 		
 		var d = document.getElementById("id_div_blclass");
 		if( d ){ 
-			var d1 = oc.blDiv(d,"idFile_blclass_utf-8_js", rv + " :: 插件【blcass_utf-8.js " + oc.v + "】 loaded OK!","GreenYellow");
+
+			var d1 = oc.blDiv(d,"id_div_File_blclass_utf-8_js", rv + " :: 插件【blcass_utf-8.js " + oc.v + "】 loaded OK!","GreenYellow");
+			
 			var b1 = oc.blBtn(d1,"idBtn_blclass_1","blclass","gray");b1.onclick=_showClass;
 			//var b2 = oc.blBtn(d1,"idBtn_blclass_2","blclassTest","gray");b2.onclick = _loadTestClass ;
 			var b3 = oc.blBtn(d1,"idBtn_blclass_3","RunJS");b3.onclick = _loadRunJS ;	
 			b3.style.float = "right";		
+			var b4 = oc.blBtn(d1,"idBtn_blclass_4","b4","green"); b4.onclick = _showTooBar ;
+			b4.style.float = "right";		
 		}
 	}
-	this.v 		= "v0.0.22";
+	this.v 		= "v0.0.29";
 	this.blrGo 	= function(rv){
 		_loadThisFileOK(rv); 
 	};
 }
 
 var l = new _blLoadClass(blClass);
-l.blrGo(48);			
+l.blrGo(65);			
