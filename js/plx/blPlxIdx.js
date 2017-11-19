@@ -1,5 +1,5 @@
 function blPlxIdxClass(){
-	var v		= "v0.0.16";
+	var v		= "blPlx List: v0.0.31";
 	var blo 	= new blClass; 
 	var p 		= document.getElementById("id_div_toolbar_plx").parentElement; 
 	var l		= [
@@ -25,10 +25,15 @@ function blPlxIdxClass(){
 								d = _blLoadPlx(f);
 								this.style.backgroundColor="white";
 								d.style.display = "block";
+								var board = document.getElementById(d.idBoard);
+								board.style.display = "block";	 
 						}
 						else	{
 								bb = false;
-								d.style.display = "none";
+								this.style.backgroundColor="gray";
+								d.style.display = "none"; 
+								var board = document.getElementById(d.idBoard);
+								board.style.display = "none";	
 						}
 					}
 				}(this[i]);
@@ -37,7 +42,8 @@ function blPlxIdxClass(){
 	};
 	_blMakeIdx 	= function()
 	{ 
-		p.innerHTML = "::" + v; 
+		p.innerHTML = "3 ::"; 
+		var b = blo.blBtn(p,"id_blPlx_List","blPlxList_"+v,"Silver");
 		l.all();		
 	};
 	_blLoadPlx	= function(f)
@@ -54,7 +60,9 @@ function blPlxIdxClass(){
 			html = "https://littleflute.github.io/xd/js/plx/" + f + ".js";		
 		}
 		var d = blo.blDiv(p,id,id,"gold");
-		var s = blo.blScript("script_" + id,html);
+		id = "script_" + id;
+		var s = blo.blScript(id,html);
+		d.idBoard = "id_board_" + f;
 		return d;
 	};
 	_blMakeIdx(); 
