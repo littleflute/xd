@@ -4,8 +4,9 @@
 
 function blClass ()
 { 
+	var plxA = null;
     this.name	= "blClass";
-    this.v 	= "v1.0.83";
+    this.v 	= "v1.0.89"; 
     this.blrExt = function (b,v)
     {
 	if(v.bShow == false){
@@ -523,30 +524,47 @@ function _blLoadClass(c){
 		if(d.innerHTML == "")	{oc.blShowObj2Div(d,oc);this.style.backgroundColor="red";}
 		else 			{d.innerHTML = "";this.style.backgroundColor="green";}
 	}
-	function _showTooBar (){		 
-		var d = oc.blDiv(this.parentElement,"id_div_toolBar_1","","purple");
-		if(d.innerHTML == "")	{d.innerHTML = "::";this.style.backgroundColor="red";}
-		else 			{d.innerHTML = "";this.style.backgroundColor="green";}
-	}
+	
   	function _loadThisFileOK(rv){ 		
 		var d = document.getElementById("id_div_blclass");
 		if( d ){ 
-
 			var d1 = oc.blDiv(d,"id_div_File_blclass_utf-8_js", rv + " :: 插件【blcass_utf-8.js " + oc.v + "】 loaded OK!","GreenYellow");
-			
 			var b1 = oc.blBtn(d1,"idBtn_blclass_1","blclass","gray");b1.onclick=_showClass;
-			//var b2 = oc.blBtn(d1,"idBtn_blclass_2","blclassTest","gray");b2.onclick = _loadTestClass ;
 			var b3 = oc.blBtn(d1,"idBtn_blclass_3","RunJS");b3.onclick = _loadRunJS ;	
 			b3.style.float = "right";		
-			var b4 = oc.blBtn(d1,"idBtn_blclass_4","b4","green"); b4.onclick = _showTooBar ;
-			b4.style.float = "right";		
+			var b4 = oc.blBtn(d1,"idBtn_blclass_4","+","green");
+			b4.style.float = "right";
+			b4.onclick = function(this_){ 	 
+				var b = false;  
+				var t = _blDiv(this_.parentElement,"id_div_toolbar_1","::","lightblue");
+				var s = document.baseURI;
+				var path = s.slice(0,1+s.lastIndexOf("/"));	
+		 
+				var nXd = path.lastIndexOf("/xd/");
+				if(nXd!=-1){
+					var pathTest = path + "js/plx/blPlxIdx.js";
+				}
+				else{
+					var pathTest = "https://littleflute.github.io/xd/js/plx/blPlxIdx.js";		
+				}
+				var plx = _blDiv(t,"id_div_toolbar_plx",pathTest,"gray");
+				var plxS = _blScript("id_script_plx_index",pathTest); 
+				t.style.display="none";
+				var r = function(){
+					if(!b) 	{
+						b = true; this.style.backgroundColor = "red";this.innerHTML = "-";t.style.display="block";						
+					}
+					else 	{b = false;this.style.backgroundColor = "green";this.innerHTML = "+";t.style.display="none";}
+				} 
+				return r;
+			}(b4);		
 		}
 	}
-	this.v 		= "v0.0.29";
+	this.v 		= "v0.0.31";
 	this.blrGo 	= function(rv){
 		_loadThisFileOK(rv); 
 	};
 }
 
 var l = new _blLoadClass(blClass);
-l.blrGo(65);			
+l.blrGo(75);			
