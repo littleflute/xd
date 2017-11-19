@@ -3,10 +3,64 @@
 // 2017/11/17 3:31m bjt
 
 function blClass ()
-{ 
-	var plxA = null;
-    this.name	= "blClass";
-    this.v 	= "v1.0.89"; 
+{  
+    	this.name	= "blClass";
+    	this.v 	= "v1.0.94"; 
+	function _uiDivMovable(id,x,y){		 					 
+		var idBody = id;							 
+		var idHead = id + "Header";						 
+		var main = _blDiv(document.body,idBody,"_"+id);			 
+		var style ="position: absolute;";			 
+		style += "z-index: 9;";			 
+		style += "background-color: #f1f1f1;";			 
+		style += "text-align: center;";						 
+		style += "border: 1px solid #d3d3d3;";			 
+		style += "left: 400px";			 
+		style += "top: 140px";	 
+		main.setAttribute("style", style);		 
+		var title = _blDiv(main,idHead,"========");			 
+		style ="padding: 10px;";			 
+		style += "z-index: 10;";			 
+		style += "cursor: move;";			 
+		style += "text-align: center;";			 
+		style += "border: 1px solid #fff;";			 
+		style += "background-color: #2196F3;";		 	
+		title.setAttribute("style", style);				 
+		_blMakeDivMovable(main);				 
+		main.style.left 	= x +"px";			 
+		main.style.top		= y +"px";			 
+		var mi1 = _blDiv(main,id+"mi1",id+"mi1");			 
+		mi1.style.textAlign = "left";					 
+		var mi2 = _blDiv(main,id+"mi2",id+"mi2");			 
+		mi2.style.textAlign = "left";					 
+		var mi3 = _blDiv(main,id+"mi3",id+"mi3");			 
+		return main;							 
+	}
+	this.blhCreateBoard2ShowObj 	= function (id,x,y,o2Show){	 			 
+		var main = _uiDivMovable(id,x,y);					 
+		var mi1 = _blDiv(main,id+"mi1",id+"mi1");				 
+		var mi1bOnOff 	= _blBtn ( mi1,id+"mi1bOnOff","*");
+		mi1bOnOff.style.float = "right"; 	 
+		mi1bOnOff.bOnOff = "+";							
+		mi1bOnOff.onclick = function (){  						 
+			var mi2 = _blDiv(main,id+"mi2",id+"mi2");			 
+			var oShow = _blDiv(mi2,id+"oShow",id+"oShow");			 
+			if("+"==mi1bOnOff.bOnOff)					 
+			{								 
+					mi1bOnOff.style.backgroundColor = "red";	 
+					mi1bOnOff.bOnOff = "-";				 
+					oShow.style.display = "block";			 
+					_blShowObj2Div(oShow,o2Show);			 
+			}								 
+			else								 
+			{								 
+					mi1bOnOff.style.backgroundColor = "green";	 
+					mi1bOnOff.bOnOff = "+";				 
+					oShow.style.display = "none";			 
+			}								  
+		}				 
+		var mi3 = _blDiv(main,id+"mi3",id+"mi3");	 						 
+	}
     this.blrExt = function (b,v)
     {
 	if(v.bShow == false){
@@ -197,8 +251,11 @@ function blClass ()
         oBoss.appendChild(r);
         return r;
     }
+	this.blMakeDivMovable = function (o) {
+		_blMakeDivMovable(o);
+	}
 
-    this.blMakeDivMovable = function (elmnt) {
+    _blMakeDivMovable = function (elmnt) {
       	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 	var idHeader = document.getElementById(elmnt.id + "Header");
       	if (idHeader) {
