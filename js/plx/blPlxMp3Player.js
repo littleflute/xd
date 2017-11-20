@@ -122,7 +122,7 @@ _blhCreateBoard2ShowList 	= function (id,x,y,o2Show){
 	}
 function blPlxMp3PlayerClass(this_){
 	var fileName = "blPlxMp3Player"; //************************************ file name ***************
-	var v = "v0.0.56";
+	var v = "v0.0.57";
 	var blo = new blClass;
 	var p = document.getElementById("id_div_LoadPlx_blPlxMp3Player"); //*** parent div id ***
 	var html = "blPlxMp3Player.js - " + v + " is loaded OK!";
@@ -153,10 +153,19 @@ function blPlxMp3PlayerClass(this_){
 		};
 	};
 	var divListBox = function (oParent){
+		var s = document.baseURI;
+		var path = s.slice(0,1+s.lastIndexOf("/"));	 
+		var nXd = path.lastIndexOf("/xd/");
+		if(nXd!=-1){ 
+			var mySrcPath = path + "js/list/";
+		}
+		else{ 
+			var mySrcPath = path + "https://littleflute.github.io/xd/js/list/";		
+		}
 		 var b1 = blo.blBtn(oParent,"id_Btn_blPlxMp3Player_List_Box_1", "loadList1","silver");
-		 b1.onclick = loadListFun("list_1","C:/Users/13699/xd/js/list/1.js");
+		 b1.onclick = loadListFun("list_1",mySrcPath + "1.js");
 		 var b2 = blo.blBtn(oParent,"id_Btn_blPlxMp3Player_List_Box_2", "loadList2","silver");
-		 b2.onclick = loadListFun("list_2","C:/Users/13699/xd/js/list/2.js");
+		 b2.onclick = loadListFun("list_2",mySrcPath + "1.js");
 		 l = blo.blDiv(oParent,"id_Div_blPlxMp3Player_List_Box", "ListBox","LimeGreen"); 
 	};
 	this.blrPlayer = function(b,d){//test
