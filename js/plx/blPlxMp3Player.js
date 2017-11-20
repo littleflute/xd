@@ -1,136 +1,21 @@
 // file: blPlxMp3Player.js
 // by littleflute
 // 2017/11/5 13:10 bjt
-
-function _blCreatePlayObj(oBoss)
-{ 
-    	var dt = document.createElement("div"); 
-    	var da = document.createElement("div"); 
-	function fnTimer(o){
-		var n = 0;
-		
-		return function(){n++;o.innerHTML = n;};
-	}
-	var t = setInterval(fnTimer(dt), 1000);
-    oBoss.appendChild(dt); 
-    oBoss.appendChild(da); 
-    var a = document.createElement("audio");
-    a.id = "id_audio_1";
-    a.controls = true;
-    a.volume = 0.2;
-    da.appendChild(a); 
-    return a;
-}
-function _blShowListObj2Div(oDivBoss,obj)
-{        
-	var a = null; 
-	var bOld = null;
-        var oBoss = oDivBoss;
-        if(!oBoss) {
-           oBoss = document.createElement("div");
-           oBoss.id = "divBlShowObj";
-           oBoss.style.border = "green 1px solid";
-           document.body.appendChild(oBoss);
-        } 
-        if(!oBoss){
-            alert("boss error!");return;
-        }
-        oBoss.innerHTML = "";
-	a = _blCreatePlayObj(oBoss); 
-	a.src = obj.s1;
-        for(i in obj)
-        { 
-          var b = document.createElement("button");
-          b.id = b.innerHTML = i;
-          if(i[0]=="b"&&i[1]=="l") b.style.backgroundColor = "yellow";
-          oBoss.appendChild(b);
-          var d = document.createElement("div");
-          d.innerHTML = obj[i];
-          d.style.border = "blue 1px solid";
-          d.style.backgroundColor = "green";
-          d.style.color = "yellow";
-          oBoss.appendChild(d);
-
-          if(i[0]=="s"){ 
-		b.style.backgroundColor = "red";
-		d.innerHTML 	= ""; 
-		d.bShow		= false;
-		b.onclick = function(i_,b_,v_){
-			return function(){
-				a.src = obj[i_]; a.play();
-				b_.style.backgroundColor = "yellow"; 
-			} 
-		}(i,b,d);
-	  }
-        }
-    }    
-function _uiDivMovable(id,x,y){		 					 
-		var idBody = id;							 
-		var idHead = id + "Header";						 
-		var main = _blDiv(document.body,idBody,"_"+id);			 
-		var style ="position: absolute;";			 
-		style += "z-index: 9;";			 
-		style += "background-color: #f1f1f1;";			 
-		style += "text-align: center;";						 
-		style += "border: 1px solid #d3d3d3;";			 
-		style += "left: 400px";			 
-		style += "top: 140px";	 
-		main.setAttribute("style", style);		 
-		var title = _blDiv(main,idHead,"========");			 
-		style ="padding: 10px;";			 
-		style += "z-index: 10;";			 
-		style += "cursor: move;";			 
-		style += "text-align: center;";			 
-		style += "border: 1px solid #fff;";			 
-		style += "background-color: #2196F3;";		 	
-		title.setAttribute("style", style);				 
-		_blMakeDivMovable(main);				 
-		main.style.left 	= x +"px";			 
-		main.style.top		= y +"px";			 
-		var mi1 = _blDiv(main,id+"mi1",id+"mi1");			 
-		mi1.style.textAlign = "left";					 
-		var mi2 = _blDiv(main,id+"mi2",id+"mi2");			 
-		mi2.style.textAlign = "left";					 
-		var mi3 = _blDiv(main,id+"mi3",id+"mi3");			 
-		return main;							 
-	}
-_blhCreateBoard2ShowList 	= function (id,x,y,o2Show){	
-	var o = o2Show; 			 
-		var main = _uiDivMovable(id,x,y);					 
-		var mi1 = _blDiv(main,id+"mi1",id+"mi1");				 
-		var mi1bOnOff 	= _blBtn ( mi1,id+"mi1bOnOff","*");
-		mi1bOnOff.style.float = "right"; 	 
-		mi1bOnOff.bOnOff = "+";							
-		mi1bOnOff.onclick = function (){  						 
-			var mi2 = _blDiv(main,id+"mi2",id+"mi2");			 
-			var oShow = _blDiv(mi2,id+"oShow",id+"oShow");			 
-			if("+"==mi1bOnOff.bOnOff)					 
-			{								 
-					mi1bOnOff.style.backgroundColor = "red";	 
-					mi1bOnOff.bOnOff = "-";				 
-					oShow.style.display = "block";			 
-					_blShowListObj2Div(oShow,o2Show);			 
-			}								 
-			else								 
-			{								 
-					mi1bOnOff.style.backgroundColor = "green";	 
-					mi1bOnOff.bOnOff = "+";				 
-					oShow.style.display = "none";			 
-			}								  
-		}				 
-		var mi3 = _blDiv(main,id+"mi3",id+"mi3");	 						 
-	}
+ 
 function blPlxMp3PlayerClass(this_){
 	var fileName = "blPlxMp3Player"; //************************************ file name ***************
-	var v = "v0.0.57";
+	var v = "v0.0.69";
 	var blo = new blClass;
 	var p = document.getElementById("id_div_LoadPlx_blPlxMp3Player"); //*** parent div id ***
 	var html = "blPlxMp3Player.js - " + v + " is loaded OK!";
 	blo.blDiv(p,"id_div_blPlxMp3Player_1",html); //************************* my debug div id ***
 	var id = "id_board_" + fileName; //************************************ my board id  ***************
 	var l = null;
-	var lo = [];
+	var lo = null;
 	var timer = null; 
+	var a = null;
+	var sMsg = "msg:";
+	var songIndex = 0;
 	blo.blhCreateBoard2ShowObj(id,500,200,this);
 	var divMySrcLink = function (oParent){
 		var s = document.baseURI;
@@ -152,6 +37,68 @@ function blPlxMp3PlayerClass(this_){
 			oScriptList = blo.blScript("id_script_"+id,mySrc); 
 		};
 	};
+	var _playIndex = function (n){
+		if(lo){
+			a.src = lo.s[n].musicLink;
+			a.play();
+		}
+	};
+	function _blCreatePlayObj(oBoss)
+	{ 
+    		var dt = document.createElement("div"); 
+    		var da = document.createElement("div"); 
+		function fnTimer(o){
+			var n = 0;
+		
+			return function(){n++;o.innerHTML = n + ": idx=" + songIndex + " sMsg=" + sMsg;};
+		}
+		var t = setInterval(fnTimer(dt), 100);
+    		oBoss.appendChild(dt); 
+    		oBoss.appendChild(da); 
+    		var a = document.createElement("audio");
+    		a.id = "id_audio_1";
+    		a.controls = true;
+    		a.volume = 0.2;
+    		da.appendChild(a); 
+		a.addEventListener("canplaythrough",function(){        		
+        		sMsg = "canPlaythrough";
+    		});
+
+    		return a;
+	}
+	var divPlayerBox = function (oParent){ 
+		a = _blCreatePlayObj(oParent);
+		var b1 = blo.blBtn(oParent,"id_Btn_PlayerBox_btn1", "play","silver");
+		b1.onclick = function(this_){ 
+			var b = 0;
+			return function(){
+				if(b==0){
+					b = 1;this_.innerHTML = "Pause";sMsg = "Load ...";
+					if(a.src ==""){
+						_playIndex(0); songIndex = 0;
+					}
+					else{
+						a.play();
+					}
+				}
+				else		{b = 0;this_.innerHTML = "Play";a.pause();}
+			};
+		}(b1); 
+		var bNext = blo.blBtn(oParent,"id_Btn_PlayerBox_bNext", "next","silver");
+		bNext.onclick = function(this_){  
+			return function(){
+				songIndex++;
+				_playIndex(songIndex);
+			};
+		}(bNext); 
+		var bPre = blo.blBtn(oParent,"id_Btn_PlayerBox_bPre", "Pre","silver");
+		bPre.onclick = function(this_){  
+			return function(){
+				songIndex--;
+				_playIndex(songIndex);
+			};
+		}(bPre); 
+	};
 	var divListBox = function (oParent){
 		var s = document.baseURI;
 		var path = s.slice(0,1+s.lastIndexOf("/"));	 
@@ -171,6 +118,7 @@ function blPlxMp3PlayerClass(this_){
 	this.blrPlayer = function(b,d){//test
 		d.innerHTML = v;
 		divMySrcLink (d);
+		divPlayerBox (d);
 		divListBox (d);		
 	}
 	this.blrQuit = function(b,d){//test
@@ -178,9 +126,9 @@ function blPlxMp3PlayerClass(this_){
 		d.innerHTML = d0.id;
 	}
 	this.blrTest = function(b,d){		 
-	}
-	this.blCallBackFun = function(o){
-		_blhCreateBoard2ShowList(o.name,100,200,o);
+	} 
+	this.blCallBackFun = function(o){ 
+		lo = o;
 	}
 }
 
@@ -287,5 +235,4 @@ blPlxMp3Player.blrList = function(btn,div){
 	}
 }
   
-var blPlayerObj = new blPlxMp3PlayerClass(blPlxMp3Player);
-if(blPlayerObj) blPlayerObj.blCallBackFun(o);
+var blPlayerObj = new blPlxMp3PlayerClass(blPlxMp3Player); 
