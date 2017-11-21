@@ -4,7 +4,7 @@
  
 function blPlxMp3PlayerClass(this_){
 	var fileName = "blPlxMp3Player"; //************************************ file name ***************
-	var v = "v0.0.69";
+	var v = "v0.0.71";
 	var blo = new blClass;
 	var p = document.getElementById("id_div_LoadPlx_blPlxMp3Player"); //*** parent div id ***
 	var html = "blPlxMp3Player.js - " + v + " is loaded OK!";
@@ -66,7 +66,8 @@ function blPlxMp3PlayerClass(this_){
 
     		return a;
 	}
-	var divPlayerBox = function (oParent){ 
+	var divPlayerBox = function (boxParent){ 
+		var oParent = blo.blDiv(boxParent,"id_div_PlayerBox_Wrap", "playerBoxWrap","Brown");
 		a = _blCreatePlayObj(oParent);
 		var b1 = blo.blBtn(oParent,"id_Btn_PlayerBox_btn1", "play","silver");
 		b1.onclick = function(this_){ 
@@ -121,14 +122,17 @@ function blPlxMp3PlayerClass(this_){
 		divPlayerBox (d);
 		divListBox (d);		
 	}
-	this.blrQuit = function(b,d){//test
-		var d0 = d.parentElement.parentElement.parentElement;
-		d.innerHTML = d0.id;
+
+	function _makeSongList(){
+		var lw = blo.blDiv(l,"id_div_songList_wrap","songListWrap_v0.0.4","DarkCyan");
+		var songNum = lo.s.length;
+    		for(var i=0;i<songNum;i++){
+			blo.blDiv(lw,"id_div_song_"+i,"id_div_song_"+i + "_" + lo.s[i].musicName,"Coral");
+        	}
 	}
-	this.blrTest = function(b,d){		 
-	} 
 	this.blCallBackFun = function(o){ 
 		lo = o;
+		_makeSongList();
 	}
 }
 
