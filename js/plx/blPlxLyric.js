@@ -1,4 +1,20 @@
- 
+//alert("1"); 
+function blPlxLyricClass(o){
+	var fileName = "blPlxLyric"; //************************************ file name ***************
+	var v = "v0.0.77";
+	var blo = new blClass;
+	var p = document.getElementById("id_div_LoadPlx_blPlxLyric"); //*** parent div id ***
+	var html = "blPlxLyric.js - " + v + " is loaded OK!";
+	blo.blDiv(p,"id_div_blPlxLyric_1",html); //************************* my debug div id ***
+	var id = "id_board_" + fileName; //************************************ my board id  ***************
+	
+	blo.blhCreateBoard2ShowObj(id,500,200,o);
+	this.blrTest = function(){//blrTest
+		alert("test");
+	};
+}
+
+
 var blPlxLyric 		= {};
 blPlxLyric.blrLoadLyric	= function(b,v){ 
 	var o = new blClass;
@@ -11,6 +27,7 @@ blPlxLyric.blrLoadLyric	= function(b,v){
 	o = null;
 }; 
  
+new blPlxLyricClass(blPlxLyric);
  
 blPlxLyric.blrShow	= function(b,v){ 
 	v.innerHTML = "show";
@@ -69,7 +86,7 @@ var xdMin;
 
 function blLrcClass(oUI,tt)
 {	 
-	var xdType = 5; //5 - html5; 4 - vc6; 3 - No Real Player; 
+	var xdType = 3; //5 - html5; 4 - vc6; 3 - No Real Player; 
 
 	var o = new blClass;
 	var blVMP = new _blVMPlayer;
