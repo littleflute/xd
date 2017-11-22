@@ -10,7 +10,7 @@
 
 <!-- Insert HTML here -->
 <div id="Nav">
-v0.0.57<br>
+v0.0.67<br>
 <a href="index.html">index.html</a>
 <a href="blVMPlayer.html">blVMPlayer.html</a> 
 <span id="lrcdata1" style="display:none">
@@ -154,10 +154,11 @@ v0.0.57<br>
 <script>
 function _blVMPlayer()
 {
-	var o = new blClass;
-	var tPlayer = null;
-	var nTime = 0; 
-	var lrco = null;
+	var o 		= new blClass;
+	var tPlayer 	= null;
+	var nTime 	= 0; 
+	var lrco 	= null;
+	var a		= null;
 
 	var _myFun = function(_this){
 		return function(){
@@ -180,12 +181,14 @@ function _blVMPlayer()
 	_Next = function()
 	{
 		_Stop();
+		lrco = null;
 		lrco = new blLrcClass(lrcdata2.innerHTML);
 		_Play();
 	}
 	_Prev = function()
 	{
 		_Stop();
+		lrco = null;
 		lrco = new blLrcClass(lrcdata1.innerHTML);
 		_Play();
 	}
@@ -193,17 +196,36 @@ function _blVMPlayer()
 	{
 		return nTime;
 	}
+	function _blCreateAudio(oBoss)
+	{ 
+    		var dt = document.createElement("div"); 
+    		var da = document.createElement("div"); 
+		 
+    		oBoss.appendChild(dt); 
+    		oBoss.appendChild(da); 
+    		var a = document.createElement("audio");
+    		a.id = "id_audio_1";
+    		a.controls = true;
+    		a.volume = 0.2;
+    		da.appendChild(a); 
+		a.addEventListener("canplaythrough",function(){        		
+        		 
+    		});
 
-  var _CreateUI = function()
-  { 
-	var d =  document.getElementById( "idLrcWrap" );
-	if(!d) return;
-	var MyTimer = o.blDiv(d,"idMyTimer","idMyTimer");
-	var od = o.blDiv(d,"oShowDiv","showDiv");
-	_CreateCtrlBar (od);
-	_CreateLyrBoard2(od);
-	lrco = new blLrcClass(lrcdata1.innerHTML);
-  }
+    		return a;
+	}
+  	var _CreateUI = function()
+  	{ 
+		var d =  document.getElementById( "idLrcWrap" );
+		if(!d) return;
+		var MyTimer = o.blDiv(d,"idMyTimer","idMyTimer");
+		var od = o.blDiv(d,"oShowDiv","showDiv");
+		a = _blCreateAudio(od);
+
+		_CreateCtrlBar (od);
+		_CreateLyrBoard2(od);
+		lrco = new blLrcClass(lrcdata1.innerHTML);
+  	}
   
 
  	var _CreateCtrlBar = function(oBoss)
@@ -292,22 +314,6 @@ var xdMin;
 
 function blLrcClass(txtLrc)
 {	 	 
-  var nMyTimer = 0;
-  this.TimerFun = function(_this)
-  {
-		return function(){ 
-			var d = document.getElementById("idMyTimer");
-			var s = "";//d.innerHTML;
-			nMyTimer++;
-			s += nMyTimer;
-			s += "<br>";
-			d.innerHTML = s;
-			var playerObj = document.getElementById("idLyricMP");  
-			_this.xdRun(playerObj);
-		}
-  }(this);
- 
-
 	var tt = txtLrc;
   	var _inr = [];
   	var _min = [];
@@ -361,8 +367,7 @@ function blLrcClass(txtLrc)
  
     var fall = idMovingLyr.getElementsByTagName("font");
     for(var wi=0; wi<fall.length; wi++)
-      _inr[ii].w[_inr[ii].w.length] = fall[wi].offsetWidth;
-  //  _inr[ii].n = "xddbg1a: " ;//idMovingLyr.innerText; //#xdm 1
+      _inr[ii].w[_inr[ii].w.length] = fall[wi].offsetWidth; 
   }
 
 
@@ -372,8 +377,36 @@ function blLrcClass(txtLrc)
   _min.sort(function(a,b){return a-b});
   xdMin = _min[0]/2;
 
+  
+
+  this.retxt = function(i)
+  {
+    return (i<0 || i>=_inr.length)?"-xxxxxxxx-":_inr[i].n;
+  }
+
+  this.blSetTxt = function(txt)
+  {
+    lrcbox.innerText		= txt;
+    idMovingLyr.innerText	= txt;
+  }
+  this.blSetTxt("系统暂没有相关歌词...");
+  lrcwt1.innerText = "111111111111111111";
+  lrcwt2.innerText = "2";
+  lrcwt3.innerText = "3";
+  lrcwt4.innerText = "4";
+  lrcwt5.innerText = "5";
+  lrcwt6.innerText = "66"; 
+  lrcwt7.innerText = "77";
+  lrcfilter.innerText = "xxxxxxxxxxxxxxxxxxxxxxxx";
+  lrcwt8.innerText = "88";
+  lrcwt9.innerText = "99";
+  lrcwt10.innerText = "10";
+  lrcwt11.innerText = "11";
+  lrcwt12.innerText = "12";
+  lrcwt13.innerText = "13";
+
   var nXdDbgNum = 0;
-  this.xdRun = function(xdMP)
+  this.xdRun = function()
   { 
 	nXdDbgNum++;
 	var xdCP = ovmp.blrGetCP(); 	 
@@ -441,39 +474,21 @@ function blLrcClass(txtLrc)
       bbw = lrcbox.offsetWidth;
     idMovingLyr.style.width = Math.round(bbw);
   }
-
-  this.retxt = function(i)
+  var nMyTimer = 0;
+  this.TimerFun = function(_this)
   {
-    return (i<0 || i>=_inr.length)?"xxxxxxxx":_inr[i].n;
-  }
-
-  this.blSetTxt = function(txt)
-  {
-    lrcbox.innerText		= txt;
-    idMovingLyr.innerText	= txt;
-  }
-  
-  this.blSetTxt("系统暂没有相关歌词...");
-  lrcwt1.innerText = "111111111111111111";
-  lrcwt2.innerText = "";
-  lrcwt3.innerText = "";
-  lrcwt4.innerText = "";
-  lrcwt5.innerText = "";
-  lrcwt6.innerText = ""; 
-  lrcwt7.innerText = "";
-  lrcfilter.innerText = "xxxxxxxxxxxxxxxxxxxxxxxx";
-  lrcwt8.innerText = "";
-  lrcwt9.innerText = "";
-  lrcwt10.innerText = "";
-  lrcwt11.innerText = "";
-  lrcwt12.innerText = "";
-  lrcwt13.innerText = "";
-	  
-	setInterval(this.TimerFun,10);
-
+		return function(){ 
+			var d = document.getElementById("idMyTimer");
+			var s = "";//d.innerHTML;
+			nMyTimer++;
+			s += "blLrcClass.TimerFun: " + nMyTimer;
+			s += "<br>";
+			d.innerHTML = s; 
+			_this.xdRun();
+		}
+  }(this); 
+  setInterval(this.TimerFun,10);  
 }//END: blLrcClass
- 
-
 
 </script>
 
