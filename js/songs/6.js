@@ -1,22 +1,26 @@
+function f1(d,o){
+	//var j = new jsGraphics(d.id);
+	//_parse_1_line(j,o.line1,o.x,o.y);
+	blo0.blShowObj2Div(d,o.line1);
+}
 function sample6() {
 /*
 _begin_
-	var o = {
+	var o = {blrTest:function(b,d,o){f1(d,o);},
 		name:'小草',
 		x:210,y:110,w:800,h:340,
-		line1:{ b1:{  n11:{ 	c:"a",
+		line1:{   
+			bar1:{	n11:{ c:"a",
 					t:"-1",
-					d:"16",
-					p:"0"
+					d:"8b",l1:"没",l2:"mei"
 				},
 				n12:{ c:"a",
 					t:"-1",
-					d:"8",
-					p:"1"
+					d:"8e",l1:"有",l2:"you"
 				},
 				n21:{ c:"c",
 					t:"0",
-					d:"8b"
+					d:"8b",l1:"花",l2:"hua"
 				},
 				n22:{ c:"b",
 					t:"-1",
@@ -24,28 +28,8 @@ _begin_
 				},
 				n3:{ c:"a",
 					t:"-1",
-					d:"h"
-				}},//line1 bar1
-			 bar1:{  n11:{ c:"a",
-					t:"-1",
-					d:"8b"
-				},
-				n12:{ c:"a",
-					t:"-1",
-					d:"8e"
-				},
-				n21:{ c:"c",
-					t:"0",
-					d:"8b"
-				},
-				n22:{ c:"b",
-					t:"-1",
-					d:"8e"
-				},
-				n3:{ c:"a",
-					t:"-1",
-					d:"h"
-				}},//line1 bar1
+					d:"h",l1:"香",l2:"xiang"
+				}},//line1 bar2
 			bar2:{	n11:{ c:"a",
 					t:"-1",
 					d:"8b"
