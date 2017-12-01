@@ -2,77 +2,108 @@
 var lrc01 = function()
 {
 /* _begin_ 
-[by:www.tingvoa.com - VOAÓ¢ÓïÍø]
-[00:00.00]Èç¹ûÄãÏ²»¶voaÓ¢ÓïÍø(www.tingvoa.com)£¬Çë½éÉÜ¸ø¸ü¶àµÄÍ¬Ñ§Å¶
-[00:00.01]Episode 01: 46 Linden Street  ACT II
-[00:13.35]Excuse me, officer.
-[00:14.28]Can you help me?
-[00:15.34]Sure.
-[00:16.58]Can you tell me
-[00:17.50]how to get to Linden Street, in Riverdale?
-[00:19.66]"Richard Stewart, 46 Linden Street,
-[00:21.79]Riverdale, New York."
-[00:23.25]You should take the number 1 subway.
-[00:25.38]Is there a station near here?
-[00:26.47]Yes. The station's that way.
-[00:28.39]You should take the number 1 train
-[00:29.77]to Van Cortlandt Park.
-[00:31.02]Number 1 train to Van Cortlandt Park. Thank you.
-[00:34.18]Anytime. Good luck.
-[00:35.30]Remember, the number 1 train. The uptown platform.
-[00:38.76]Thank you.
-[00:40.98]You're welcome.
-[00:57.29]Is this pink too bright for me?
-[00:59.87]Mmm-hmm. It is a very bright pink.
-[01:09.96]Try this. It's size eight.
-[01:14.62]But I wear size ten.
-[01:16.53]How about green? It's size ten.
-[01:21.19]Let me try it on.
-[01:23.91]I'm taking too much of your time.
-[01:29.70]It's six o'clock.
-[01:30.90]Where's my husband?
-[01:32.68]I was expecting him here at five forty-five.
-[01:34.85]Don't worry. The traffic is very heavy at this hour.
-[01:37.13]I know. But we're going to be late for dinner.
-[01:41.65]I'll take this green sweater.
-[01:43.04]I like the color on me, don't you?
-[01:44.38]I think it looks terrific on you.
-[01:52.17]I'm sorry I'm so late.
-[01:53.38]I had a really bad day.
-[01:56.29]It's ten after six. We're late.
-[01:58.42]Robbie's cooking tonight, and dinner's at six thirty.
-[02:00.53]I know. I know. I'm really sorry.
-[02:03.61]I left my bag of film on the ferry.
-[02:05.93]I went back for it, but the ferry was gone.
-[02:07.96]I lost a whole day's work.
-[02:10.38]I'll call the Staten Island Ferry lost-and-found office.
-[02:13.14]I didn't think of that. Thanks.
-[02:21.33]Hello.
-[02:22.39]Yes. The number, please,
-[02:23.98]of the Staten Island Ferry lost-and-found office.
-[02:29.30]Five five five...zero eight zero eight.
-[02:35.35]Thank you.
-[02:38.07]I really appreciate it, Marilyn.
-[02:40.33]Hello.
-[02:41.51]Did anyone find a camera bag this afternoon,
-[02:45.38]a small canvas bag,
-[02:48.86]on the J. F. Kennedy Ferry?...No?
-[02:55.63]Maybe someone will find it.
-[02:57.80]The name is Stewart, Richard Stewart.
-[03:01.08]And the telephone number is five five five...
-[03:04.50]three oh nine oh. Thank you.
-[03:10.91]Sorry, Richard. They don't have it.
-[03:13.99]Thanks, anyway.
-[03:18.47]There was a girl on the ferry.
-[03:20.09]Now maybe...
-[03:21.21]Tell me about it on the way home.
-
+[by: F.A.USA]
+[00:00.00] from BeautifulLover.org
+[00:00.01]Episode 01: 46 Linden Street  ACT I
+[00:34.18]Excuse me. My name is Richard Stewart.
+[00:37.43]I'm a photographer.
+[00:38.86]May I take a picture of you and your little boy?
+[00:40.55]What's it for?
+[00:41.41]It's for a book.
+[00:42.48]You're writing a book?
+[00:44.18]It's a book of pictures.
+[00:45.54]I call it Family Album, U.S.A.
+[00:47.23]Oh, that's a nice idea.
+[00:49.30]Well, it's fine if you take our picture.
+[00:51.23]I'm Martha Vann.
+[00:52.81]Thank you. I appreciate your help.
+[00:55.89]I'm Richard. What's your name?
+[00:57.81]Gerald.
+[00:58.99]How old are you, Gerald?
+[00:59.92]Five.
+[01:01.06]And where do you live?
+[01:02.05]We live in California.
+[01:03.58]Well, welcome to New York.
+[01:07.29]OK, just a second.
+[01:10.77]I'm almost ready here.
+[01:12.44]Can I help you?
+[01:13.80]Oh, please.
+[01:21.76]Hold Gerald's hand, please. Great!
+[01:28.53]Now point to the buildings.
+[01:32.84]Terrific!
+[01:36.46]Give Mommy a kiss, Gerald. Nice!
+[01:43.71]Thank you, Gerald.
+[01:45.97]And thank you, Mrs. Vann.
+[01:47.64]Oh, my pleasure.
+[01:48.45]We'll be looking for your book.
+[01:50.23]Thank you. Good-bye. Bye, Gerald.
+[01:56.30]Thanks again.
+[01:58.33]Oh, you're welcome.
+[02:00.10]Hey, let me take your picture!
+[02:01.95]Wonderful. Please.
+[02:10.17]Are you from New York?
+[02:11.50]No, I'm from Greece.
+[02:13.22]I'm an exchange student.
+[02:15.85]When did you come here?
+[02:17.33]Three months ago.
+[02:18.97]Your English is very good.
+[02:20.78]Thanks.
+[02:22.32]I studied English in school.
+[02:28.78]Would you like some coffee?
+[02:30.08]No, thank you.
+[02:32.23]Tell me about your book.
+[02:34.22]Oh, it's not finished yet,
+[02:36.26]but I have some of the pictures.
+[02:37.82]Would you like to see them?
+[02:38.85]Yes. I'd like that.
+[02:40.77]Here they are. Family Album, U.S.A.
+[02:48.14]It's an album of pictures of the United States:
+[02:50.28]the cities, the special places, and the people.
+[02:53.53]And these are pictures of people working:
+[02:56.38]steelworkers, bankers, police, street vendors,
+[03:06.61]ambulance drivers, doctors....
+[03:11.10]Oh, this is my father. He's a doctor.
+[03:16.39]This is my mother.
+[03:17.88]What's her name?
+[03:18.65]Ellen.
+[03:21.90]My younger brother, Robbie.
+[03:23.35]He goes to high school.
+[03:25.65]This is my sister Susan.
+[03:27.47]She works for a toy company.
+[03:31.13]Here's my grandfather. He lives in Florida.
+[03:35.26]And this is my wife Marilyn.
+[03:37.31]Oh, she's very pretty.
+[03:38.70]Thanks. And what about your family?
+[03:42.42]They are in Thessaloniki.
+[03:44.92]That's a large city in northern Greece.
+[03:47.44]But now I'm living in the Bronx.
+[03:50.34]With a Greek-American family?
+[03:52.03]No. Hispanic.
+[03:57.98]Oh no! It's five thirty.
+[04:01.81]Will you excuse me?
+[04:02.84]I have to meet my wife.
+[04:05.18]It was nice meeting you.
+[04:06.46]It was a pleasure meeting you, too.
+[04:08.26]Thanks for your help.
+[04:09.74]And good luck! I've got to go.
+[04:12.46]By the way, I'm Richard.
+[04:14.03]What's your name?
+[04:14.78]Alexandra.
+[04:16.29]Bye-bye, Alexandra. Thanks.
+[04:17.17]Bye-bye. Richard! Richard! You left your bag!
 _end_
 */
+} 
+var od = document.getElementById("lrcdata");
+if(!od){
+	od = document.createElement("span");
+	od.id = "lrcdata";
+	od.style.display = "none";
+	document.body.appendChild(od);
 }
-var od = document.getElementById("id_01_lrc");
 od.innerHTML = lrc01;
 var a = od.innerHTML;
 var b = a.split('_begin_');
 var txt = b[1].split('_end_');
-od.innerHTML = txt[0];
+od.innerHTML = txt[0];  
+loadLyricOK();

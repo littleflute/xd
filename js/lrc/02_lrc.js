@@ -1,9 +1,9 @@
 //file: 02_lrc.js
-var lrc01 = function()
+var lrc02 = function()
 {
 /* _begin_ 
-[by:www.tingvoa.com - VOA英语网]
-[00:00.00]如果你喜欢voa英语网(www.tingvoa.com)，请介绍给更多的同学哦
+[by:www.beautifullover.org]
+[00:00.00]如果你喜欢(www.beautifullover.org)，请介绍给更多的同学哦
 [00:00.01]Episode 01: 46 Linden Street  ACT II
 [00:13.35]Excuse me, officer.
 [00:14.28]Can you help me?
@@ -70,9 +70,16 @@ var lrc01 = function()
 _end_
 */
 }
-var od = document.getElementById("id_01_lrc");
-od.innerHTML = lrc01;
+var od = document.getElementById("lrcdata");
+if(!od){
+	od = document.createElement("span");
+	od.id = "lrcdata";
+	od.style.display = "none";
+	document.body.appendChild(od);
+}
+od.innerHTML = lrc02;
 var a = od.innerHTML;
 var b = a.split('_begin_');
 var txt = b[1].split('_end_');
-od.innerHTML = txt[0];
+od.innerHTML = txt[0];  
+loadLyricOK();

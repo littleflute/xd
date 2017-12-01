@@ -1,6 +1,6 @@
 function blPlx1Class(){
 	var f = "blPlx1";
-	var v = "v0.0.19";
+	var v = "v0.0.21";
 	var blo = new blClass;
 	var p = document.getElementById("id_div_LoadPlx_blPlx1");
 	var html = "blPlx1.js - " + v + " is loaded OK!";
@@ -10,11 +10,8 @@ function blPlx1Class(){
 	this.blrAboutMe = function(b,d){//test
 		d.innerHTML = v;
 	}
-	this.blrQuit = function(b,d){//test
-		var d0 = d.parentElement.parentElement.parentElement;
-		d.innerHTML = d0.id;
-	}
-	this.blTest = function(){//test
+	this.blrTestMDiv = function(b,d){//test
+		var d0 = blo.blMDiv(document.body,"MDivTest1","MDivTest1");
 	}
 }
 new blPlx1Class;

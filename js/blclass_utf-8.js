@@ -5,7 +5,7 @@
 function blClass ()
 {  
     	this.name	= "blClass";
-    	this.v 	= "v1.0.101"; 
+    	this.v 	= "v1.0.102"; 
 	function _uiDivMovable(id,x,y){		 					 
 		var idBody = id;							 
 		var idHead = id + "Header";						 
@@ -36,6 +36,61 @@ function blClass ()
 		var mi3 = _blDiv(main,id+"mi3",id+"mi3");			 
 		return main;							 
 	}
+    this.blMDiv = function (oBoss,id,html,bkClr){
+		var x1 = 0;
+		var y1 = 0;
+        var r = document.getElementById(id);
+        if(!r){
+            r = document.createElement("div");
+            r.id = id;
+    	    r.innerHTML = html; 
+            r.style.backgroundColor=bkClr?bkClr:"gold";
+			r.style.position = "absolute";
+			r.style.width		= 200+"px";
+			r.style.top			= 200+"px";
+			r.style.left		= 200+"px";
+			r.style.cursor		= "move";
+    	    if(oBoss!=null)oBoss.appendChild(r);
+        }
+		var dm = r;
+		dm.onmousedown = function(){
+			var c = _getXY();
+			dm.innerHTML = "down:" + c.x + "," + c.y;
+			x1 = c.x;
+			y1 = c.y;
+			return false;
+		};
+		dm.onmousemove = function(){
+			var c = _getXY();
+			dm.innerHTML = "move:" + c.x + "," + c.y; 
+			if(x1==0) return false;
+
+			var l = dm.style.left;
+			l = parseInt(l);
+			dm.style.left = l + c.x -x1 + "px";
+
+			var t = dm.style.top;
+			t = parseInt(t);
+			dm.style.top = t + c.y -y1 + "px";
+			
+			x1 = c.x;
+			y1 = c.y;
+			return false;
+		};
+		dm.onmouseup = function(){
+			var c = _getXY();
+			dm.innerHTML = "up:" + c.x + "," + c.y; 
+			x1 = 0;
+			y1 = 0; 
+		}; 
+		dm.onmouseout = function(){
+			var c = _getXY();
+			dm.innerHTML = "out:" + c.x + "," + c.y; 
+			x1 = 0;
+			y1 = 0; 
+		}; 
+        return r;
+    }
 	this.blhCreateBoard2ShowObj 	= function (id,x,y,o2Show){	 			 
 		var main = _uiDivMovable(id,x,y);					 
 		var mi1 = _blDiv(main,id+"mi1",id+"mi1");				 
