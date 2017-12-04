@@ -3,14 +3,12 @@ echo ^<!DOCTYPE html^>  >>index.html
 echo ^<html^>		>>index.html
 echo ^<head^>		>>index.html
 echo ^<title^>		>>index.html
-echo index_v1.1.63					>>index.html 
+echo index_v1.1.68					>>index.html 
 echo ^</title^>						>>index.html
 echo ^<meta charset="UTF-8"^>								>>index.html 
 echo ^<meta name="viewport" content="width=device-width, initial-scale=1"^>		>>index.html 
 echo ^<link rel="stylesheet" href="w3schools/w3css/4/w3.css"^>				>>index.html 
-echo ^<link rel="icon" href="favicon.png" type="image/x-icon"^>				>>index.html 
-echo ^<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato"^>	>>index.html 
-echo ^<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"^>	>>index.html 
+echo ^<link rel="icon" href="favicon.png" type="image/x-icon"^>				>>index.html  
 echo ^<style^>										>>index.html 
 echo body {font-family: "Lato", sans-serif}						>>index.html 
 echo .mySlides {display: none}								>>index.html 
@@ -33,10 +31,13 @@ echo    ^<!-- ----------------------------------------------More----------------
 echo    ^<div class="w3-dropdown-hover w3-hide-small"^>		 									>>index.html  
 echo      ^<button class="w3-padding-large w3-button" title="More"^>MORE* ^<i class="fa fa-caret-down"^>^</i^>^</button^>		 >>index.html       
 echo       ^<div class="w3-dropdown-content w3-bar-block w3-card-4"^>		 							>>index.html  
-echo         ^<a target="_blank" href="https://github.com/littleflute/xd" class="w3-bar-item w3-button"^>github_xd^</a^>	 	>>index.html  
+echo         ^<a target="_blank" href="https://github.com/littleflute/xd" class="w3-bar-item w3-button"^>github_xd^</a^>		>>index.html  
+echo         ^<a target="_blank" href="https://github.com/littleflute/cchess" class="w3-bar-item w3-button"^>github_cchess^</a^>		>>index.html  
+echo         ^<a target="_blank" href="http://www.beautifullover.org" class="w3-bar-item w3-button"^>beautifullover.org^</a^>		>>index.html  
+echo         ^<a target="_blank" href="https://people.highline.edu/llouie/links.php" class="w3-bar-item w3-button"^>people.highline.edu^</a^>	 	>>index.html  
 echo         ^<a target="_blank" href="https://www.w3schools.com" class="w3-bar-item w3-button"^>w3schools.com^</a^>		 	>>index.html  
 echo         ^<a target="_blank" href="http://littleflute.github.io/CodeMirror/" class="w3-bar-item w3-button"^>CodeMirror^</a^>	>>index.html 
-
+ 
 echo         ^<a target="_blank" href="http://www.google.com" class="w3-bar-item w3-button"^>google^</a^>		 		>>index.html  
 echo         ^<a target="_blank" href="https://cbcpubliclibrary.net/" class="w3-bar-item w3-button"^>cbcpubliclibrary.net/^</a^>	>>index.html  
 echo       ^</div^>								 	>>index.html  
