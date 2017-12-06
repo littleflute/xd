@@ -1,6 +1,6 @@
 
 function _xdPlx1Class(){
-	var v 		= "v0.0.15";
+	var v 		= "v0.0.16";
 	var name 	= "_xdPlx1Class";
 	var pathMp3 = "https://littleflute.github.io/bible1/NIV%20Live%20A%20Bible%20Experience/OldTestament/cd02/";
 	var fileMp3 = "01 Genesis 1.mp3";
@@ -77,6 +77,7 @@ function _xdPlx1Class(){
 function xdPlx1() {
 /*
 _begin_
+	// dbg 161a
 	var c = new _xdPlx1Class;
 	c.run(c);
 _end_
