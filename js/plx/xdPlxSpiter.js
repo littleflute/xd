@@ -1,15 +1,13 @@
 // xdl-1 
 function _SpiterJobClass(){
-	var v 		= "v0.0. 123 -";
+	var v 		= "v0.0. 134 -";
 	var _w		= null;
-	var _j1		= null;
-	var _j2		= null;
+	var _j1		= null; 
 	var _ta		= null;
 	this.blrUI	= function(b,d){
 		_w	= _create_MainWnd	(d);
 		_ta	= _create_TA		(_w);
-		_j1	= _creat_job_UI	(_w , "job1 ",_f1); 
-		_j2	= _creat_job_UI	(_w , "job2 ",_f2);
+		_j1	= _creat_job_UI	(_w , "job1 ",_f1);  
 		_on_off_div( b , d );
 	}; 
 
@@ -47,14 +45,21 @@ function _SpiterJobClass(){
 		}( btnRun ); 
 		var btnPlus = blo0.blBtn( o.v0 ,o.v0 .id + jobName + " btnPlus " , "+","gray");
 		btnPlus .onclick = function(btn_){ 
+			var n = 0;
+			var s = "";
 			return function(){
+				n++; if(n>1) return;
 				var parent = o.v1;
 				o.i[o.n] = blo0.blDiv(parent  , parent .id + jobName + "_i_" + o.n, "i:" + o.n, "green" );
 
-				o.i[o.n].  btnGet = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " Get " , "Get" ,"gray");
-				o.i[o.n].  btnSet = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " Set " , "Set" ,"gray");
+				o.i[o.n].  btnGet = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " Get " , "^" ,"gray");
+				o.i[o.n].  btnSet = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " Set " , "v" ,"gray");
 				o.i[o.n].  btnS1 = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " S1 " , "S1" ,"gold");
 				o.i[o.n].  btnS2 = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " S2 " , "S2" ,"gold");
+				o.i[o.n].  btnS3 = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " S3 " , "S3" ,"gold");
+				o.i[o.n].  btnV_T = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " V_T " , "^" ,blColor[8]);
+				o.i[o.n].  btnT_V = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " T_V " , "v" ,blColor[9]);
+				o.i[o.n].  btnV3  = blo0.blBtn( o.i[o.n] ,o.i[o.n].id + " V3 " , "V3" ,blColor[10]);
 				o.i[o.n].v = blo0.blDiv( o.i[o.n] , o.i[o.n] .id + "v", "--" + o.n, "tomato" );
 				 
 				o.i[o.n].btnGet.onclick = function(btn_,v_){ 
@@ -69,17 +74,23 @@ function _SpiterJobClass(){
 					}
 				}( o.i[o.n]. btnSet,o.i[o.n].v);
 
-				o.i[o.n].btnS1.onclick = function(btn_,v_){ 
-					return function(){
-						v_.innerHTML = "https://github.com/littleflute/cchess/issues/71"; 
-					}
-				}( o.i[o.n]. btnS1,o.i[o.n].v);
+				o.i[o.n].btnS1.onclick = function(btn_,v_){return function(){v_.innerHTML = "https://www.biblica.com/bible/niv/genesis/1";}}
+				( o.i[o.n]. btnS1,o.i[o.n].v);
+				o.i[o.n].btnS2.onclick = function(btn_,v_){ return function(){v_.innerHTML = "https://www.w3schools.com/html/default.asp"; }}
+				( o.i[o.n]. btnS2,o.i[o.n].v);
+				o.i[o.n].btnS3.onclick = function(btn_,v_){ return function(){v_.innerHTML = "https://github.com/littleflute/xd/issues/3"; }}
+				( o.i[o.n]. btnS2,o.i[o.n].v);
 
-				o.i[o.n].btnS2.onclick = function(btn_,v_){ 
+				o.i[o.n].btnV_T.onclick = function(btn_,v_){ 
 					return function(){
-						v_.innerHTML = "https://www.w3schools.com/html/default.asp"; 
+						_ta.value = s;
 					}
 				}( o.i[o.n]. btnS2,o.i[o.n].v);
+				o.i[o.n].btnT_V.onclick = function(btn_,v_){ 
+					return function(){
+						s = _ta.value ; v_.innerHTML = s;
+					}
+				}( o.i[o.n]. btnS2,o.i[o.n].  btnV3);
 
 				o.n ++;
 			}
@@ -108,15 +119,9 @@ function _SpiterJobClass(){
 				var w = new _ajaxWorkClass (o.v2,_ta);
 				blo0.blAjx(w,ajxHref); 
 			}
-		};
-		o.fItem2 = function(){
-				_ta.value = jobName + " fItem 1";
-		};
+		}; 
 		return o;
-	}
-	function _f2		() { 
-		this . fItem2 ();
-	}
+	} 
 	var _f1		= function() { 
 		this . fItem1 ();
 	}
