@@ -1,11 +1,58 @@
 // xdl-1 
 
 var _color	= ["red","tomato","gold","black","green","blue","lightblue","yellow","brown","pink","gray","white"];
+
+var _color_bar_class	= function(oBoss){
+		var tb		= null;		 
+		var _IDs	= [];
+		var _btnIDs	= [];
+		var _selID	= null;
+		var _setSelObj = function(){
+			for(var i = 0;i<_btnIDs.length;i++){
+				if(_btnIDs[i].innerHTML==_selID){
+					_btnIDs[i].style.backgroundColor = blColor[7];
+				}
+				else{
+					_btnIDs[i].style.backgroundColor = blColor[10];
+				}
+			}
+		}
+		this.blhAddObj = function (id) {
+			if(id) _IDs.push(id);
+		}; 
+		this.blhCreateUI = function (oBoss) {
+			tb = blo0.blDiv( oBoss ,oBoss.id + "_color_bar_class", "_color_bar_class", _color[1]);
+			for(var i = 0;i<_color.length;i++){
+				var b = blo0.blBtn( tb, tb.id + "btn" + i, i , _color[i]);	
+				b.onclick = function(_clr){
+					return function(){
+						tb.style.backgroundColor = _clr;
+						var o = document.getElementById(_selID);
+						if(o) o.style.backgroundColor = _clr;
+					}
+				}(_color[i]);	
+			}
+			for(var i = 0;i<_IDs.length;i++){
+				var b = blo0.blBtn( tb, tb.id + _IDs[i], _IDs[i] , _color[2]);					
+				_btnIDs.push(b);
+				b.onclick = function(btn,id){
+					return function(){
+						_selID = id;
+						_setSelObj();
+					}
+				}(b,_IDs[i]);	
+			}	
+		}; 
+};
+
+var c = new _xdPlxSongClass;
+c.run(c); 
 function _SongJobClass(){
-	var v 		= "v0.0. 14 -";
+	var v 		= "_SongJobClass_v0.0. 21";
 	var _w		= null;
 	var _j1		= null; 
 	var _ta		= null;
+	var _clrTB	= new _color_bar_class;
 	this.blrSongUI	= function(b,d){
 		_w	= _create_MainSongWnd	(d);
 		_ta	= _create_TA		(_w);
@@ -13,7 +60,16 @@ function _SongJobClass(){
 		_on_off_div( b , d );
 	}; 
 
-	var _create_MainSongWnd	= function(oBoss){return blo0.blDiv( oBoss ,oBoss.id + "_create_MainSongWnd", v, _color[0]); };
+	this.blrColor	= function(b,d){ 
+		_clrTB.blhCreateUI(d);	  
+		_on_off_div( b , d );
+	}; 
+
+	var _create_MainSongWnd	= function(oBoss){
+		var d = blo0.blDiv( oBoss ,oBoss.id + "_create_MainSongWnd", v, _color[0]); 
+		_clrTB.blhAddObj(d.id);
+		return d;
+	};
 	var _create_TA		= function(oBoss){
 		var dt1	= blo0.blDiv( oBoss ,oBoss.id + " _create_TA		1 ", "--", _color[1]);
 		var _btnSetMyHeight = function(h){
@@ -27,8 +83,9 @@ function _SongJobClass(){
 		_btnSetMyHeight (200);
 
 		var t = blo0.blTextarea(oBoss, oBoss.id + "ta" , "xd1" , _color[2]);
+		_clrTB.blhAddObj(t.id);
 		t.style.width = "100%";
-		var dt2	= blo0.blDiv( oBoss ,oBoss.id + " _create_TA		2 ", "==", _color[1]);
+		var dt2	= blo0.blDiv( oBoss ,oBoss.id + " _create_TA		2 ", "==", _color[1]); 
 		return t;
 	};
 	function _creat_Song_UI	( oBoss , jobName , f ) { 
@@ -146,12 +203,9 @@ function _ajaxWorkClass(o,t)
 		t.value = txt;
 	}
 }
-
-//
-//
-//
+ 
 function _xdPlxSongClass(){
-	var v 		= "v0.0.21";
+	var v 		= "v0.0.25";
 	var name 	= "_xdPlxSongClass";
 	var _view	= null;
 	var _loadTimes	= 0; 
@@ -168,16 +222,10 @@ function _xdPlxSongClass(){
 				blo.blShowObj2Div(v,o2Show);
 				_on_off_bd(btn_,v);
 			}
-		}(b1);
+		}(b1); 
 	}
 	var _create_MainPlxWnd	= function(oBoss){
-		return blo0.blDiv( oBoss ,oBoss.id + "_create_MainWnd", "- _create_MainPlxWnd	-", _color[0] );		
-	};
-	var _create_toolBar	= function(oBoss){
-		var tb = blo0.blDiv( oBoss ,oBoss.id + "_div_toolBar", "-  toolbar  -" , _color[1]);	
-		for(var i = 0;i<_color.length;i++){
-			var b = blo0.blBtn( tb, tb.id + "btn" + i, i , _color[i]);		
-		}
+		return blo0.blDiv( oBoss ,oBoss.id + "_create_MainWnd", "", _color[0] );		
 	};
 	var _createUI 	= function(this_ ){
 		if(!document.body._xdPlxSongLoad_times) document.body._xdPlxSongLoad_times = 1;
@@ -186,7 +234,6 @@ function _xdPlxSongClass(){
 		if(!_view) alert("no 'id_div__xdPlxSong'");
 		else{
 			_view.innerHTML = name + "-" + v + " : " + document.body._xdPlxSongLoad_times;
-			_tb		= _create_toolBar (_view);
 			_w 		= _create_MainPlxWnd(_view);
 			_makeToolBar2ShowObj(blo0, _w , _oj		);
 		}		
@@ -198,8 +245,3 @@ function _xdPlxSongClass(){
 	}
 } 
 
-function _run_xdPlxSong() { 
-	var c = new _xdPlxSongClass;
-	c.run(c); 
-};  
-_run_xdPlxSong();

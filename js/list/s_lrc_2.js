@@ -1,13 +1,13 @@
 ﻿ls = [
 {
         "f":"https://littleflute.github.io/bible1/NIV%20Live%20A%20Bible%20Experience/OldTestament/cd01/01 Genesis 1.mp3",
-        "l":"file:///C:/Users/13699/xd/js/lrc/01_lrc.js"},
+        "l":"file:///C:/Users/13699/xd/js/lrc/bible/Genesis01.js"},
 {
         "f":"https://littleflute.github.io/bible1/NIV%20Live%20A%20Bible%20Experience/OldTestament/cd01/02 Genesis 2.mp3",
-        "l":"file:///C:/Users/13699/xd/js/lrc/01_lrc.js"},
+        "l":"file:///C:/Users/13699/xd/js/lrc/bible/Genesis02.js"},
 {
         "f":"https://littleflute.github.io/bible1/NIV%20Live%20A%20Bible%20Experience/OldTestament/cd01/03 Genesis 3.mp3",
-        "l":"file:///C:/Users/13699/xd/js/lrc/01_lrc.js"},
+        "l":"file:///C:/Users/13699/xd/js/lrc/bible/Genesis03.js"},
 {
         "f":"https://littleflute.github.io/bible1/NIV%20Live%20A%20Bible%20Experience/OldTestament/cd01/04 Genesis 4.mp3",
         "l":"file:///C:/Users/13699/xd/js/lrc/01_lrc.js"},
