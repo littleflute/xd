@@ -6,7 +6,8 @@
 <title>Tryit</title>
 <meta name="viewport" content="width=device-width">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="../../favicon.png" type="image/x-icon">
+<link rel="icon" href="../../favicon.png" type="image/x-icon">
+
 <link rel="stylesheet" href="../w3css/4/w3.css">
 <link rel="stylesheet" href="../lib/codemirror.css">
 <script src="../lib/codemirror.js"></script> 		
@@ -1016,11 +1017,16 @@ xdLoad.onclick = function()
 	
 
 	document.getElementById("textareaCode").value = code ;
-	 window.editor.getDoc().setValue(code);
-
+	 window.editor.getDoc().setValue(code);
+
+
+
 }
 var xdv = document.getElementById("xd2");
-xdv.innerHTML = "v0.3.0";
+var s = "";
+s+="<a target='_blank' href='https://github.com/littleflute/xd/edit/master/w3schools/howto/tryit_asp.html'>v0.3.1</a>";
+s+="<a target='_blank' href='?l=xd1'>l=xd1</a>";
+xdv.innerHTML = s;
 							
 
 </script>
