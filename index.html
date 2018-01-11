@@ -1,75 +1,59 @@
-<!DOCTYPE html>  
-<html>		
-<head>		
-<title>		
-index_v1.1.68					 
-</title>						
-<meta charset="UTF-8">								 
-<meta name="viewport" content="width=device-width, initial-scale=1">		 
+<!DOCTYPE html>
+<html>
+<title>index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">		 
 <link rel="stylesheet" href="w3schools/w3css/4/w3.css">				 
-<link rel="icon" href="favicon.png" type="image/x-icon">				  
-<style>										 
-body {font-family: "Lato", sans-serif}						 
-.mySlides {display: none}								 
-</style>										 
-</head>	
-<body>	
-<!-- Navbar -->						 
-<div class="w3-top">						 
-  <div class="w3-bar w3-black w3-card">	 
-   <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>			  
-   <a href="?l=0" class="w3-bar-item w3-button w3-padding-large">Home</a>									 	 
-   <a href="vc6/index.html" class="w3-bar-item w3-button w3-padding-large">vc6</a>						
-   <a href="Mp3Player/index.html" class="w3-bar-item w3-button w3-padding-large">Mp3Player</a>					
-   <a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large">w3schools</a>					
-   <!-- ----------------------------------------------More----------------------------------------------------- -->		 
-   <div class="w3-dropdown-hover w3-hide-small">		 									  
-     <button class="w3-padding-large w3-button" title="More">MORE* <i class="fa fa-caret-down"></i></button>		        
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">		 							  
-        <a target="_blank" href="https://github.com/littleflute/xd" class="w3-bar-item w3-button">github_xd</a>		  
+<link rel="icon" href="favicon.png" type="image/x-icon">
+<body>
+
+<div class="w3-container">
+  <h2>Navigation Bar with Dropdown</h2>
+  <p>Click on the Dropdown link to open the dropdown menu.</p>
+
+  <div class="w3-bar w3-light-grey">
+    <a href="?v=" class="w3-bar-item w3-button">v2.0.2</a>
+    <a target="_blank" href="https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_navbar_dropdown3" class="w3-bar-item w3-button">ref</a>
+    <div class="w3-dropdown-click">
+      <button class="w3-button" onclick="myFunction()">
+        Dropdown <i class="fa fa-caret-down"></i>
+      </button>
+      <div id="demo" class="w3-dropdown-content w3-bar-block w3-card">
+        <a href="vextab/tests/blclassTest.html" target="_blank" class="w3-bar-item w3-button">blclassTest.html</a>
+        <a href="w3schools/howto/tryit_asp.html" target="_blank" class="w3-bar-item w3-button">tryit_asp.html</a> 	 
+        <a target="_blank" href="https://github.com/littleflute/xd/edit/master/index.html" class="w3-bar-item w3-button">github*</a>		  
         <a target="_blank" href="https://github.com/littleflute/cchess" class="w3-bar-item w3-button">github_cchess</a>		  
         <a target="_blank" href="http://www.beautifullover.org" class="w3-bar-item w3-button">beautifullover.org</a>		  
         <a target="_blank" href="https://people.highline.edu/llouie/links.php" class="w3-bar-item w3-button">people.highline.edu</a>	 	  
         <a target="_blank" href="https://www.w3schools.com" class="w3-bar-item w3-button">w3schools.com</a>		 	  
         <a target="_blank" href="http://littleflute.github.io/CodeMirror/" class="w3-bar-item w3-button">CodeMirror</a>	 
         <a target="_blank" href="http://www.google.com" class="w3-bar-item w3-button">google</a>		 		  
-        <a target="_blank" href="https://cbcpubliclibrary.net/" class="w3-bar-item w3-button">cbcpubliclibrary.net/</a>	  
-      </div>								 	  
-    <!-- --------------------------------------------------------------------------------------------------- -->			 
-    </div>		 							  
-    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>		 	  
-  </div>		 	  
-</div>		 	  
-<!-- Navbar on small screens -->			
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">		
- <a href="vc6/index.html" class="w3-bar-item w3-button w3-padding-large">colors</a>						 
- <a href="Mp3Player/index.html" class="w3-bar-item w3-button w3-padding-large">Mp3Player</a>					 
- <a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large">w3schools</a>					 
-</div>		
-<!-- Page content -->		
-<div class="w3-content" style="max-width:2000px;margin-top:46px">		
-<div id="xdMainDiv" ></div>							
-<div id = "id_div_blclass" style = "background-color: Bisque;"></div>		
-<div id="id_bl_RunTA"></div>							
-</div>										
-<!-- End Page Content -->							
-<script src="js/blclass_utf-8.js"></script>					 
-<script>											
-// Used to toggle the menu on small screens when clicking on the menu button		
-function myFunction() {									
-    var x = document.getElementById("navDemo");						
-    if (x.className.indexOf("w3-show") == -1) {						
-        x.className += " w3-show";								
-    } else { 										
-        x.className = x.className.replace(" w3-show", "");					
-    }											
-}												
-var nBlPageLeve = 0;								
-//var blt = new blClassTest;								
-//blt.blGo(); 									 
-//blt.blLoadPlx("blPlxMp3Player.js");						
-//blt.blLoadPlx("blPlxLyric.js");							
-// blt.blLoadPlx("blPlxXau.js");							
-</script>									
-</body>			
-</html>			
+        <a target="_blank" href="https://cbcpubliclibrary.net/" class="w3-bar-item w3-button">cbcpubliclibrary.net/</a>	
+      </div>
+    </div><div class="w3-dropdown-hover">
+      <button class="w3-button" onclick="myFunction()">
+        Dropdown <i class="fa fa-caret-down"></i>
+      </button>
+      <div id="demo" class="w3-dropdown-content w3-bar-block w3-card">
+        <a href="?l=0" class="w3-bar-item w3-button w3-padding-large">Home</a>									 	 
+   <a href="vc6/index.html" class="w3-bar-item w3-button w3-padding-large">vc6</a>						
+   <a href="Mp3Player/index.html" class="w3-bar-item w3-button w3-padding-large">Mp3Player</a>					
+   <a href="w3schools/index.html" class="w3-bar-item w3-button w3-padding-large">w3schools</a>	
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("demo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
