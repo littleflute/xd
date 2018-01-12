@@ -1,7 +1,7 @@
 ﻿ls = [
 {
         "f":"https://littleflute.github.io/bible1/NIV%20Live%20A%20Bible%20Experience/OldTestament/cd01/01 Genesis 1.mp3",
-        "l":"file:///C:/Users/13699/xd/js/lrc/bible/Genesis01.js"},
+        "l":"https://littleflute.github.io/xd/js/lrc/bible/Genesis01.js"},
 {
         "f":"https://littleflute.github.io/bible1/NIV%20Live%20A%20Bible%20Experience/OldTestament/cd01/02 Genesis 2.mp3",
         "l":"file:///C:/Users/13699/xd/js/lrc/bible/Genesis02.js"},
