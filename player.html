@@ -1,9 +1,14 @@
 
 
+
 <script src="https://littleflute.github.io/vc6/XdHtml/blclass.js" type="text/javascript"></script>
 
-<a  href="?v=" >v0.0.5</a>
+
+<a  href="?v=" >v0.0. 11 </a>
+
 <a target="_blank" href="https://github.com/littleflute/xd/edit/master/player.html" >player.html*</a>	
+
+
 <style>
 
 #skPlayer-wrap{position:fixed;top:25%;left:0;margin:0px 0 0;padding:0;line-height:1;z-index:9999;}
@@ -16,6 +21,8 @@
 	#skPlayer .skPlayer-control,#skPlayer .skPlayer-control > .skPlayer-percent{width:170px !important;}
     
 </style>
+
+
 
 <div id="skPlayer-wrap"><div id="skp-ctrl">Music</div><div id="skPlayer"></div></div>
 <script src="http://www.beautifullover.org/zb_users/plugin/skPlayer/skPlayer.min.js"></script>
@@ -82,10 +89,15 @@ document.onclick = function(e){
 
 
 
+
+
+
+
 //--------------------------------------- for lrc ----
 
 
  
+
 function _blVMPlayer()
 {
 	var nTime = 0; 
@@ -139,7 +151,8 @@ function _golrcolor(t)
 var ls = null;
 var htm5List = null;
 var vc6List = null;
-function loadListOK(){  
+function loadListOK(){
+  
 		_showList(blo0,htm5List,5,ls,QueryString.j);
 		_showList(blo0,vc6List,4,ls,QueryString.j);
 }
@@ -147,7 +160,8 @@ function loadListOK(){
   {	 
 		htm5List = o.blDiv(oBoss,oBoss.id+"htm5List","[HTML5]:: ","skyblue"); 
 		vc6List = o.blDiv(oBoss,oBoss.id+"vc6List","[VC6  ]:: ","gray"); 
-		if(j){ 
+	
+	if(j){ 
 			o.blScript(oBoss.id + "_script_lrc_list",j);
 		}
 		else{
@@ -177,8 +191,13 @@ function loadListOK(){
 var xdPlayerDiv = blo0.blDiv(document.body,"xdPlayerDiv","");
 
 
-var myLrc = "lrcTest.js";
+
+
+var myLrc = "https://littleflute.github.io/xd/js/lrc/bible/Genesis01.js";
+
 if(myLrc) blo0.blScript("id_script_lrcdata",myLrc);
+
+
 function loadLyricOK(){ 
 	var l = document.getElementById("lrcdata");
 	lrcobj = new blLrcClass(l.innerHTML,QueryString.t,QueryString.f);
