@@ -16,7 +16,7 @@
 </style>
 
 <script type="text/javascript">
- 	var s = "::::::    v0.1. 52 <div id='id_div_toolBar' style ='float:right;'></div> ";
+ 	var s = "::::::    v0.1. 55 <div id='id_div_toolBar' style ='float:right;'></div> ";
 	var d 	= blo0.blMDiv(document.body, "id_div_CXdMainFrame_ui" ,s,0,0,550,50,blColor[1]);
 
 	var s4Player = "<div id='skPlayer-wrap'><div id= 'skp-ctrl' >Music</div><div id='skPlayer'></div></div>";	
@@ -335,11 +335,11 @@ function blLrcClass(tt,xt,f)
   { 
 	var divMP = o.blDiv(xdPlayerDiv,"mp1","xdxdxd","red"); 
 	_InitPlayer(xdType,divMP,f); 
-	var xddbgDiv = o.blDiv(document.body,"xddbgLyric",xdVer,"gold");
-	var MyTimer = o.blDiv(document.body,"idMyTimer","idMyTimer");
 
-	var od = o.blDiv(document.body,"oShowDiv","","gold");
-	_CreateLyrBoard2(od);
+	var d 	= blo0.blMDiv(document.body, "id_div_4_Lyric_ui" ,s,0,0,850,50,blColor[2]); 
+	var xddbgDiv = o.blDiv(d,"xddbgLyric",xdVer,"gold");
+	var MyTimer = o.blDiv(d,"idMyTimer","idMyTimer");
+	_CreateLyrBoard2(d);
   }
   var _CreateLyrBoard2 = function(oBoss)
   {	 
