@@ -1,0 +1,69 @@
+
+<style>
+
+#skPlayer-wrap{position:fixed;top:25%;left:0;margin:0px 0 0;padding:0;line-height:1;z-index:9999;}
+#skPlayer{position:absolute;top:0;left:-380px;margin:0;padding:0;background:rgba(211,255,255,.90) !important;transition:all .3s ease;}
+#skPlayer-wrap.xopen #skPlayer{left:30px;}
+#skp-ctrl{position:absolute;top:0;left:-10px;margin:0;padding:0;width:30px;height:100px;line-height:20px;text-align:center;writing-mode:tb-rl;background:#D94240;color:#fff;font-size:14px;font-family:Arial;cursor:pointer;box-shadow:0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);text-shadow:#666 1px 1px 1px;transition:all .2s linear;}
+#skPlayer-wrap.xopen #skp-ctrl{left:0;}
+@media (max-width: 480px) {
+	#skPlayer{width:300px !important;}
+	#skPlayer .skPlayer-control,#skPlayer .skPlayer-control > .skPlayer-percent{width:170px !important;}
+    
+</style>
+
+<div id="skPlayer-wrap"><div id="skp-ctrl">Music</div><div id="skPlayer"></div></div>
+<script src="http://www.beautifullover.org/zb_users/plugin/skPlayer/skPlayer.min.js"></script>
+<script>
+var p = {
+    autoplay: 1,
+    listshow: 0,
+    mode: 'listloop',
+    music: {
+        type: 'file',
+        source: [ 
+{
+	name: 'Three Little Birds',
+	author: 'BobMarley',
+	src: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/01%20Three%20Little%20Birds.mp3',
+	cover: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/AlbumArt_{7666695E-5B42-46D5-9567-CA01B5E97B32}_Large.jpg'
+},
+{
+	name: '02 Redemption Song.mp3',
+	author: 'BobMarley',
+	src: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/02 Redemption Song.mp3',
+	cover: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/AlbumArt_{7666695E-5B42-46D5-9567-CA01B5E97B32}_Large.jpg'
+},
+
+{
+	name: '03 Wake Up and Live, Pt. 1.mp3',
+	author: 'BobMarley',
+	src: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/03 Wake Up and Live, Pt. 1.mp3',
+	cover: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/AlbumArt_{7666695E-5B42-46D5-9567-CA01B5E97B32}_Large.jpg'
+},
+
+
+{
+	name: '04 Bend Down Low.mp3',
+	author: 'BobMarley',
+	src: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/04 Bend Down Low.mp3',
+	cover: 'https://littleflute.github.io/BobMarley/B%20Is%20for%20Bob/AlbumArt_{7666695E-5B42-46D5-9567-CA01B5E97B32}_Large.jpg'
+},
+
+]
+    }
+};
+
+var player = new skPlayer(p);
+//Z-BlogPHP skPlayer [www.yiwuku.com]
+var skpShow = 1;
+var skpWrap = document.getElementById('skPlayer-wrap');
+if(skpShow){skpWrap.className='xopen';}
+document.getElementById('skp-ctrl').onclick = function(){skpWrap.className='xopen';}
+document.onclick = function(e){
+    var e = e || window.event;
+    var target = e.target || e.srcElement;
+    var _tar = skpWrap;
+    if(!(target == _tar) && ! _tar.contains(target)){skpWrap.className='';}
+}
+</script>
