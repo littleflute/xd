@@ -1,0 +1,11 @@
+{									
+    "title":"",							
+    "artist":"", 							
+    "url": "https://littleflute.github.io/xd/english/reading/201802",				
+       "pic1":"images.jpg",					
+    "audioList":[							
+        "The Lovable Leech.mp3",						
+    ],      							
+    "lrcList":[							
+    ]      							
+}									
