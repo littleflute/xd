@@ -1,0 +1,11 @@
+{									
+    "title":"Johnny_Appleseed",							
+    "artist":"littleflute", 							
+    "url": "https://littleflute.github.io/xd/english/",				
+       "pic1":"Johnny-Appleseed.jpg",					
+    "audioList":[							
+        "Johnny Appleseed 1.mp3",						
+    ],      							
+    "lrcList":[							
+    ]      							
+}									
