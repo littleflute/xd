@@ -1,5 +1,5 @@
 // blTryApp.js
-var _g_ver_blTryApp = "v0.3. 13 ";
+var _g_ver_blTryApp = "v0.3. 15 ";
 
 var QueryString = function () 
 {
@@ -60,6 +60,7 @@ xdLoad.onclick = function()
 }
 var xdv = document.getElementById("xd2");
 var s = "";
+s += "<a target='_blank' href='https://littleflute.github.io/xd/w3schools/howto/blTryApp.js'>blTryApp.js - </a>";  
 s += "<a target='_blank' href='https://github.com/littleflute/xd/edit/master/w3schools/howto/blTryApp.js'>";
 s += _g_ver_blTryApp ;
 s += "*</a>";
