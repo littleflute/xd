@@ -1,7 +1,8 @@
 
 //xd1.js
 var thisFileName = "xd1";
-var thisFileV	 = "v0.3.7";
+var thisFileV	 = "v0.3. 15 ";
+
 var thisCodeFun		= function(){
 /* xd1 code:
 _begin_ 
@@ -23,13 +24,13 @@ _begin_
   <li>Centro comercial Moctezuma</li>
   <li>Ernst Handel</li>
   <li>FISSA Fabrica Inter. Salchichas S.A.</li>
-  <li>Galer¨ªa del gastr¨®nomo</li>
+  <li>GalerÂ¨Åža del gastrÂ¨Å½nomo</li>
   <li>Island Trading</li>
   <li>K?niglich Essen</li>
   <li>Laughing Bacchus Wine Cellars</li>
   <li>Magazzini Alimentari Riuniti</li>
   <li>North/South</li>
-  <li>Paris sp¨¦cialit¨¦s</li>
+  <li>Paris spÂ¨ÅšcialitÂ¨Åšs</li>
   <li>Rattlesnake Canyon Grocery</li>
   <li>Simons bistro</li>
   <li>The Big Cheese</li>
@@ -44,18 +45,45 @@ _begin_
 _end_
 */
 };
-var _blXd1 = {};
-_blXd1.name = "_blXd1";
-_blXd1.v = "v0.1.2";
 
-_blXd1.blrLoad = function(b,v){ 
-	var a = document.getElementById("xdLoad");
-	a.click(); submitTryit(1);
-};
+function _on_off_div(b,d){if(d.style.display=="block"){d.style.display="none"; b.style.backgroundColor="red"; }else{d.style.display="block"; b.style.backgroundColor="green"; }};
 
-_blXd1.blrShow_xd5 = function(b,v){
-	v.innerHTML = "<a target='_blank' href='tryit_asp.html?l=xd5'>xd5_js</a>";
-};
+function _myJobClass(){
+	this.v 			= "v0.1. 13 ";
+	this.blrLoad 		= function(b,v){ 
+		var a = document.getElementById("xdLoad");
+		a.click(); submitTryit(1);
+	};
+	this.blrList 	= function(b,v){
+		if(!v.s){
+			v.s = "";
+			v.s += "<a href='?l=xd1'>l=xd1</a> - ";
+			v.s += "<a target='_blank' href='try/xd1.js'>xd1.js</a><br>";
+			v.s += "<a href='?l=xd2'>l=xd2</a> - ";
+			v.s+= "<a target='_blank' href='try/xd2.js'>xd2.js</a><br>"; 
+			v.s+= "<a href='?l=xd3'>l=xd3</a> - ";
+			v.s+= "<a target='_blank' href='try/xd3.js'>xd3.js</a><br>"; 
+			v.s+= "<a href='?l=xd4'>l=xd4</a> - ";
+			v.s+= "<a target='_blank' href='try/xd4.js'>xd4.js</a><br>"; 
+			v.s+= "<a href='?l=xd5'>l=xd5</a> - ";
+			v.s+= "<a target='_blank' href='try/xd5.js'>xd5.js</a><br>"; 
+			v.innerHTML = v.s;
+		}
+		_on_off_div(b,v);
+	};
+	this.blrAbout 	= function(b,v){
+		if(!v.s){
+			v.s = ""; 
+			v.s += "<a target='_blank' href='try/xd1.js'>xd1.js</a><br>"; 
+			v.s += "<a target='_blank' href='https://github.com/littleflute/xd/edit/master/w3schools/howto/try/xd1.js'>xd1.js*</a><br>"; 
+			v.innerHTML = v.s;
+		}
+		_on_off_div(b,v);
+	};
+
+}
+
+var _blXd1 = new _myJobClass;
 
 var blo = new blClass;
 
