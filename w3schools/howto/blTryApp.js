@@ -1,5 +1,5 @@
 // blTryApp.js
-var _g_ver_blTryApp = "v0.3. 15 ";
+var _g_ver_blTryApp = "v0.3. 21 ";
 
 var QueryString = function () 
 {
@@ -20,8 +20,7 @@ var QueryString = function ()
   return query_string;
 }();
 var oDivFile2Load = null;
-var blrLoadFileJS	= function(thisFileName){ 
-//*
+var blrLoadFileJS	= function(thisFileName){  
 	var o = new blClass;
 	var f = thisFileName + ".js";
 	var sPath = "try/"; 
@@ -31,21 +30,14 @@ var blrLoadFileJS	= function(thisFileName){
 	var oDivFile2Load = o.blDiv(oBoss,idDiv,src,"green"); 
 	var oXd2 = o.blDiv(oDivFile2Load,"xd2","xd22","lightblue"); 
 	var s1 = o.blScript("idS_"+thisFileName,src); 
-	o = null;
-//*/
+	o = null; 
 }; 
  
 blrLoadFileJS(QueryString.l);
 
 var xdLoad = document.getElementById("xdLoad");
 xdLoad.onclick = function()
-{
-/* 
-	var id = "idDivCode";
-	var d = document.getElementById(id);
-	if(!d) {alert(id +" not exist!");return;}
-	var code = d.innerHTML;
-*/
+{ 
 	var id = "idTaCode";
 	var ta = document.getElementById(id);
 	if(!ta) {alert(id +" not exist!");return;}
@@ -65,7 +57,7 @@ s += "<a target='_blank' href='https://github.com/littleflute/xd/edit/master/w3s
 s += _g_ver_blTryApp ;
 s += "*</a>";
 s+="-";
-s+="<a target='_blank' href='../../index.html'>Home</a>-";
-s+="<a target='_blank' href='?l=xd1'>l=xd1</a>";
+s+="<a href='../../index.html'>Home</a>-";
+s+="<a href='?l=xd1'>l=xd1</a>";
 xdv.innerHTML = s;
  
